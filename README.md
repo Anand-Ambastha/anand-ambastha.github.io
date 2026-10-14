@@ -22,6 +22,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 - [Edit the content](#edit-the-content)
 - [Design system](#design-system)
 - [Deploy with GitHub Pages](#deploy-with-github-pages)
+- [Search engine optimisation](#search-engine-optimisation)
 - [How the blog works](#how-the-blog-works)
 - [Third-party libraries](#third-party-libraries)
 - [Browser support](#browser-support)
@@ -67,11 +68,18 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 ├── contact/index.html      Contact details
 ├── go/index.html           Hidden redirect page (not linked in the menu)
 ├── links.json              Short link names and their targets
+├── 404.html                Page shown for unknown addresses
+├── sitemap.xml             Pages for search engines
+├── robots.txt              Crawler rules and sitemap location
 ├── assets/
 │   ├── css/
 │   │   └── styles.css      Shared styles; design tokens at the top
-│   └── js/
-│       └── blog.js         Blog engine: loads and renders Markdown posts
+│   ├── js/
+│   │   └── blog.js         Blog engine: loads and renders Markdown posts
+│   └── img/
+│       ├── og-image.png    1200 x 630 image used when links are shared
+│       ├── favicon.svg     Browser tab icon
+│       └── apple-touch-icon.png
 ├── posts/
 │   ├── index.json          List of post files, one file name per entry
 │   ├── welcome-to-the-blog.md   Sample post that shows every style
@@ -250,6 +258,38 @@ All colors, fonts and the star field are defined in `assets/css/styles.css`.
 5. After a minute, the site is available at `https://anand-ambastha.github.io/portfolio/`.
 
 All links in the site are relative, so it works both at a repository path (`/portfolio/`) and on a custom domain. To use a custom domain, add it under **Settings → Pages** and follow GitHub's DNS instructions.
+
+## Search engine optimisation
+
+**What is in place**
+
+- A unique `<title>` (under 60 characters) and meta description (under 160) on every page.
+- A canonical address, Open Graph tags and Twitter Card tags on every public page, with a 1200 x 630 share image (`assets/img/og-image.png`) so links look good on LinkedIn, X, WhatsApp and Slack.
+- JSON-LD structured data (schema.org): a `Person` and `WebSite` on the home page, `BreadcrumbList` on inner pages, a list of `ScholarlyArticle` entries on Publications, plus `ProfilePage`, `Blog` and `ContactPage`.
+- `sitemap.xml` and `robots.txt`. The hidden pages (`/go/` and `/post/`) are marked `noindex`.
+- One `<h1>` per page, a logical heading order, descriptive link text and a text description for the home diagram.
+- Favicon, Apple touch icon, `theme-color` and a custom `404.html`.
+- Fast by design: no build step, one small stylesheet, fonts loaded with `display=swap`.
+
+**After deploying**
+
+1. Open [Google Search Console](https://search.google.com/search-console), add the site, and submit `https://anand-ambastha.github.io/portfolio/sitemap.xml`.
+2. Do the same in [Bing Webmaster Tools](https://www.bing.com/webmasters).
+3. Test a link in the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh the share preview.
+
+**If the site address changes** (custom domain or a `Anand-Ambastha.github.io` repository), replace the old address everywhere:
+
+```bash
+grep -rl "anand-ambastha.github.io/portfolio" . --exclude-dir=.git \
+  | xargs sed -i 's#https://anand-ambastha.github.io/portfolio/#https://your-new-address/#g'
+```
+
+Update `<lastmod>` in `sitemap.xml` when you change a page.
+
+**Known limits**
+
+- Search engines only read `robots.txt` at the root of a domain. On a project site (`/portfolio/`) it is ignored, so the sitemap must be submitted in Search Console. A custom domain or a repository named `Anand-Ambastha.github.io` fixes this.
+- Blog posts all open at `/post/#post-name`. Search engines treat the part after `#` as the same page, so individual posts are not indexed. Pre-rendering each post as its own page would fix this.
 
 ## How the blog works
 
