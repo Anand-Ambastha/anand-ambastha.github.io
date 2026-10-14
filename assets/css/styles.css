@@ -23,9 +23,14 @@ body::before {
     radial-gradient(1px 1px at 70px 250px, #bcd2ff 50%, transparent 100%),
     radial-gradient(1px 1px at 210px 20px, #ffffff 50%, transparent 100%),
     radial-gradient(1px 1px at 300px 120px, #dfe9ff 50%, transparent 100%),
-    radial-gradient(1px 1px at 110px 170px, #ffffff 50%, transparent 100%);
-  background-size: 330px 300px;
-  opacity: .8;
+    radial-gradient(1px 1px at 110px 170px, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 45px 120px, #e8f0ff 50%, transparent 100%),
+    radial-gradient(1px 1px at 180px 140px, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 235px 275px, #cfe0ff 50%, transparent 100%),
+    radial-gradient(1px 1px at 12px 205px, #ffffff 50%, transparent 100%),
+    radial-gradient(1px 1px at 285px 40px, #bcd2ff 50%, transparent 100%);
+  background-size: 310px 300px;
+  opacity: .9;
 }
 body::after {
   background-image:
@@ -46,7 +51,7 @@ body {
   margin: 0;
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(40, 90, 200, 0.55), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(40, 90, 200, 0.4), transparent 70%),
     radial-gradient(ellipse 60% 45% at 95% 35%, rgba(30, 70, 170, 0.4), transparent 70%),
     linear-gradient(180deg, #050b1f 0%, #081a4a 100%);
   background-attachment: fixed;
@@ -240,16 +245,16 @@ a.status:hover { background: var(--surface-hover); }
 @media (max-width: 860px) { .bio { grid-template-columns: minmax(0, 1fr); gap: 32px; } .focus { position: static; } }
 
 /* home: one composed hero card, then label-and-content blocks on a shared two-column grid */
-.home-hero { padding-block: clamp(48px, 8vw, 104px) 0; }
+.home-hero { padding-block: clamp(40px, 6vw, 88px) 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr); gap: 40px clamp(32px, 5vw, 72px); align-items: center; }
 .now { display: inline-flex; align-items: center; gap: 10px; padding: 6px 14px 6px 12px; border: 1px solid var(--glass-border); border-radius: 999px; background: rgba(255, 255, 255, 0.05); font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); letter-spacing: .03em; }
 .now::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(127, 178, 255, 0.2); }
-.home-hero h1 { font-size: clamp(40px, 6.4vw, 78px); line-height: 1.03; margin-top: 26px; max-width: 15ch; }
+.home-hero h1 { font-size: clamp(38px, 5.2vw, 66px); line-height: 1.04; margin-top: 24px; max-width: 14ch; }
 .home-hero .lede { margin-top: 24px; max-width: 58ch; }
-.hero-card { margin: 56px 0 0; border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden; }
-.hero-card .art { padding: clamp(14px, 3vw, 32px) clamp(14px, 3vw, 32px) 0; }
-.hero-card svg { display: block; width: 100%; height: auto; }
+.hero-card { margin: 0; border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden; }
+.hero-card svg { display: block; width: 100%; height: auto; padding: clamp(10px, 2vw, 22px) clamp(10px, 2vw, 22px) 0; }
 .hero-card figcaption { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); padding: 10px clamp(18px, 3vw, 36px) 22px; letter-spacing: .02em; }
-.strip { margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.strip { margin: 40px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--glass-border); border-radius: 20px; background: var(--surface); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden; }
 .strip div { padding: 20px 24px; min-width: 0; }
 .strip div + div { border-left: 1px solid var(--line); }
 .strip dt { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
@@ -269,7 +274,7 @@ a.status:hover { background: var(--surface-hover); }
 .stat .cap { display: block; margin-top: 16px; color: var(--muted); font-size: 15px; line-height: 1.5; max-width: 28ch; }
 .stat small { display: block; margin-top: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); }
 
-.list { border-top: 1px solid var(--line); }
+.list .item:first-child { padding-top: 0; }
 .item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 28px; padding: 24px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .item h3 { font-size: 21px; font-weight: 400; line-height: 1.3; letter-spacing: -0.015em; }
 .item .meta { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; text-align: right; }
@@ -287,6 +292,8 @@ a.item:hover h3 { color: var(--accent); }
 
 @media (max-width: 1000px) {
   .cards3 { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-card { max-width: 560px; }
 }
 @media (max-width: 860px) {
   .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -322,7 +329,7 @@ footer.site a:hover { color: var(--fg); }
   .nav .wrap { flex-wrap: wrap; padding: 10px 16px 2px; min-height: 0; border-radius: 18px; }
   .brand { order: 1; }
   .nav .pill { order: 2; height: 36px; }
-  .links { order: 3; width: 100%; gap: 22px; overflow-x: auto; padding-block: 10px 12px; white-space: nowrap; }
+  .links { order: 3; width: 100%; gap: 16px; font-size: 14px; overflow-x: auto; padding-block: 10px 12px; white-space: nowrap; }
   .detail { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-block: 36px; }
   .row { grid-template-columns: minmax(0, 1fr); }
   .card { padding: 22px; }
