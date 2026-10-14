@@ -149,6 +149,7 @@ Then open <http://localhost:8000>. Pages open at `/research/`, `/blog/` and so o
 | `tags` | No | List in square brackets, such as `[qkd, satellite]`. Used for filter buttons. |
 | `summary` | No | Text for the post card. If missing, the first lines of the post are used. |
 | `draft` | No | Set to `true` to hide the post until it is ready. |
+| `category` | No | Set to `project` to list the post under **Project blogs**. Leave it out and the post appears under **My thoughts**, the first group on the Blog page. |
 
 ### File naming
 

@@ -1,6 +1,7 @@
 ---
 title: SateSim, a satellite link budget simulator with a dashboard
 date: 2026-10-15
+category: project
 tags: [satesim, link-budget, satellite, python]
 summary: How SateSim turns an orbit and a ground station into SNR, BER, Doppler shift and elevation, with a dashboard, CSV export and a PDF report.
 ---

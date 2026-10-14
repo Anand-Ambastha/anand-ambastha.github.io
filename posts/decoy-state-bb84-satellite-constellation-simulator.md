@@ -1,6 +1,7 @@
 ---
 title: Simulating a decoy-state BB84 satellite constellation over India
 date: 2026-10-15
+category: project
 tags: [bb84, satellite-qkd, constellation, simulation]
 summary: How the simulator behind my Springer paper works, from Walker-Delta orbits to the key a station collects in a day, and what its numbers do and do not say.
 ---

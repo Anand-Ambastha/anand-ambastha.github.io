@@ -1,6 +1,7 @@
 ---
 title: QSAFire, a satellite SNS-TF-QKD simulator built layer by layer
 date: 2026-10-15
+category: project
 tags: [qsafire, sns-tf-qkd, satellite-qkd, simulation]
 summary: How I built QSAFire during my internship at DRDO's Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.
 ---

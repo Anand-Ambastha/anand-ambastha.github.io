@@ -58,9 +58,16 @@
 
   <section style="padding-top: 40px;">
     <div class="filters" id="filters" hidden></div>
-    <div class="post-list" id="posts" aria-live="polite">
-      <p class="notice">Loading posts…</p>
-    </div>
+  </section>
+
+  <section class="blog-group" id="g-thoughts" style="padding-top: 24px;">
+    <div class="sec-head"><h2>My thoughts</h2><p>Things I think about and like to share.</p></div>
+    <div class="post-list" id="list-thoughts" aria-live="polite"><p class="notice">Loading posts…</p></div>
+  </section>
+
+  <section class="blog-group" id="g-projects" style="padding-top: 24px;">
+    <div class="sec-head"><h2>Project blogs</h2><p>Write-ups on the projects listed on the Projects page.</p></div>
+    <div class="post-list" id="list-projects"></div>
   </section>
 
   <footer class="site">
@@ -79,13 +86,23 @@
 <script src="../assets/js/blog.js"></script>
 <script>
 (function () {
-  var list = document.getElementById('posts');
   var filters = document.getElementById('filters');
+  var groups = [
+    { key: 'thoughts', empty: 'Nothing here yet. Posts will appear soon.' },
+    { key: 'projects', empty: 'No project blogs yet.' }
+  ];
   var posts = [], active = 'All';
 
   function draw() {
-    var shown = posts.filter(function (p) { return active === 'All' || p.tags.indexOf(active) > -1; });
-    list.innerHTML = shown.length ? shown.map(Blog.card).join('') : '<p class="notice">No posts with this tag yet.</p>';
+    groups.forEach(function (g) {
+      var sec = document.getElementById('g-' + g.key), list = document.getElementById('list-' + g.key);
+      var items = posts.filter(function (p) {
+        var inGroup = (p.category === 'project') === (g.key === 'projects');
+        return inGroup && (active === 'All' || p.tags.indexOf(active) > -1);
+      });
+      sec.hidden = active !== 'All' ? !items.length : false;
+      list.innerHTML = items.length ? items.map(Blog.card).join('') : '<p class="notice">' + g.empty + '</p>';
+    });
   }
 
   function chips() {
@@ -107,10 +124,9 @@
 
   Blog.load().then(function (p) {
     posts = p;
-    if (!posts.length) { list.innerHTML = '<p class="notice">No posts yet. Check back soon.</p>'; return; }
     chips(); draw();
   }).catch(function () {
-    list.innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
+    document.getElementById('list-thoughts').innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
   });
 })();
 </script>

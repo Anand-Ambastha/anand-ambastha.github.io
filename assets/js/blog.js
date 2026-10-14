@@ -67,6 +67,7 @@
                 summary: p.meta.summary || excerpt(p.body),
                 body: p.body,
                 draft: p.meta.draft === 'true',
+                category: (p.meta.category || '').toLowerCase(),
                 minutes: Math.max(1, Math.round(words / 200))
               };
             })
