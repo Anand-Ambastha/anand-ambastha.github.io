@@ -80,16 +80,25 @@
       <div>
         <span class="when">2026</span>
         <h2>QSAFire</h2>
-        <p class="org">Satellite-to-ground SNS-TF-QKD simulation framework, built at the Scientific Analysis Group, Defence Research and Development Organisation.</p>
+        <p class="org">Satellite-to-ground SNS-TF-QKD simulation package, built at the Scientific Analysis Group, Defence Research and Development Organisation.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">SNS-TF-QKD</span><span class="tag">Orbits</span></div>
       </div>
       <div>
         <ul class="bullets">
-          <li>Independent Python framework combining J2-perturbation orbital geometry, atmospheric transmittance, slant-path Rytov-variance turbulence, pointing, acquisition and tracking losses, and a fully asymmetric, jointly optimised SNS-TF-QKD key-rate calculation.</li>
-          <li>Applied across six Indian ground sites and four candidate links.</li>
-          <li>Orbital solver and elevation–slant-range formulas validated against Landsat-8/9, Sentinel-2 and published Micius data to within 1–3%.</li>
+          <li>Independent Python package for sending-or-not-sending twin-field QKD (SNS-TF-QKD) over three channels: fiber, free-space optics with Gamma-Gamma turbulence, and a ground-to-satellite uplink. It implements the asymptotic key-rate formula of Wang, Yu and Hu (Phys. Rev. A 98, 062323).</li>
+          <li>The protocol equations live in one module and are reused unchanged by every channel model, so no physics is duplicated.</li>
+          <li>The satellite link is built in separable layers: WGS-84 geodesy and a solved sun-synchronous orbit, Rayleigh, aerosol and gas optical depth, a Hufnagel-Valley turbulence profile with the spherical-wave Rytov variance, and seasonal datasets for winter, summer and monsoon.</li>
+          <li>Hardware and environment are modeled explicitly: Friis diffraction loss, Gaussian pointing jitter, a characterised avalanche photodiode, day and night background light, and weather-gated annual availability from rainy-day and fog climatology.</li>
+          <li>Joint optimisation of signal intensity, decoy intensity and sending probability, with a Monte Carlo ensemble that folds turbulence fading into the real-loss channel.</li>
+          <li>A six-city link database and a fully asymmetric, per-arm version of the rate formulas, applied across four city-pair links. A Streamlit dashboard shows the whole chain.</li>
+          <li>Each stage is checked against an outside reference. Orbital solver and elevation–slant-range formulas agree with Landsat-8/9, Sentinel-2 and published Micius data to within 1–3%, and the Gamma-Gamma average is cross-validated between quadrature and Monte Carlo.</li>
         </ul>
-        <a class="inline-link" href="../research/">Related experience: Scientific Analysis Group, Defence Research and Development Organisation →</a>
+        <div class="tags" style="margin-top:24px"><span class="tag">Streamlit</span><span class="tag">Monte Carlo</span><span class="tag">Gamma-Gamma</span><span class="tag">Link budget</span></div>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../post/#qsafire-satellite-sns-tf-qkd-simulator">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/QSAFIRE" target="_blank" rel="noopener">Source on GitHub ↗</a>
+          <a class="inline-link" style="margin-top:0" href="../research/">Related experience: Scientific Analysis Group, Defence Research and Development Organisation →</a>
+        </p>
       </div>
     </article>
 
