@@ -1,73 +1,261 @@
 # Anand Kumar · Portfolio
 
-Personal research portfolio for Anand Kumar: quantum communications, free-space optical (FSO) channel modeling and satellite/NTN systems.
+Personal research portfolio of **Anand Kumar**, an undergraduate researcher working on quantum communications, free-space optical (FSO) channel modeling and satellite/NTN systems.
 
-A static site with no build step. Plain HTML, CSS and a little JavaScript.
+The site is fully static: plain HTML, CSS and a small amount of JavaScript, with **no build step and no dependencies to install**. It has a deep-space blue background with a star field, frosted-glass navigation and cards, and a Markdown-powered blog.
 
-## Structure
+- Live site: _add your GitHub Pages URL here after deploying_
+- GitHub: [github.com/Anand-Ambastha](https://github.com/Anand-Ambastha)
+- LinkedIn: [linkedin.com/in/anand-kumar05](https://www.linkedin.com/in/anand-kumar05)
+
+---
+
+## Contents
+
+- [Features](#features)
+- [Pages](#pages)
+- [Project structure](#project-structure)
+- [Run locally](#run-locally)
+- [Write a blog post](#write-a-blog-post)
+- [Markdown features supported in posts](#markdown-features-supported-in-posts)
+- [Edit the content](#edit-the-content)
+- [Design system](#design-system)
+- [Deploy with GitHub Pages](#deploy-with-github-pages)
+- [How the blog works](#how-the-blog-works)
+- [Third-party libraries](#third-party-libraries)
+- [Browser support](#browser-support)
+- [Troubleshooting](#troubleshooting)
+
+---
+
+## Features
+
+- **Eight pages** with a shared navigation bar and footer.
+- **Space theme**: deep blue gradient background with a fixed star field (pure CSS, a slow twinkle that stops for visitors who prefer reduced motion).
+- **Glass interface**: the top bar, buttons and cards use translucent backgrounds with a backdrop blur.
+- **Markdown blog**: write posts as `.md` files. They are rendered with styled headings, quotes, code blocks with a Copy button, tables, images and TeX math.
+- **Tag filtering** on the blog listing and a "Latest writing" section on the home page that appears once a post exists.
+- **Publications page** with sections for published and accepted work, preprints, thesis and reports, and presentation slides.
+- **Responsive**: works from phone width up to wide desktop screens. On phones the menu becomes a swipeable row.
+- **Accessible basics**: semantic HTML, visible keyboard focus, `aria-current` on the active page, and reduced-motion support.
+
+## Pages
+
+| Page | File | What it shows |
+| --- | --- | --- |
+| Home | `index.html` | Headline, satellite-link figure, selected work, latest posts, contact prompt |
+| Research | `research.html` | Three research positions with methods and validated results |
+| Projects | `projects.html` | Six projects with details and tags |
+| Publications | `publications.html` | Published and accepted papers, preprints, thesis and reports, slides |
+| Blog | `blog.html` | Post listing with tag filters |
+| Post | `post.html` | A single post, opened as `post.html#post-slug` |
+| About | `about.html` | Bio, focus areas, education, honors, skills, leadership |
+| Contact | `contact.html` | Email with a copy button, phone, LinkedIn, GitHub |
+
+## Project structure
 
 ```
 .
-├── index.html            Home
-├── research.html         Research positions and results
-├── projects.html         Projects
-├── publications.html     Papers, preprints, thesis and reports, slides
-├── blog.html             Blog listing with tag filter
-├── post.html             Single blog post (post.html#post-slug)
-├── about.html            Bio, education, skills, leadership
-├── contact.html          Contact details
+├── index.html              Home
+├── research.html           Research positions and results
+├── projects.html           Projects
+├── publications.html       Papers, preprints, thesis and reports, slides
+├── blog.html               Blog listing with tag filter
+├── post.html               Single blog post (post.html#post-slug)
+├── about.html              Bio, education, skills, leadership
+├── contact.html            Contact details
 ├── assets/
-│   ├── css/styles.css    Shared styles (design tokens at the top)
-│   └── js/blog.js        Blog engine: loads and renders Markdown posts
-└── posts/
-    ├── index.json        List of post files, one name per entry
-    ├── *.md              Blog posts
-    └── img/              Images used in posts
+│   ├── css/
+│   │   └── styles.css      Shared styles; design tokens at the top
+│   └── js/
+│       └── blog.js         Blog engine: loads and renders Markdown posts
+├── posts/
+│   ├── index.json          List of post files, one file name per entry
+│   ├── welcome-to-the-blog.md   Sample post that shows every style
+│   └── img/                Images used in posts
+├── README.md
+└── .gitignore
 ```
 
 ## Run locally
 
-Browsers block `fetch()` from `file://`, so serve the folder:
+Browsers block `fetch()` on files opened directly with `file://`, and the blog loads posts with `fetch()`. Serve the folder with any static server.
+
+Using Python (no install needed):
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000.
+Using Node:
+
+```bash
+npx serve .
+```
+
+Then open <http://localhost:8000>. The blog and post pages also load `marked`, `DOMPurify` and `MathJax` from a CDN, so you need an internet connection to see rendered posts.
 
 ## Write a blog post
 
-1. Create `posts/my-post.md` with a front matter block:
+1. **Create a Markdown file** in `posts/`, for example `posts/turbulence-and-key-rate.md`, and start it with a front matter block:
 
    ```markdown
    ---
-   title: Your title
+   title: Turbulence and the key rate
    date: 2026-10-20
    tags: [qkd, turbulence]
-   summary: One or two sentences for the post card.
+   summary: One or two sentences shown on the post card.
    ---
 
-   Your post in Markdown.
+   Your post starts here, written in Markdown.
    ```
 
-2. Add the file name to `posts/index.json`:
+2. **Register the file** by adding its name to `posts/index.json`:
 
    ```json
-   ["my-post.md", "welcome-to-the-blog.md"]
+   [
+     "turbulence-and-key-rate.md",
+     "welcome-to-the-blog.md"
+   ]
    ```
 
-3. Put images in `posts/img/` and link them as `![Alt text](img/figure.png)`.
+3. **Add images** (optional) to `posts/img/` and link them relative to that folder:
 
-Add `draft: true` to the front matter to hide a post until it is ready. Posts support code blocks, tables, quotes and TeX math between dollar signs (`$...$` and `$$...$$`).
+   ```markdown
+   ![Link budget](img/link-budget.png)
+   ```
 
-## Deploy with GitHub Pages
+4. **Commit and push.** With GitHub Pages enabled, the post appears after the next deploy.
 
-In the repository settings, open **Pages**, choose **Deploy from a branch**, then select `main` and `/ (root)`.
+### Front matter fields
 
-Blog rendering loads `marked`, `DOMPurify` and `MathJax` from cdnjs on `post.html`.
+| Field | Required | Description |
+| --- | --- | --- |
+| `title` | Yes | Post title. Falls back to the file name if missing. |
+| `date` | Yes | `YYYY-MM-DD`. Posts are sorted newest first. |
+| `tags` | No | List in square brackets, such as `[qkd, satellite]`. Used for filter buttons. |
+| `summary` | No | Text for the post card. If missing, the first lines of the post are used. |
+| `draft` | No | Set to `true` to hide the post until it is ready. |
+
+### File naming
+
+Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The file name (without `.md`) becomes the post address: `post.html#my-first-post`.
+
+## Markdown features supported in posts
+
+- Headings, paragraphs, **bold**, _italic_, ~~strikethrough~~ and links (external links open in a new tab).
+- Ordered and unordered lists.
+- Block quotes, shown as glass boxes with a large quote mark.
+- Inline code and fenced code blocks. Each block shows its language and has a Copy button.
+- Tables, which scroll sideways on small screens.
+- Images, which are rounded and scale to fit.
+- Horizontal rules, shown as three dots.
+- **TeX math**: inline with `$...$` and display with `$$...$$`.
+
+  ```markdown
+  The transmittance follows $\ln \eta \sim \mathcal{N}(\mu, \sigma^2)$.
+
+  $$
+  T = e^{-\alpha L}
+  $$
+  ```
+
+The sample post `posts/welcome-to-the-blog.md` shows every one of these. Delete it or replace it when you publish your own writing.
 
 ## Edit the content
 
-- Page text lives in each `.html` file.
-- Colors, fonts and spacing are CSS variables at the top of `assets/css/styles.css`.
-- Update the list of posts in `posts/index.json`.
+| To change | Edit |
+| --- | --- |
+| Page text, research entries, projects, publications | The matching `.html` file |
+| Contact details | `contact.html` (and the footers if you want them elsewhere) |
+| Navigation links | The `<header class="nav">` block in each page, and the footer `<nav>` |
+| Colors, fonts, spacing, star field | `assets/css/styles.css` |
+| Blog behavior | `assets/js/blog.js` |
+| List of blog posts | `posts/index.json` |
+
+Navigation and footer markup is repeated in every page, so a menu change needs the same edit in all eight files.
+
+### Add a publication
+
+Copy an existing `<article class="row">` block in `publications.html` into the right section and change the year, title, venue, authors and status label. To link a preprint, thesis or slide deck, make the status label an anchor, as the journal entry does:
+
+```html
+<a class="status" href="https://example.org/paper" target="_blank" rel="noopener">Preprint ↗</a>
+```
+
+Remove the "No ... posted yet" row from a section when you add its first entry.
+
+## Design system
+
+All colors, fonts and the star field are defined in `assets/css/styles.css`.
+
+**Color tokens** (at the top of the file):
+
+| Token | Purpose |
+| --- | --- |
+| `--bg` | Page background (deep navy) |
+| `--surface`, `--surface-hover` | Translucent card fill and hover fill |
+| `--fg` | Main text |
+| `--muted` | Secondary text and labels |
+| `--line`, `--glass-border` | Hairlines and glass edges |
+| `--accent` | Links, small marks and the hero figure (light blue) |
+
+**Fonts**: [Geist](https://fonts.google.com/specimen/Geist) for headings and text, and Geist Mono for labels, dates and code. Both load from Google Fonts, with system fallbacks.
+
+**Star field**: two fixed layers (`body::before` and `body::after`) built from `radial-gradient` dots. The second layer twinkles with the `twinkle` animation. Change the dot positions or sizes there to adjust the sky.
+
+**Glass effect**: translucent `background`, a `backdrop-filter: blur(...)`, a light border and an inset top highlight. It is used for the nav bar (`.nav .wrap`), cards, ghost buttons, quotes and code blocks.
+
+## Deploy with GitHub Pages
+
+1. Push this repository to GitHub.
+2. Open **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**.
+4. Select the `main` branch and the `/ (root)` folder, then save.
+5. After a minute, the site is available at `https://anand-ambastha.github.io/portfolio/`.
+
+All links in the site are relative, so it works both at a repository path (`/portfolio/`) and on a custom domain. To use a custom domain, add it under **Settings → Pages** and follow GitHub's DNS instructions.
+
+## How the blog works
+
+The blog has no server and no build step. Everything happens in the visitor's browser:
+
+1. `blog.html` and `post.html` load `assets/js/blog.js`.
+2. The script fetches `posts/index.json`, then fetches each listed `.md` file.
+3. It reads the front matter (title, date, tags, summary) and estimates reading time at 200 words per minute.
+4. `blog.html` draws the post cards and tag filters.
+5. `post.html` reads the post address from the URL hash (`#post-slug`), converts the Markdown to HTML with `marked`, cleans it with `DOMPurify`, adds code-block headers, wraps tables, and renders math with `MathJax`.
+6. Links to newer and older posts appear at the bottom.
+
+Math is protected before Markdown conversion so that underscores and backslashes in TeX are not changed, then restored for MathJax.
+
+## Third-party libraries
+
+Loaded from [cdnjs](https://cdnjs.com/) on `post.html` only:
+
+| Library | Version | Purpose |
+| --- | --- | --- |
+| [marked](https://marked.js.org/) | 4.3.0 | Markdown to HTML |
+| [DOMPurify](https://github.com/cure53/DOMPurify) | 3.0.6 | Sanitizes rendered HTML |
+| [MathJax](https://www.mathjax.org/) | 3.2.2 (`tex-svg`) | TeX math rendering |
+
+The home and blog pages need none of these. Fonts load from Google Fonts.
+
+## Browser support
+
+Current versions of Chrome, Edge, Firefox and Safari. The glass effect uses `backdrop-filter`; in a browser without it, the bar and cards fall back to a flat translucent fill and stay readable.
+
+## Troubleshooting
+
+| Problem | Cause and fix |
+| --- | --- |
+| Blog shows "Posts could not be loaded" | The page was opened with `file://`. Serve the folder (see [Run locally](#run-locally)). |
+| A new post does not appear | Check that its file name is in `posts/index.json`, the JSON is valid (commas, quotes) and the post does not have `draft: true`. |
+| A post shows "Post not found" | The address does not match the file name. Use lowercase letters, numbers and hyphens. |
+| Math shows as raw TeX | MathJax did not load. Check the connection, then reload. Make sure `$` has no space just inside it, as in `$x$`. |
+| Post images do not load | Put images in `posts/img/` and link them as `img/name.png`, with matching capitalization. |
+| Styles are missing on GitHub Pages | Confirm the `assets/` folder was pushed and that Pages is serving the `/ (root)` folder. |
+
+## License
+
+No license has been chosen yet. Until one is added, all rights are reserved by the author. Add a `LICENSE` file to allow reuse.
