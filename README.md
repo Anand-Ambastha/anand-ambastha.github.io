@@ -45,27 +45,27 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 | Page | File | What it shows |
 | --- | --- | --- |
 | Home | `index.html` | Headline, satellite-link figure, selected work, latest posts, contact prompt |
-| Research | `research.html` | Three research positions with methods and validated results |
-| Projects | `projects.html` | Six projects with details and tags |
-| Publications | `publications.html` | Published and accepted papers, preprints, thesis and reports, slides |
-| Blog | `blog.html` | Post listing with tag filters |
-| Post | `post.html` | A single post, opened as `post.html#post-slug` |
-| About | `about.html` | Bio, focus areas, education, honors, skills, leadership |
-| Contact | `contact.html` | Email with a copy button, phone, LinkedIn, GitHub |
+| Research | `/research/` | Three research positions with methods and validated results |
+| Projects | `/projects/` | Six projects with details and tags |
+| Publications | `/publications/` | Published and accepted papers, preprints, thesis and reports, slides |
+| Blog | `/blog/` | Post listing with tag filters |
+| Post | `/post/` | A single post, opened as `/post/#post-slug` |
+| About | `/about/` | Bio, focus areas, education, honors, skills, leadership |
+| Contact | `/contact/` | Email with a copy button, phone, LinkedIn, GitHub |
 
 ## Project structure
 
 ```
 .
 ├── index.html              Home
-├── research.html           Research positions and results
-├── projects.html           Projects
-├── publications.html       Papers, preprints, thesis and reports, slides
-├── blog.html               Blog listing with tag filter
-├── post.html               Single blog post (post.html#post-slug)
-├── about.html              Bio, education, skills, leadership
-├── contact.html            Contact details
-├── go.html                 Hidden redirect page (not linked in the menu)
+├── research/index.html     Research positions and results
+├── projects/index.html     Projects
+├── publications/index.html Papers, preprints, thesis and reports, slides
+├── blog/index.html         Blog listing with tag filter
+├── post/index.html         Single blog post (/post/#post-slug)
+├── about/index.html        Bio, education, skills, leadership
+├── contact/index.html      Contact details
+├── go/index.html           Hidden redirect page (not linked in the menu)
 ├── links.json              Short link names and their targets
 ├── assets/
 │   ├── css/
@@ -79,6 +79,8 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 ├── README.md
 └── .gitignore
 ```
+
+Each page lives in its own folder as `index.html`, so addresses have no `.html` ending: `/research/`, `/blog/`, `/about/`.
 
 ## Run locally
 
@@ -96,7 +98,7 @@ Using Node:
 npx serve .
 ```
 
-Then open <http://localhost:8000>. The blog and post pages also load `marked`, `DOMPurify` and `MathJax` from a CDN, so you need an internet connection to see rendered posts.
+Then open <http://localhost:8000>. Pages open at `/research/`, `/blog/` and so on. The post page also loads `marked`, `DOMPurify` and `MathJax` from a CDN, so you need an internet connection to see rendered posts.
 
 ## Write a blog post
 
@@ -142,7 +144,7 @@ Then open <http://localhost:8000>. The blog and post pages also load `marked`, `
 
 ### File naming
 
-Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The file name (without `.md`) becomes the post address: `post.html#my-first-post`.
+Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The file name (without `.md`) becomes the post address: `/post/#my-first-post`.
 
 ## Markdown features supported in posts
 
@@ -167,9 +169,9 @@ The sample post `posts/welcome-to-the-blog.md` shows every one of these. Delete 
 
 ## Hidden short links
 
-`go.html` is a redirect page that is **not linked anywhere** on the site: it is missing from the menu, the footer and the sitemap, and it carries a `noindex` tag so search engines skip it. Use it for short, memorable links that forward to other places, such as a CV, a paper or a profile.
+`/go/` is a redirect page that is **not linked anywhere** on the site: it is missing from the menu, the footer and the sitemap, and it carries a `noindex` tag so search engines skip it. Use it for short, memorable links that forward to other places, such as a CV, a paper or a profile.
 
-Open `go.html#name` and the page looks up `name` in `links.json` and sends the visitor to the matching address:
+Open `/go/#name` and the page looks up `name` in `links.json` and sends the visitor to the matching address:
 
 ```json
 {
@@ -183,9 +185,9 @@ With the site on GitHub Pages, these become:
 
 | Short link | Goes to |
 | --- | --- |
-| `https://anand-ambastha.github.io/portfolio/go.html#github` | GitHub profile |
-| `https://anand-ambastha.github.io/portfolio/go.html#linkedin` | LinkedIn profile |
-| `https://anand-ambastha.github.io/portfolio/go.html#springer-paper` | Springer paper (DOI) |
+| `https://anand-ambastha.github.io/portfolio/go/#github` | GitHub profile |
+| `https://anand-ambastha.github.io/portfolio/go/#linkedin` | LinkedIn profile |
+| `https://anand-ambastha.github.io/portfolio/go/#springer-paper` | Springer paper (DOI) |
 
 **Add a link:** add a line to `links.json` with a lowercase name (letters, numbers and hyphens) and a full `https://` address, then commit and push. The target can also be a page on this site, such as `"cv": "assets/cv.pdf"`.
 
@@ -199,18 +201,18 @@ With the site on GitHub Pages, these become:
 
 | To change | Edit |
 | --- | --- |
-| Page text, research entries, projects, publications | The matching `.html` file |
-| Contact details | `contact.html` (and the footers if you want them elsewhere) |
+| Page text, research entries, projects, publications | The `index.html` inside the matching folder |
+| Contact details | `contact/index.html` (and the footers if you want them elsewhere) |
 | Navigation links | The `<header class="nav">` block in each page, and the footer `<nav>` |
 | Colors, fonts, spacing, star field | `assets/css/styles.css` |
 | Blog behavior | `assets/js/blog.js` |
 | List of blog posts | `posts/index.json` |
 
-Navigation and footer markup is repeated in every page, so a menu change needs the same edit in all eight files.
+Navigation and footer markup is repeated in every page, so a menu change needs the same edit in all eight `index.html` files. Links from pages inside folders start with `../`.
 
 ### Add a publication
 
-Copy an existing `<article class="row">` block in `publications.html` into the right section and change the year, title, venue, authors and status label. To link a preprint, thesis or slide deck, make the status label an anchor, as the journal entry does:
+Copy an existing `<article class="row">` block in `publications/index.html` into the right section and change the year, title, venue, authors and status label. To link a preprint, thesis or slide deck, make the status label an anchor, as the journal entry does:
 
 ```html
 <a class="status" href="https://example.org/paper" target="_blank" rel="noopener">Preprint ↗</a>
@@ -253,18 +255,18 @@ All links in the site are relative, so it works both at a repository path (`/por
 
 The blog has no server and no build step. Everything happens in the visitor's browser:
 
-1. `blog.html` and `post.html` load `assets/js/blog.js`.
+1. `blog/index.html` and `post/index.html` load `assets/js/blog.js`.
 2. The script fetches `posts/index.json`, then fetches each listed `.md` file.
 3. It reads the front matter (title, date, tags, summary) and estimates reading time at 200 words per minute.
-4. `blog.html` draws the post cards and tag filters.
-5. `post.html` reads the post address from the URL hash (`#post-slug`), converts the Markdown to HTML with `marked`, cleans it with `DOMPurify`, adds code-block headers, wraps tables, and renders math with `MathJax`.
+4. `/blog/` draws the post cards and tag filters.
+5. `post/index.html` reads the post address from the URL hash (`#post-slug`), converts the Markdown to HTML with `marked`, cleans it with `DOMPurify`, adds code-block headers, wraps tables, and renders math with `MathJax`.
 6. Links to newer and older posts appear at the bottom.
 
 Math is protected before Markdown conversion so that underscores and backslashes in TeX are not changed, then restored for MathJax.
 
 ## Third-party libraries
 
-Loaded from [cdnjs](https://cdnjs.com/) on `post.html` only:
+Loaded from [cdnjs](https://cdnjs.com/) on the post page only:
 
 | Library | Version | Purpose |
 | --- | --- | --- |

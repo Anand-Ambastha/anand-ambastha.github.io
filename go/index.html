@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
 <main class="wrap go">
@@ -21,7 +21,7 @@
 </main>
 
 <script>
-/* Hidden short links. Open go.html#name and the page redirects to the address stored under "name" in links.json. */
+/* Hidden short links. Open go/#name and the page redirects to the address stored under "name" in links.json. */
 (function () {
   var title = document.getElementById('title');
   var msg = document.getElementById('msg');
@@ -30,14 +30,14 @@
   function fail(text) {
     title.textContent = 'Link not found';
     msg.textContent = text;
-    cta.innerHTML = '<a class="pill" href="./">Go to the home page</a>';
+    cta.innerHTML = '<a class="pill" href="../">Go to the home page</a>';
   }
 
   var slug = '';
   try { slug = decodeURIComponent(location.hash.slice(1)).toLowerCase(); } catch (e) {}
   if (!slug) return fail('No link name was given.');
 
-  fetch('links.json', { cache: 'no-cache' })
+  fetch('../links.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error('links'); return r.json(); })
     .then(function (map) {
       var target = map[slug];
