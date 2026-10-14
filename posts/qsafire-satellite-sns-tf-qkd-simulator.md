@@ -5,7 +5,7 @@ tags: [qsafire, sns-tf-qkd, satellite-qkd, simulation]
 summary: How I built QSAFire during my internship at DRDO's Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.
 ---
 
-During my summer internship at the Scientific Analysis Group of the Defence Research and Development Organisation, I built a simulator that answers one question. How much secret key can a ground station share with a satellite, and how does that change with the sky, the hardware and the weather? The result is **QSAFire**, an open-source Python package for sending-or-not-sending twin-field quantum key distribution (SNS-TF-QKD). This post explains how it is put together and what I would still improve. The project entry is on the [Projects page](../projects/), and the code is on [GitHub](https://github.com/Anand-Ambastha/QSAFIRE).
+During my summer internship at the Scientific Analysis Group of the Defence Research and Development Organisation, I built a simulator that answers one question. How much secret key can a ground station share with a satellite, and how does that change with the sky, the hardware and the weather? The result is **QSAFire**, an open-source Python package for sending-or-not-sending twin-field quantum key distribution (SNS-TF-QKD). This post explains how it is put together and what I would still improve. The project entry is on the [Projects page](../projects/), and the code is on [GitHub](https://github.com/Anand-Ambastha/QSAFIRE/tree/main/qsafire).
 
 ## The protocol
 
@@ -72,4 +72,4 @@ I would rather list the gaps than hide them.
 
 ## Where to go next
 
-The code, the figures from each stage and the internship report are in the [QSAFire repository](https://github.com/Anand-Ambastha/QSAFIRE). The [Research page](../research/) describes the wider work at the Scientific Analysis Group. If you work on satellite quantum links and want to compare notes, [get in touch](../contact/).
+The code and the figures from each stage are in the [QSAFire folder on GitHub](https://github.com/Anand-Ambastha/QSAFIRE/tree/main/qsafire). The internship report is in the root of the [same repository](https://github.com/Anand-Ambastha/QSAFIRE). The [Research page](../research/) describes the wider work at the Scientific Analysis Group. If you work on satellite quantum links and want to compare notes, [get in touch](../contact/).
