@@ -322,9 +322,15 @@ a.item:hover h3 { color: var(--accent); }
 .go-card h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; }
 .go-card .cta { margin-top: 10px; }
 
-footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 28px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; color: var(--muted); font-size: 14px; }
-footer.site nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 48px 36px; color: var(--muted); font-size: 14px; }
+footer.site .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
+footer.site .foot-brand .brand { color: var(--fg); font-weight: 500; font-size: 17px; }
+footer.site .foot-brand p { margin-top: 12px; max-width: 38ch; line-height: 1.6; }
+footer.site nav { display: flex; flex-direction: column; gap: 10px; }
+footer.site h3 { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--fg); margin-bottom: 4px; }
 footer.site a:hover { color: var(--fg); }
+footer.site .foot-base { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 13px; }
+@media (max-width: 720px) { footer.site .foot-grid { grid-template-columns: 1fr 1fr; } footer.site .foot-brand { grid-column: 1 / -1; } }
 
 @media (max-width: 760px) {
   .nav .wrap { flex-wrap: wrap; padding: 10px 16px 2px; min-height: 0; border-radius: 18px; }
