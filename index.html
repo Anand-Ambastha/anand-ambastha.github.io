@@ -25,121 +25,189 @@
 </header>
 
 <main class="wrap">
-  <section class="hero">
-    <p class="eyebrow">Quantum communications · New Delhi, India</p>
+  <section class="home-hero">
+    <p class="now">Quantum communications · New Delhi, India</p>
     <h1>Secure keys across turbulent skies.</h1>
     <p class="lede">I model free-space optical and satellite channels for quantum key distribution. My work covers twin-field QKD under atmospheric turbulence, climatology-aware slant-path models, and satellite link simulators for Indian ground stations.</p>
     <div class="cta">
-      <a class="pill" href="research/">See my research</a>
+      <a class="pill" href="research/">View research</a>
       <a class="pill ghost" href="publications/">Publications</a>
+      <a class="pill ghost" href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
     </div>
 
-    <figure class="figure">
-      <svg viewBox="0 0 800 340" role="img" aria-labelledby="figt">
-        <title id="figt">Satellite-to-ground link with log-normal transmittance</title>
-        <path d="M-40 360 Q400 232 840 360 L840 340 L-40 340 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="1.5"/>
-        <path d="M-40 360 Q400 232 840 360" fill="none" stroke="var(--fg)" stroke-width="1.5"/>
-        <path d="M-40 380 Q400 262 840 380" fill="none" stroke="var(--line)" stroke-width="1"/>
-        <g stroke="var(--accent)" fill="none" stroke-width="1.5">
-          <line x1="640" y1="52" x2="418" y2="296" stroke-dasharray="4 6"/>
-          <ellipse cx="438" cy="274" rx="30" ry="9" opacity=".7" transform="rotate(-48 438 274)"/>
-          <ellipse cx="452" cy="259" rx="44" ry="12" opacity=".45" transform="rotate(-48 452 259)"/>
-          <ellipse cx="470" cy="240" rx="58" ry="15" opacity=".25" transform="rotate(-48 470 240)"/>
-        </g>
-        <circle cx="640" cy="52" r="6" fill="var(--fg)"/>
-        <rect x="624" y="46" width="32" height="12" rx="2" fill="none" stroke="var(--fg)" stroke-width="1.2" transform="rotate(-30 640 52)"/>
-        <circle cx="414" cy="300" r="5" fill="var(--accent)"/>
-        <g font-family="var(--font-mono)" font-size="12" fill="var(--muted)">
-          <text x="660" y="40">Satellite</text>
-          <text x="436" y="322">Ground station</text>
-          <text x="500" y="160" transform="rotate(-48 500 160)">slant path</text>
-        </g>
-        <g>
-          <line x1="48" y1="228" x2="290" y2="228" stroke="var(--fg)" stroke-width="1.2"/>
-          <line x1="48" y1="60" x2="48" y2="228" stroke="var(--fg)" stroke-width="1.2"/>
-          <path d="M48 226 C 72 224 84 150 118 98 C 138 70 158 96 190 160 C 216 204 244 222 288 226" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
-          <g font-family="var(--font-mono)" font-size="12" fill="var(--muted)">
-            <text x="48" y="48">p(η)</text>
-            <text x="190" y="250">η (transmittance)</text>
-            <text x="150" y="78">ln η ~ N(μ, σ²)</text>
+    <figure class="hero-card">
+      <div class="art">
+        <svg viewBox="0 0 800 340" role="img" aria-labelledby="figt">
+          <title id="figt">Satellite-to-ground link with log-normal transmittance</title>
+          <path d="M-40 360 Q400 232 840 360 L840 340 L-40 340 Z" fill="var(--bg)" stroke="var(--line)" stroke-width="1.5"/>
+          <path d="M-40 360 Q400 232 840 360" fill="none" stroke="var(--fg)" stroke-width="1.5"/>
+          <path d="M-40 380 Q400 262 840 380" fill="none" stroke="var(--line)" stroke-width="1"/>
+          <g stroke="var(--accent)" fill="none" stroke-width="1.5">
+            <line x1="640" y1="52" x2="418" y2="296" stroke-dasharray="4 6"/>
+            <ellipse cx="438" cy="274" rx="30" ry="9" opacity=".7" transform="rotate(-48 438 274)"/>
+            <ellipse cx="452" cy="259" rx="44" ry="12" opacity=".45" transform="rotate(-48 452 259)"/>
+            <ellipse cx="470" cy="240" rx="58" ry="15" opacity=".25" transform="rotate(-48 470 240)"/>
           </g>
-        </g>
-      </svg>
+          <circle cx="640" cy="52" r="6" fill="var(--fg)"/>
+          <rect x="624" y="46" width="32" height="12" rx="2" fill="none" stroke="var(--fg)" stroke-width="1.2" transform="rotate(-30 640 52)"/>
+          <circle cx="414" cy="300" r="5" fill="var(--accent)"/>
+          <g font-family="var(--font-mono)" font-size="12" fill="var(--muted)">
+            <text x="660" y="40">Satellite</text>
+            <text x="436" y="322">Ground station</text>
+            <text x="500" y="160" transform="rotate(-48 500 160)">slant path</text>
+          </g>
+          <g>
+            <line x1="48" y1="228" x2="290" y2="228" stroke="var(--fg)" stroke-width="1.2"/>
+            <line x1="48" y1="60" x2="48" y2="228" stroke="var(--fg)" stroke-width="1.2"/>
+            <path d="M48 226 C 72 224 84 150 118 98 C 138 70 158 96 190 160 C 216 204 244 222 288 226" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+            <g font-family="var(--font-mono)" font-size="12" fill="var(--muted)">
+              <text x="48" y="48">p(η)</text>
+              <text x="190" y="250">η (transmittance)</text>
+              <text x="150" y="78">ln η ~ N(μ, σ²)</text>
+            </g>
+          </g>
+        </svg>
+      </div>
       <figcaption>Turbulence makes link transmittance a random variable. The model averages the key rate over it analytically.</figcaption>
+      <dl class="strip">
+        <div><dt>Now</dt><dd>Research Intern, IIT Delhi (National Quantum Mission)</dd></div>
+        <div><dt>Studying</dt><dd>B.Tech ECE, GGSIPU · CGPA 8.7 / 10</dd></div>
+        <div><dt>Leading</dt><dd>President, BVP Optica</dd></div>
+        <div><dt>Honor</dt><dd>Optica Student Leadership Conference 2026</dd></div>
+      </dl>
     </figure>
-
-    <dl class="facts">
-      <div><dt>Now</dt><dd>Research Intern, IIT Delhi (National Quantum Mission)</dd></div>
-      <div><dt>Studying</dt><dd>B.Tech ECE, GGSIPU · CGPA 8.7 / 10</dd></div>
-      <div><dt>Leading</dt><dd>President, BVP Optica</dd></div>
-      <div><dt>Next</dt><dd>Optica Student Leadership Conference, Rochester</dd></div>
-    </dl>
   </section>
 
-  <section>
-    <div class="sec-head">
-      <h2>Selected work</h2>
-      <a class="pill ghost" href="projects/">All projects</a>
+  <section class="h-block">
+    <div class="h-label">
+      <h2>Validated results</h2>
+      <p>Each result is checked against an independent reference.</p>
     </div>
-    <div class="cards">
-      <a class="card" href="research/">
-        <span class="when">IIT Delhi · 2026</span>
-        <h3>Twin-field QKD over turbulent FSO</h3>
-        <p>A closed-form turbulence average of the key rate, checked against Monte Carlo to under 3% error.</p>
-        <span class="go">Read the research →</span>
-      </a>
-      <a class="card" href="projects/">
-        <span class="when">DRDO SAG · 2026</span>
-        <h3>QSAFire</h3>
-        <p>A satellite-to-ground SNS-TF-QKD simulator applied to six Indian ground sites and four candidate links.</p>
-        <span class="go">See the project →</span>
-      </a>
-      <a class="card" href="projects/">
-        <span class="when">BVCOE · 2026</span>
-        <h3>Climate-aware channel modeling</h3>
-        <p>Satellite optical channels built from ERA5 and CAMS reanalysis data for Indian ground stations.</p>
-        <span class="go">See the project →</span>
-      </a>
+    <div class="h-body">
+      <div class="stats">
+        <div class="stat">
+          <b>0.4%</b>
+          <span class="cap">Fourth-order key-rate approximation against the numerical reference</span>
+          <small>IIT Delhi</small>
+        </div>
+        <div class="stat">
+          <b>&lt;3%</b>
+          <span class="cap">Closed-form turbulence average against 2 × 10⁵-sample Monte Carlo</span>
+          <small>IIT Delhi</small>
+        </div>
+        <div class="stat">
+          <b>1–3%</b>
+          <span class="cap">Orbital solver against Landsat-8/9, Sentinel-2 and Micius data</span>
+          <small>DRDO SAG</small>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section>
-    <div class="sec-head">
-      <h2>Recent publications</h2>
-      <a class="pill ghost" href="publications/">All publications</a>
+  <section class="h-block">
+    <div class="h-label">
+      <h2>Research</h2>
+      <p>Three positions, one thread: key rates through real atmospheres.</p>
+      <a href="research/">All research →</a>
     </div>
-    <div class="rows">
-      <article class="row">
-        <span class="yr">2026</span>
-        <div>
+    <div class="h-body">
+      <div class="list">
+        <a class="item" href="research/">
+          <h3>Twin-field QKD over turbulent FSO channels</h3>
+          <span class="meta">IIT Delhi · 2026</span>
+          <p>Closed-form turbulence averaging of the key rate, checked against Monte Carlo.</p>
+        </a>
+        <a class="item" href="research/">
+          <h3>SNS-TF-QKD studies and QSAFire</h3>
+          <span class="meta">DRDO SAG · 2026</span>
+          <p>A satellite-link simulator, an OptiSystem prototype and a Python pipeline, studied independently.</p>
+        </a>
+        <a class="item" href="research/">
+          <h3>Climatology-aware channel models</h3>
+          <span class="meta">BVCOE · 2025 – now</span>
+          <p>Slant-path optical channels from ERA5 and CAMS data for Indian ground stations.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="h-block">
+    <div class="h-label">
+      <h2>Selected projects</h2>
+      <p>Open-source frameworks and simulators.</p>
+      <a href="projects/">All projects →</a>
+    </div>
+    <div class="h-body">
+      <div class="cards3">
+        <a class="card" href="projects/">
+          <span class="when">2026 – now</span>
+          <h3>TF-QKD / FSO Framework</h3>
+          <p>Curty–Azuma–Lo Protocol-3 proof with finite-decoy bounds and turbulent FSO channels.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">CVXPY</span></div>
+        </a>
+        <a class="card" href="projects/">
+          <span class="when">2026</span>
+          <h3>QSAFire</h3>
+          <p>Satellite-to-ground SNS-TF-QKD across six Indian ground sites and four candidate links.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Orbits</span></div>
+        </a>
+        <a class="card" href="projects/">
+          <span class="when">2026</span>
+          <h3>Climate-Aware Channels</h3>
+          <p>ERA5 and CAMS reanalysis feeding decoy-state BB84 key-rate benchmarks.</p>
+          <div class="tags"><span class="tag">ERA5</span><span class="tag">BB84</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="h-block">
+    <div class="h-label">
+      <h2>Publications</h2>
+      <p>Papers, a book chapter and conference work.</p>
+      <a href="publications/">All publications →</a>
+    </div>
+    <div class="h-body">
+      <div class="list">
+        <a class="item" href="publications/">
           <h3>Climatology-Aware Satellite Optical Channel Model for Slant-Path Propagation</h3>
-          <p class="venue">Optica Frontiers in Optics + Laser Science (FiO+LS) 2026, Rochester, NY</p>
-        </div>
-        <span class="status">Poster</span>
-      </article>
-      <article class="row">
-        <span class="yr">2026</span>
-        <div>
+          <span class="meta">2026 · Poster</span>
+          <p>Optica Frontiers in Optics + Laser Science (FiO+LS), Rochester, NY</p>
+        </a>
+        <a class="item" href="publications/">
           <h3>Surrogate-Assisted Bayesian Optimization for Real-Time Parameter Adaptation in NPP-TF-QKD</h3>
-          <p class="venue">IEEE ANTS 2026, IIT Roorkee, India</p>
-        </div>
-        <span class="status">Accepted</span>
-      </article>
+          <span class="meta">2026 · Accepted</span>
+          <p>IEEE ANTS 2026, IIT Roorkee, India</p>
+        </a>
+        <a class="item" href="publications/">
+          <h3>Design and Simulation of a Decoy-State BB84 Satellite QKD Constellation for Indian Ground Stations</h3>
+          <span class="meta">2025 · Journal</span>
+          <p>International Journal of Information Technology, Springer Nature</p>
+        </a>
+      </div>
     </div>
   </section>
 
-  <section id="writing" hidden>
-    <div class="sec-head">
-      <h2>Latest writing</h2>
-      <a class="pill ghost" href="blog/">All posts</a>
+  <section class="h-block" id="writing" hidden>
+    <div class="h-label">
+      <h2>Writing</h2>
+      <p>Notes on quantum communication.</p>
+      <a href="blog/">All posts →</a>
     </div>
-    <div class="post-list" id="latest"></div>
+    <div class="h-body">
+      <div class="post-list" id="latest"></div>
+    </div>
   </section>
 
-  <section>
-    <p class="eyebrow">Contact</p>
-    <h2 class="big" style="margin-top: 20px;">Working on quantum links? Let’s talk.</h2>
-    <div class="cta"><a class="pill" href="contact/">Get in touch</a></div>
+  <section class="h-cta">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2>Working on quantum links? Let’s talk.</h2>
+    </div>
+    <div class="actions">
+      <a class="pill" href="contact/">Get in touch</a>
+      <a class="pill ghost" href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
   </section>
 
   <footer class="site">
@@ -165,6 +233,5 @@
   }).catch(function () {});
 })();
 </script>
-
 </body>
 </html>
