@@ -2,7 +2,7 @@
 
 Personal research portfolio of **Anand Kumar**, an undergraduate researcher working on quantum communications, free-space optical (FSO) channel modeling and satellite/NTN systems.
 
-The site is fully static: plain HTML, CSS and a small amount of JavaScript, with **no build step and no dependencies to install**. It has a deep-space blue background with a star field, frosted-glass navigation and cards, and a Markdown-powered blog.
+The site is fully static: plain HTML, CSS and a small amount of JavaScript, with **no build step and no dependencies to install**. It has a black background with a star field, frosted-glass navigation and cards, and a Markdown-powered blog.
 
 - Live site: _add your GitHub Pages URL here after deploying_
 - GitHub: [github.com/Anand-Ambastha](https://github.com/Anand-Ambastha)
@@ -32,7 +32,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 ## Features
 
 - **Eight pages** with a shared navigation bar and footer.
-- **Space theme**: deep blue gradient background with a fixed star field (pure CSS, a slow twinkle that stops for visitors who prefer reduced motion).
+- **Space theme**: black background with a fixed star field (pure CSS, a slow twinkle that stops for visitors who prefer reduced motion).
 - **Glass interface**: the top bar, buttons and cards use translucent backgrounds with a backdrop blur.
 - **Markdown blog**: write posts as `.md` files. They are rendered with styled headings, quotes, code blocks with a Copy button, tables, images and TeX math.
 - **Tag filtering** on the blog listing and a "Latest writing" section on the home page that appears once a post exists.
@@ -228,7 +228,7 @@ All colors, fonts and the star field are defined in `assets/css/styles.css`.
 
 | Token | Purpose |
 | --- | --- |
-| `--bg` | Page background (deep navy) |
+| `--bg` | Page background (black) |
 | `--surface`, `--surface-hover` | Translucent card fill and hover fill |
 | `--fg` | Main text |
 | `--muted` | Secondary text and labels |
