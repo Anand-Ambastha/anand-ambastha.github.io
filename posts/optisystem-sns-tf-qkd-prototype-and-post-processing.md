@@ -6,7 +6,7 @@ tags: [optisystem, sns-tf-qkd, matlab, python]
 summary: How I built a physical-layer sending-or-not-sending twin-field QKD prototype in OptiSystem with MATLAB co-simulation, and the Python pipeline that turns its CSV logs into a key rate.
 ---
 
-My internship at the Scientific Analysis Group of the Defence Research and Development Organisation had two halves. The satellite half became [QSAFire](../post/#qsafire-satellite-sns-tf-qkd-simulator). The other half was smaller and more hands-on: a 40 km fibre version of the same protocol, built at the level of lasers, modulators and detectors in OptiSystem, plus a Python pipeline that reads what that prototype logs. The two halves share no code, data or file format. This post covers the second half. The code and documentation are in the `osd` folder of the [QSAFIRE repository](https://github.com/Anand-Ambastha/QSAFIRE/tree/main/osd), and the full description is in the [internship report](https://github.com/Anand-Ambastha/QSAFIRE/blob/main/Summer_Internship_Report_DRDO.pdf).
+My internship at the Scientific Analysis Group of the Defence Research and Development Organisation had two halves. The satellite half became [QSAFire](../post/#qsafire-satellite-sns-tf-qkd-simulator). The other half was smaller and more hands-on: a 40 km fibre version of the same protocol, built at the level of lasers, modulators and detectors in OptiSystem, plus a Python pipeline that reads what that prototype logs. The two halves share no code, data or file format. This post covers the second half. Everything is in the `osd` folder of the [QSAFIRE repository](https://github.com/Anand-Ambastha/QSAFIRE/tree/main/osd): the OptiSystem project files, the MATLAB blocks, the exported CSV logs and the post-processing notebook, which also runs in [Google Colab](https://colab.research.google.com/drive/1NHLbkTHHAY6hFgKvyQyOSZjMTd9DnaTz?usp=sharing). The full description is in the [internship report](https://github.com/Anand-Ambastha/QSAFIRE/blob/main/Summer_Internship_Report_DRDO.pdf).
 
 ## The protocol, briefly
 
@@ -22,7 +22,10 @@ Three stations are connected by four spans of standard single-mode fibre (SMF-28
 | --- | --- |
 | Bit rate | 10 Gbit/s |
 | Sequence length | 1,024 bits per run |
-| Samples per bit | 32 (320 GSa/s) |
+| Samples per bit | 32 (320 GSa/s), so 32,768 samples per run |
+| Signal pulse (Z windows) | mean photon number μ′ = 0.1 |
+| Decoy pulses (X windows) | μ₁ = 0.05 and μ₂ = 0.2, plus vacuum, drawn with probabilities 0.4, 0.4 and 0.2 |
+| Phase slices | M = 16 |
 | Laser | 193.1 THz (about 1552.52 nm), 0 dBm |
 | Fibre | 4 × 40 km SMF-28 |
 
@@ -44,7 +47,7 @@ Two details are easy to get wrong. Bob's bit convention is the complement of Ali
 
 The design rule is that nothing inside OptiSystem computes a key. The simulator only produces physical-layer events and logs them. Sifting, error rates, decoy-state bounds and the key rate all happen afterwards in Python. This keeps the physical model from using information a real Charlie or Eve would not have, such as Alice's private send decision. It also means one expensive simulation run can be analysed again under different protocol assumptions.
 
-The hand-off is five CSV files: records for Alice, for Bob and for Charlie's X and Z detectors, plus an X-basis log kept at Charlie. They are joined on a window index. Two rules matter here. Every window gets a row, including the windows with no click, because the gain is clicks divided by windows sent and dropping the empty rows would corrupt the denominator. And each block writes one row per window, not one per waveform sample, or the 32 samples per bit would produce 32 rows per bit.
+The hand-off is five CSV files: records for Alice, for Bob and for Charlie's X and Z detectors, plus an X-basis log kept at Charlie. They are joined on a window index, and in these logs a window is one sample of the run, so each file has 32,768 rows. The rule that matters most is that every window gets a row, including the windows with no click, because the gain is clicks divided by windows sent and dropping the empty rows would corrupt the denominator.
 
 ## The Python pipeline
 
@@ -59,12 +62,25 @@ The pipeline reads the five files and applies the post-processing that the SNS s
 
 ## What it returned
 
-I ran the pipeline end to end on the one set of CSV files I had. It finished without error and returned a negative key rate. In the report I traced this to the data, not the code: the detector clicks in that set did not appear statistically coupled to the underlying phase and send/not-send variables. A negative key rate here means no secret key can be extracted from that run, so it is a result I would sooner publish than hide. It also limits what the prototype can claim. The next step I recommended is to validate the pipeline on a properly noise-calibrated simulation run, so that a known-good dataset gives a known-good rate.
+The pipeline runs end to end on the logs in the repository, and its checks pass: all five files have 32,768 rows, no duplicate window indices, no missing columns, and every window appears in every file. Then the numbers show that the data carries no key:
+
+| Quantity | Value |
+| --- | --- |
+| Windows where Alice and Bob chose the same basis | 17,248 of 32,768 (about 53%, as expected for independent choices) |
+| X windows, both parties, same decoy intensity | 3,464 |
+| Of those, accepted by the phase-slice rule | 215 (6.97%, close to the 1/16 expected for random phases) |
+| Z windows with a single detector click | 1,458 of 7,712 |
+| Z-basis error rate | 0.59 |
+| X-basis detector error rate | 0.51 (22 of 43) |
+| Phase-error bound from the decoy estimate | −0.93, which is outside the valid range of 0 to 1 |
+| Secret key rate (Eq. 4 of Wang et al.) | −0.20 per window pair |
+
+An error rate of 0.59 is worse than guessing, and a phase-error bound below zero is not physically meaningful. Both are the signature of detector clicks that are not statistically coupled to the phase or to the send decisions that are supposed to cause them. So the negative key rate is a property of this dataset, and I traced it to the data in the report, not to the pipeline. The pipeline does what it should, and reports an invalid bound as invalid. I would rather show that than a flattering number. The next step I recommended is to validate the pipeline on a properly noise-calibrated simulation run, so that a known-good dataset gives a known-good rate.
 
 ## What I would change
 
 - **A longer link.** 40 km and 1,024 bits per run are chosen to keep the simulation fast. The advantage of TF-QKD shows up at hundreds of kilometres, where active phase tracking at Charlie matters.
-- **More windows.** 1,024 windows are far too few for tight decoy-state bounds, so a real study would sweep many runs and concatenate their logs.
+- **More accepted events.** Only 215 X windows survive the phase rule, which makes every X-basis estimate noisy. A real study would sweep many runs and concatenate their logs.
 - **Finite-key bounds.** The estimates are asymptotic. Confidence-interval widening would give a rate that can be defended for a finite sample.
 - **Detector realism.** Dark counts, dead time and afterpulsing would show how much of the rate they take away.
 
