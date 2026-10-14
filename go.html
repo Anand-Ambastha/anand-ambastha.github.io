@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Redirecting · Anand Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<main class="wrap go">
+  <div class="go-card">
+    <p class="eyebrow">Link</p>
+    <h1 id="title">Redirecting…</h1>
+    <p class="notice" id="msg"></p>
+    <div class="cta" id="cta"></div>
+  </div>
+</main>
+
+<script>
+/* Hidden short links. Open go.html#name and the page redirects to the address stored under "name" in links.json. */
+(function () {
+  var title = document.getElementById('title');
+  var msg = document.getElementById('msg');
+  var cta = document.getElementById('cta');
+
+  function fail(text) {
+    title.textContent = 'Link not found';
+    msg.textContent = text;
+    cta.innerHTML = '<a class="pill" href="index.html">Go to the home page</a>';
+  }
+
+  var slug = '';
+  try { slug = decodeURIComponent(location.hash.slice(1)).toLowerCase(); } catch (e) {}
+  if (!slug) return fail('No link name was given.');
+
+  fetch('links.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error('links'); return r.json(); })
+    .then(function (map) {
+      var target = map[slug];
+      if (!target) return fail('There is no link called “' + slug + '”.');
+      var u;
+      try { u = new URL(target, location.href); } catch (e) { return fail('This link is not valid.'); }
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') return fail('This link is not valid.');
+      msg.textContent = 'Taking you to ' + u.hostname;
+      var a = document.createElement('a');
+      a.className = 'pill';
+      a.href = u.href;
+      a.textContent = 'Continue';
+      cta.appendChild(a);
+      setTimeout(function () { try { location.replace(u.href); } catch (e) {} }, 700);
+    })
+    .catch(function () { fail('The list of links could not be loaded. Refresh the page to try again.'); });
+})();
+</script>
+</body>
+</html>

@@ -18,6 +18,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 - [Run locally](#run-locally)
 - [Write a blog post](#write-a-blog-post)
 - [Markdown features supported in posts](#markdown-features-supported-in-posts)
+- [Hidden short links](#hidden-short-links)
 - [Edit the content](#edit-the-content)
 - [Design system](#design-system)
 - [Deploy with GitHub Pages](#deploy-with-github-pages)
@@ -64,6 +65,8 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 ├── post.html               Single blog post (post.html#post-slug)
 ├── about.html              Bio, education, skills, leadership
 ├── contact.html            Contact details
+├── go.html                 Hidden redirect page (not linked in the menu)
+├── links.json              Short link names and their targets
 ├── assets/
 │   ├── css/
 │   │   └── styles.css      Shared styles; design tokens at the top
@@ -161,6 +164,36 @@ Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The 
   ```
 
 The sample post `posts/welcome-to-the-blog.md` shows every one of these. Delete it or replace it when you publish your own writing.
+
+## Hidden short links
+
+`go.html` is a redirect page that is **not linked anywhere** on the site: it is missing from the menu, the footer and the sitemap, and it carries a `noindex` tag so search engines skip it. Use it for short, memorable links that forward to other places, such as a CV, a paper or a profile.
+
+Open `go.html#name` and the page looks up `name` in `links.json` and sends the visitor to the matching address:
+
+```json
+{
+  "github": "https://github.com/Anand-Ambastha",
+  "linkedin": "https://www.linkedin.com/in/anand-kumar05",
+  "springer-paper": "https://doi.org/10.1007/s41870-025-02860-y"
+}
+```
+
+With the site on GitHub Pages, these become:
+
+| Short link | Goes to |
+| --- | --- |
+| `https://anand-ambastha.github.io/portfolio/go.html#github` | GitHub profile |
+| `https://anand-ambastha.github.io/portfolio/go.html#linkedin` | LinkedIn profile |
+| `https://anand-ambastha.github.io/portfolio/go.html#springer-paper` | Springer paper (DOI) |
+
+**Add a link:** add a line to `links.json` with a lowercase name (letters, numbers and hyphens) and a full `https://` address, then commit and push. The target can also be a page on this site, such as `"cv": "assets/cv.pdf"`.
+
+**Rules:**
+- Only `http` and `https` addresses are followed. Anything else shows "This link is not valid."
+- An unknown name shows "Link not found" with a button back to the home page.
+- The page waits a moment and then redirects. It also shows a **Continue** button in case the redirect is blocked.
+- Names are not case sensitive.
 
 ## Edit the content
 

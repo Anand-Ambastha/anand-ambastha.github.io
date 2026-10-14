@@ -239,6 +239,12 @@ a.status:hover { background: var(--surface-hover); }
 .fun .mine { margin-top: 10px; padding-top: 20px; border-top: 1px solid var(--line); font-size: clamp(18px, 2.2vw, 24px); font-weight: 400; color: var(--accent); }
 @media (max-width: 860px) { .bio { grid-template-columns: minmax(0, 1fr); gap: 32px; } .focus { position: static; } }
 
+/* hidden redirect page */
+.go { min-height: 80vh; display: grid; place-items: center; }
+.go-card { width: min(100%, 520px); padding: 36px; border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: grid; gap: 14px; }
+.go-card h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; }
+.go-card .cta { margin-top: 10px; }
+
 footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 28px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; color: var(--muted); font-size: 14px; }
 footer.site nav { display: flex; flex-wrap: wrap; gap: 8px 22px; }
 footer.site a:hover { color: var(--fg); }
