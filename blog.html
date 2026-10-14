@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog · Anand Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="pill" href="contact.html">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Blog</p>
+    <h1>Notes on quantum communication.</h1>
+    <p class="lede">Write-ups on free-space optics, satellite QKD and the simulation work behind them.</p>
+  </div>
+
+  <section style="padding-top: 40px;">
+    <div class="filters" id="filters" hidden></div>
+    <div class="post-list" id="posts" aria-live="polite">
+      <p class="notice">Loading posts…</p>
+    </div>
+  </section>
+
+  <footer class="site">
+    <span>Anand Kumar · Quantum communications, FSO channel modeling, satellite and NTN systems</span>
+    <nav aria-label="Footer">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+</main>
+
+<script src="assets/js/blog.js"></script>
+<script>
+(function () {
+  var list = document.getElementById('posts');
+  var filters = document.getElementById('filters');
+  var posts = [], active = 'All';
+
+  function draw() {
+    var shown = posts.filter(function (p) { return active === 'All' || p.tags.indexOf(active) > -1; });
+    list.innerHTML = shown.length ? shown.map(Blog.card).join('') : '<p class="notice">No posts with this tag yet.</p>';
+  }
+
+  function chips() {
+    var tags = [];
+    posts.forEach(function (p) { p.tags.forEach(function (t) { if (tags.indexOf(t) < 0) tags.push(t); }); });
+    if (!tags.length) return;
+    filters.hidden = false;
+    filters.innerHTML = ['All'].concat(tags).map(function (t) {
+      return '<button type="button" class="chip" aria-pressed="' + (t === active) + '" data-tag="' + Blog.esc(t) + '">' + Blog.esc(t) + '</button>';
+    }).join('');
+  }
+
+  filters.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-tag]');
+    if (!b) return;
+    active = b.getAttribute('data-tag');
+    chips(); draw();
+  });
+
+  Blog.load().then(function (p) {
+    posts = p;
+    if (!posts.length) { list.innerHTML = '<p class="notice">No posts yet. Check back soon.</p>'; return; }
+    chips(); draw();
+  }).catch(function () {
+    list.innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
+  });
+})();
+</script>
+</body>
+</html>

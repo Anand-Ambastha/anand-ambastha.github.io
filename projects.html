@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Projects · Anand Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="research.html">Research</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="pill" href="contact.html">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Projects</p>
+    <h1>Simulators and frameworks for quantum and satellite links.</h1>
+    <p class="lede">Six projects, from QKD security proofs to satellite link budgets and a deep-learning course project.</p>
+    <div class="cta"><a class="pill ghost" href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">All code on GitHub ↗</a></div>
+  </div>
+
+  <section>
+    <article class="detail">
+      <div>
+        <span class="when">2026 – present</span>
+        <h2>TF-QKD / FSO Research Framework</h2>
+        <p class="org">Open-source Python, documented with MkDocs.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">CVXPY</span><span class="tag">TF-QKD</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Modular implementation of the Curty–Azuma–Lo Protocol-3 TF-QKD security proof: X and Z basis gain and QBER, cat-state phase-error estimation, an asymptotic secret-key-rate pipeline and a PLOB repeaterless-bound comparison.</li>
+          <li>Extended to a finite-decoy linear-programming framework (CVXPY) for finite-decoy yield and phase-error bounds, with convergence, feasibility and finite-versus-infinite-decoy consistency diagnostics.</li>
+          <li>Built deterministic and log-normal-turbulence FSO channel models: Beer–Lambert attenuation, Gaussian beam propagation, Rytov variance and Monte Carlo channel realisations for ergodic key-rate estimation.</li>
+          <li>Developing an analytical log-normal averaging framework to replace Monte-Carlo-only averaging, keeping Monte Carlo for validation.</li>
+        </ul>
+        <a class="inline-link" href="research.html">Related experience: IIT Delhi →</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2026</span>
+        <h2>QSAFire</h2>
+        <p class="org">Satellite-to-ground SNS-TF-QKD simulation framework, built at DRDO SAG.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SNS-TF-QKD</span><span class="tag">Orbits</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Independent Python framework combining J2-perturbation orbital geometry, atmospheric transmittance, slant-path Rytov-variance turbulence, pointing, acquisition and tracking losses, and a fully asymmetric, jointly optimised SNS-TF-QKD key-rate calculation.</li>
+          <li>Applied across six Indian ground sites and four candidate links.</li>
+          <li>Orbital solver and elevation–slant-range formulas validated against Landsat-8/9, Sentinel-2 and published Micius data to within 1–3%.</li>
+        </ul>
+        <a class="inline-link" href="research.html">Related experience: DRDO SAG →</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2026</span>
+        <h2>Climate-Aware Quantum Channel Modeling</h2>
+        <p class="org">Satellite QKD channel model from reanalysis data.</p>
+        <div class="tags"><span class="tag">ERA5</span><span class="tag">CAMS</span><span class="tag">BB84</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Physics-consistent satellite-to-ground optical channel using ERA5 meteorological and CAMS aerosol reanalysis data. It models Rayleigh scattering, aerosol extinction, atmospheric absorption, turbulence and geometric beam-spreading loss.</li>
+          <li>Integrated these effects into decoy-state BB84 simulations to evaluate QBER and secure key rate.</li>
+          <li>Benchmarked wavelength-dependent performance across geographically diverse Indian ground stations.</li>
+        </ul>
+        <a class="inline-link" href="research.html">Related experience: BVCOE →</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>Decoy-State BB84 Satellite QKD Constellation Simulator</h2>
+        <p class="org">Published as first author in Springer.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Satellite QKD</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Designed and simulated a satellite-based decoy-state BB84 QKD constellation.</li>
+          <li>Modeled orbital visibility, free-space channel attenuation, detector characteristics and secure key generation across varying altitudes, link distances and atmospheric losses.</li>
+        </ul>
+        <a class="inline-link" href="publications.html">See the paper →</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2026</span>
+        <h2>SateSim</h2>
+        <p class="org">Satellite communication link-budget simulator.</p>
+        <div class="tags"><span class="tag">Skyfield</span><span class="tag">Streamlit</span><span class="tag">RF</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Integrates SGP4 and Skyfield orbital propagation with RF link-budget analysis: free-space path loss, Friis transmission, Doppler shift and elevation-based visibility.</li>
+          <li>Computes SNR and BER for BPSK and QPSK modulation.</li>
+          <li>Delivers results through an interactive Streamlit dashboard with automated CSV and PDF reporting.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>Paddy Microclimate Stress Classifier</h2>
+        <p class="org">Course project for CMU 11-785 Deep Learning.</p>
+        <div class="tags"><span class="tag">PyTorch</span><span class="tag">BiLSTM</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>BiLSTM–LSTM model for three-class paddy stress forecasting across six Indian agroclimatic zones, from 48-hour weather sequences of temperature, relative humidity, VPD, ET0 and soil moisture.</li>
+          <li>Leave-one-location-out testing on unseen coastal tropical climates.</li>
+          <li>Open-sourced with post-hoc attention analysis.</li>
+        </ul>
+        <p class="metric">Accuracy <b>73.4%</b> · Macro-F1 <b>0.736</b> · ROC-AUC <b>0.924</b></p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="site">
+    <span>Anand Kumar · Quantum communications, FSO channel modeling, satellite and NTN systems</span>
+    <nav aria-label="Footer">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+</main>
+</body>
+</html>

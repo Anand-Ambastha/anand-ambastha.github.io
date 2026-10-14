@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog · Anand Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html" aria-current="page">Blog</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="pill" href="contact.html">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <p class="notice">Loading post…</p>
+  </article>
+
+  <footer class="site">
+    <span>Anand Kumar · Quantum communications, FSO channel modeling, satellite and NTN systems</span>
+    <nav aria-label="Footer">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+</main>
+
+<script>window.MathJax = { startup: { typeset: false }, svg: { fontCache: 'local' } };</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script src="assets/js/blog.js"></script>
+<script>
+(function () {
+  var root = document.getElementById('post');
+  var cache = null;
+
+  function notFound() {
+    document.title = 'Blog · Anand Kumar';
+    root.innerHTML = '<div class="post-head"><a class="back" href="blog.html">← All posts</a><h1>Post not found</h1></div>' +
+      '<p class="notice">This post does not exist. <a href="blog.html">See all posts</a>.</p>';
+  }
+
+  function show(posts) {
+    var slug = '';
+    try { slug = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    var i = -1;
+    posts.forEach(function (p, n) { if (p.slug === slug) i = n; });
+    if (i < 0) return notFound();
+    var p = posts[i], newer = posts[i - 1], older = posts[i + 1];
+    document.title = p.title + ' · Anand Kumar';
+    var tags = p.tags.map(function (t) { return '<span class="tag">' + Blog.esc(t) + '</span>'; }).join('');
+    root.innerHTML =
+      '<header class="post-head">' +
+        '<a class="back" href="blog.html">← All posts</a>' +
+        (tags ? '<div class="tags">' + tags + '</div>' : '') +
+        '<h1>' + Blog.esc(p.title) + '</h1>' +
+        '<p class="meta">' + Blog.esc(Blog.fmt(p.date)) + ' · ' + p.minutes + ' min read · Anand Kumar</p>' +
+      '</header>' +
+      '<div class="prose" id="prose"></div>' +
+      '<nav class="post-nav" aria-label="More posts">' +
+        (newer ? '<a class="post-card" href="post.html#' + encodeURIComponent(newer.slug) + '"><span class="when">Newer</span><h2>' + Blog.esc(newer.title) + '</h2></a>' : '<span></span>') +
+        (older ? '<a class="post-card" href="post.html#' + encodeURIComponent(older.slug) + '"><span class="when">Older</span><h2>' + Blog.esc(older.title) + '</h2></a>' : '<span></span>') +
+      '</nav>';
+    var prose = document.getElementById('prose');
+    try {
+      prose.innerHTML = Blog.render(p.body);
+      Blog.decorate(prose);
+      Blog.typeset(prose);
+    } catch (e) {
+      prose.innerHTML = '<p class="notice">This post could not be displayed.</p>';
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function go() {
+    if (cache) return show(cache);
+    Blog.load().then(function (p) { cache = p; show(p); }).catch(function () {
+      root.innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
+    });
+  }
+
+  window.addEventListener('hashchange', go);
+  go();
+})();
+</script>
+</body>
+</html>

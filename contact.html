@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact · Anand Kumar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="pill" href="contact.html" aria-current="page">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Contact</p>
+    <h1 class="big">Working on quantum links? Let’s talk.</h1>
+    <div class="mail">
+      <code id="email">anandambastha72@gmail.com</code>
+      <button class="pill" id="copy" type="button">Copy email</button>
+    </div>
+  </div>
+
+  <section style="padding-top: 24px;">
+    <dl class="contact-list">
+      <div><dt>Email</dt><dd>anandambastha72@gmail.com</dd></div>
+      <div><dt>Phone</dt><dd>[removed]</dd></div>
+      <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">linkedin.com/in/anand-kumar05 ↗</a></dd></div>
+      <div><dt>GitHub</dt><dd><a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">github.com/Anand-Ambastha ↗</a></dd></div>
+      <div><dt>Based in</dt><dd>New Delhi, India</dd></div>
+    </dl>
+  </section>
+
+  <footer class="site">
+    <span>Anand Kumar · Quantum communications, FSO channel modeling, satellite and NTN systems</span>
+    <nav aria-label="Footer">
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="publications.html">Publications</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var code = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = code.textContent;
+    function selectIt() {
+      try {
+        var r = document.createRange(); r.selectNodeContents(code);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      } catch (e) {}
+      btn.textContent = 'Selected, press copy';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
+      }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+})();
+</script>
+</body>
+</html>
