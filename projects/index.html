@@ -166,15 +166,21 @@
         <span class="when">2025</span>
         <h2>Paddy Microclimate Stress Classifier</h2>
         <p class="org">Course project for CMU 11-785 Deep Learning.</p>
-        <div class="tags"><span class="tag">PyTorch</span><span class="tag">BiLSTM</span></div>
+        <div class="tags"><span class="tag">TensorFlow</span><span class="tag">BiLSTM</span><span class="tag">LOLO validation</span></div>
       </div>
       <div>
         <ul class="bullets">
-          <li>BiLSTM–LSTM model for three-class paddy stress forecasting across six Indian agroclimatic zones, from 48-hour weather sequences of temperature, relative humidity, VPD, ET0 and soil moisture.</li>
-          <li>Leave-one-location-out testing on unseen coastal tropical climates.</li>
-          <li>Open-sourced with post-hoc attention analysis.</li>
+          <li>BiLSTM–LSTM model that labels paddy stress as low, medium or high from 48-hour weather windows (temperature, humidity, precipitation, wind, radiation, ET0 and soil moisture) at six Indian agroclimatic sites.</li>
+          <li>Labels are built from rice physiology thresholds (heat, low humidity, VPD, hot-hour runs) combined with the 48-hour ET0 minus rainfall deficit.</li>
+          <li>Strict leave-one-location-out testing with Visakhapatnam held out. Beats logistic regression, random forest and a 1-layer LSTM; high-stress recall 0.99.</li>
+          <li>Ablations, calibration and post-hoc attention analysis are in the project report.</li>
         </ul>
-        <p class="metric">Accuracy <b>73.4%</b> · Macro-F1 <b>0.736</b> · ROC-AUC <b>0.924</b></p>
+        <p class="metric">Accuracy <b>73.4%</b> · Macro-F1 <b>0.737</b> · ROC-AUC <b>0.924</b></p>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../post/#paddy-microclimate-stress-classifier">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier/blob/main/Project_Report.pdf" target="_blank" rel="noopener">Project report (PDF) ↗</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
       </div>
     </article>
   </section>
