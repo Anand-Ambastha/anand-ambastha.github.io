@@ -81,7 +81,7 @@
         <span class="when">2026</span>
         <h2>QSAFire</h2>
         <p class="org">Satellite-to-ground SNS-TF-QKD simulation package, built at the Scientific Analysis Group, Defence Research and Development Organisation.</p>
-        <div class="tags"><span class="tag">Python</span><span class="tag">SNS-TF-QKD</span><span class="tag">Orbits</span></div>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SNS-TF-QKD</span><span class="tag">Orbits</span><span class="tag">Monte Carlo</span><span class="tag">Streamlit</span></div>
       </div>
       <div>
         <ul class="bullets">
@@ -93,7 +93,6 @@
           <li>A six-city link database and a fully asymmetric, per-arm version of the rate formulas, applied across four city-pair links. A Streamlit dashboard shows the whole chain.</li>
           <li>Each stage is checked against an outside reference. Orbital solver and elevation–slant-range formulas agree with Landsat-8/9, Sentinel-2 and published Micius data to within 1–3%, and the Gamma-Gamma average is cross-validated between quadrature and Monte Carlo.</li>
         </ul>
-        <div class="tags" style="margin-top:24px"><span class="tag">Streamlit</span><span class="tag">Monte Carlo</span><span class="tag">Gamma-Gamma</span><span class="tag">Link budget</span></div>
         <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
           <a class="inline-link" style="margin-top:0" href="../post/#qsafire-satellite-sns-tf-qkd-simulator">Read the write-up →</a>
           <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/QSAFIRE/tree/main/qsafire" target="_blank" rel="noopener">Source on GitHub ↗</a>
@@ -139,15 +138,20 @@
       <div>
         <span class="when">2026</span>
         <h2>SateSim</h2>
-        <p class="org">Satellite communication link-budget simulator.</p>
-        <div class="tags"><span class="tag">Skyfield</span><span class="tag">Streamlit</span><span class="tag">RF</span></div>
+        <p class="org">Satellite communication link-budget simulator with a dashboard. Self-implemented from lectures by Prof. A. Al-Hourani (RMIT University).</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Skyfield</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">BPSK / QPSK</span></div>
       </div>
       <div>
         <ul class="bullets">
-          <li>Integrates SGP4 and Skyfield orbital propagation with RF link-budget analysis: free-space path loss, Friis transmission, Doppler shift and elevation-based visibility.</li>
-          <li>Computes SNR and BER for BPSK and QPSK modulation.</li>
-          <li>Delivers results through an interactive Streamlit dashboard with automated CSV and PDF reporting.</li>
+          <li>Orbit propagation with SGP4 through Skyfield, vectorised across several satellites, feeds an RF link budget built from free-space path loss and the Friis transmission equation.</li>
+          <li>Computes SNR, bit error rate for BPSK and QPSK, Doppler shift from range-rate projection, and elevation, with visibility filtering by minimum elevation.</li>
+          <li>Physics lives in one UI-free module. A Streamlit and Plotly dashboard and a command-line runner share it, so results can be reproduced either way.</li>
+          <li>Exports CSV datasets, PNG plots and a multi-page technical PDF report with equations, figures and analysis. MIT licensed.</li>
         </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../post/#satesim-satellite-link-budget-simulator">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/SateSim" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
       </div>
     </article>
 
