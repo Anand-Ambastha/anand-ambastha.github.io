@@ -53,7 +53,7 @@
   <div class="page-head">
     <p class="eyebrow">Projects</p>
     <h1>Simulators and frameworks for quantum and satellite links.</h1>
-    <p class="lede">Six projects, from QKD security proofs to satellite link budgets and a deep-learning course project.</p>
+    <p class="lede">Six research projects, from QKD security proofs to satellite link budgets, and three early AI hackathon builds.</p>
     <div class="cta"><a class="pill ghost" href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">All code on GitHub ↗</a></div>
   </div>
 
@@ -175,6 +175,70 @@
           <li>Open-sourced with post-hoc attention analysis.</li>
         </ul>
         <p class="metric">Accuracy <b>73.4%</b> · Macro-F1 <b>0.736</b> · ROC-AUC <b>0.924</b></p>
+      </div>
+    </article>
+  </section>
+
+  <section id="early-ai">
+    <div class="sec-head">
+      <h2>Early AI projects</h2>
+      <p>Hackathon builds in retrieval, computer vision and language models.</p>
+    </div>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>VeriSure AI</h2>
+        <p class="org">Insurance policy question answering, built for the HackRx 6.0 problem statement (Bajaj Finserv Hackathon).</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">FAISS</span><span class="tag">Gemini</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Upload one or more insurance policy documents (PDF or DOCX) and ask questions in plain language, such as whether a procedure is covered.</li>
+          <li>Each session gets its own FAISS index. Documents are chunked and embedded with a MiniLM sentence-transformer, and a question retrieves the most relevant clauses.</li>
+          <li>Gemini 1.5 Flash reads those clauses and returns a structured JSON decision with an amount, a justification and the clauses it relied on.</li>
+          <li>FastAPI backend with upload and query endpoints, a Streamlit front end, and a Procfile for deployment on Railway.</li>
+        </ul>
+        <a class="inline-link" href="https://github.com/Anand-Ambastha/VeriSure-AI" target="_blank" rel="noopener">Source on GitHub ↗</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>VibeSense</h2>
+        <p class="org">Fashion and aesthetic detection from short videos, built for the Flickd AI Hackathon 2025.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">CLIP</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Backend engine that takes a short video, such as a reel, and returns the clothing products in it and the style it expresses, for example Coquette, Streetwear or Vintage.</li>
+          <li>Pipeline: FFmpeg frame extraction, YOLOv8n detection trained on the Fashionpedia dataset (45 clothing categories), cropping of detected items, and CLIP embeddings of each crop.</li>
+          <li>Products are matched against a pre-indexed catalog with cosine-similarity FAISS search. Vibes come from the video caption using MiniLM embeddings.</li>
+          <li>Output is structured JSON with the vibe tags and each matched product, its type, colour, match type and confidence.</li>
+        </ul>
+        <a class="inline-link" href="https://github.com/Anand-Ambastha/VibeSense" target="_blank" rel="noopener">Source on GitHub ↗</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>DeepSpeak</h2>
+        <p class="org">AI persona chatbot built from a person’s messages, photos and voice notes, for CodeClash 2.0. Team of four.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Whisper</span><span class="tag">Stable Diffusion</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Users upload text chats, photos and voice recordings related to a loved one who has died, and the system builds a chatbot that answers in that person’s style.</li>
+          <li>My part was the AI component: Whisper transcription of audio, Tesseract OCR, personality and tone analysis from the text, face detection for the visual profile, and the chatbot on top of OpenAI, DeepSeek or Gemini models.</li>
+          <li>Stable Diffusion generates portraits, SQLite stores profiles and chat history, and profiles can be exported as JSON. Streamlit and FastAPI interfaces, deployed on Vercel.</li>
+          <li>Built with Naivedya Giri, Krish Tanwar and Vasu Chaudhary, who led the front end and full-stack work.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/DeepSpeak" target="_blank" rel="noopener">Source on GitHub ↗</a>
+          <a class="inline-link" style="margin-top:0" href="https://deep-speak.vercel.app" target="_blank" rel="noopener">Live site ↗</a>
+        </p>
       </div>
     </article>
   </section>

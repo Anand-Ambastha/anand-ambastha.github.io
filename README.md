@@ -47,7 +47,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 | --- | --- | --- |
 | Home | `index.html` | Headline, satellite-link figure, selected work, latest posts, contact prompt |
 | Research | `/research/` | Three research positions with methods and validated results |
-| Projects | `/projects/` | Six projects with details and tags |
+| Projects | `/projects/` | Research projects and a section of early AI hackathon builds |
 | Publications | `/publications/` | Published and accepted papers, preprints, thesis and reports, slides |
 | Blog | `/blog/` | Post listing with tag filters |
 | Post | `/post/` | A single post, opened as `/post/#post-slug` |
