@@ -82,7 +82,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 │       └── apple-touch-icon.png
 ├── posts/
 │   ├── index.json          List of post files, one file name per entry
-│   ├── welcome-to-the-blog.md   Sample post that shows every style
+│   ├── linkedin.json            Recent LinkedIn posts for the Blog page
 │   └── img/                Images used in posts
 ├── README.md
 └── .gitignore
@@ -128,7 +128,7 @@ Then open <http://localhost:8000>. Pages open at `/research/`, `/blog/` and so o
    ```json
    [
      "turbulence-and-key-rate.md",
-     "welcome-to-the-blog.md"
+     "my-first-post.md"
    ]
    ```
 
@@ -196,7 +196,7 @@ Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The 
   $$
   ```
 
-The sample post `posts/welcome-to-the-blog.md` shows every one of these. Delete it or replace it when you publish your own writing.
+Any existing post, such as `posts/paddy-microclimate-stress-classifier.md`, shows these styles in use.
 
 ## Hidden short links
 
