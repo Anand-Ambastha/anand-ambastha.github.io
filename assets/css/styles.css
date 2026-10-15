@@ -3,7 +3,7 @@
 /* Moon and satellite: very low-key background details behind the star field. */
 html::before {
   content: ""; position: fixed; z-index: -1; pointer-events: none;
-  width: clamp(130px, 17vw, 250px); aspect-ratio: 1; border-radius: 50%;
+  width: clamp(130px, 17vw, 250px); height: clamp(130px, 17vw, 250px); border-radius: 50%;
   right: -3vw; bottom: -7vh;
   background: url("../img/moon.webp") center / cover no-repeat;
   filter: drop-shadow(0 0 40px rgba(150, 185, 255, .14));
@@ -26,7 +26,7 @@ html::after {
   html::after { width: 36px; height: 16px; }
 }
 /* Space backdrop: pure black with two fixed star fields, one fine and one larger that twinkles slowly. */
-body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+body::before, body::after { content: ""; position: fixed; top: 0; right: 0; bottom: 0; left: 0; inset: 0; z-index: -1; pointer-events: none; }
 body::before {
   background-image:
     radial-gradient(1px 1px at 20px 30px, #ffffff 50%, transparent 100%),
@@ -58,7 +58,7 @@ body::after {
 @keyframes twinkle { from { opacity: .45; } to { opacity: 1; } }
 :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; background: var(--bg); }
 body {
   margin: 0;
   background-color: var(--bg);
@@ -83,7 +83,7 @@ p { margin: 0; }
   padding-inline: 22px; border-radius: 20px;
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
   border: 1px solid var(--glass-border);
-  backdrop-filter: blur(18px) saturate(170%); -webkit-backdrop-filter: blur(18px) saturate(170%);
+  -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 .brand { font-family: var(--font-wordmark); font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 24px; line-height: 1; }
@@ -93,7 +93,7 @@ p { margin: 0; }
 .links a:hover, .links a[aria-current="page"] { color: var(--fg); }
 .links a[aria-current="page"] { text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; }
 .pill { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px; border-radius: 999px; font-size: 15px; font-weight: 500; border: 1px solid var(--fg); background: var(--fg); color: var(--bg); cursor: pointer; font-family: inherit; white-space: nowrap; }
-.pill.ghost { background: rgba(255, 255, 255, 0.06); color: var(--fg); border-color: var(--glass-border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.pill.ghost { background: rgba(255, 255, 255, 0.06); color: var(--fg); border-color: var(--glass-border); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .pill.ghost:hover { border-color: var(--fg); }
 .pill:hover { opacity: .88; }
 .pill.ghost:hover { opacity: 1; }
@@ -125,7 +125,7 @@ section { padding-block: clamp(56px, 8vw, 104px) 0; }
 .sec-head p { color: var(--muted); max-width: 40ch; }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; }
-.card { background: var(--surface); border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; transition: background .15s; }
+.card { background: var(--surface); border: 1px solid var(--line); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; transition: background .15s; }
 a.card:hover { background: var(--surface-hover); }
 .card .when { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); letter-spacing: .03em; }
 .card h3 { font-size: 26px; line-height: 1.15; font-weight: 400; }
@@ -190,7 +190,7 @@ a.status:hover { background: var(--surface-hover); }
 .chip:hover { color: var(--fg); }
 .chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 .post-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px; }
-.post-card { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: 28px; border-radius: 24px; background: var(--surface); border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: background .15s; }
+.post-card { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding: 28px; border-radius: 24px; background: var(--surface); border: 1px solid var(--line); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transition: background .15s; }
 .post-card:hover { background: var(--surface-hover); }
 .post-card .when { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); letter-spacing: .03em; }
 .post-card h2 { font-size: 26px; line-height: 1.15; font-weight: 400; }
@@ -217,7 +217,7 @@ a.status:hover { background: var(--surface-hover); }
 .prose strong { color: var(--fg); font-weight: 600; }
 .prose ul, .prose ol { margin: 0 0 1.4em; padding-left: 1.4em; display: grid; gap: .5em; }
 .prose li::marker { color: var(--accent); }
-.prose blockquote { margin: 2em 0; padding: 22px 26px 22px 60px; position: relative; background: var(--surface); border: 1px solid var(--glass-border); border-radius: 20px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); font-weight: 300; font-size: 1.05em; color: var(--fg); }
+.prose blockquote { margin: 2em 0; padding: 22px 26px 22px 60px; position: relative; background: var(--surface); border: 1px solid var(--glass-border); border-radius: 20px; -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); font-weight: 300; font-size: 1.05em; color: var(--fg); }
 .prose blockquote::before { content: "\201C"; position: absolute; left: 20px; top: 8px; font-size: 56px; line-height: 1; color: var(--accent); opacity: .7; font-family: var(--font-display); }
 .prose blockquote > :last-child { margin-bottom: 0; }
 .prose :not(pre) > code { font-family: var(--font-mono); font-size: .86em; padding: .15em .45em; border-radius: 6px; background: rgba(127, 178, 255, 0.16); color: #d3e4ff; }
@@ -245,11 +245,11 @@ a.status:hover { background: var(--surface-hover); }
 .portrait { margin: 0 0 24px; border-radius: 20px; overflow: hidden; border: 1px solid var(--glass-border); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45); aspect-ratio: 1 / 1; }
 .portrait img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .bio .prose { padding-top: 0; max-width: none; }
-.focus { position: sticky; top: 104px; padding: 26px; border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: grid; gap: 14px; }
+.focus { position: sticky; top: 104px; padding: 26px; border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: grid; gap: 14px; }
 .focus h3 { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 400; }
 .focus h3:not(:first-child) { margin-top: 12px; }
 .focus p { font-size: 15.5px; color: var(--fg); }
-.fun { padding: 28px clamp(22px, 4vw, 40px); border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: grid; gap: 14px; }
+.fun { padding: 28px clamp(22px, 4vw, 40px); border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: grid; gap: 14px; }
 .fun .q { font-size: clamp(30px, 4.4vw, 52px); font-weight: 300; letter-spacing: -0.02em; line-height: 1.15; }
 .fun .who { font-family: var(--font-mono); font-size: 13px; color: var(--muted); letter-spacing: .04em; }
 .fun .mine { margin-top: 10px; padding-top: 20px; border-top: 1px solid var(--line); font-size: clamp(18px, 2.2vw, 24px); font-weight: 400; color: var(--accent); }
@@ -262,10 +262,10 @@ a.status:hover { background: var(--surface-hover); }
 .now::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(127, 178, 255, 0.2); }
 .home-hero h1 { font-size: clamp(38px, 5.2vw, 66px); line-height: 1.04; margin-top: 24px; max-width: 14ch; }
 .home-hero .lede { margin-top: 24px; max-width: 58ch; }
-.hero-card { margin: 0; border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden; }
+.hero-card { margin: 0; border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); overflow: hidden; }
 .hero-card svg { display: block; width: 100%; height: auto; padding: clamp(10px, 2vw, 22px) clamp(10px, 2vw, 22px) 0; }
 .hero-card figcaption { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); padding: 10px clamp(18px, 3vw, 36px) 22px; letter-spacing: .02em; }
-.strip { margin: 40px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--glass-border); border-radius: 20px; background: var(--surface); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow: hidden; }
+.strip { margin: 40px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--glass-border); border-radius: 20px; background: var(--surface); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); overflow: hidden; }
 .strip div { padding: 20px 24px; min-width: 0; }
 .strip div + div { border-left: 1px solid var(--line); }
 .strip dt { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
@@ -301,7 +301,7 @@ a.item:hover h3 { color: var(--accent); }
 .cards3 .card h3 { font-size: 21px; }
 .cards3 .card .tags { margin-top: auto; padding-top: 8px; }
 
-.h-cta { margin-top: 96px; padding: clamp(28px, 5vw, 56px); border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; }
+.h-cta { margin-top: 96px; padding: clamp(28px, 5vw, 56px); border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: end; }
 .h-cta h2 { font-size: clamp(30px, 4.4vw, 56px); line-height: 1.05; max-width: 18ch; margin-top: 14px; }
 .h-cta .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
@@ -334,7 +334,7 @@ a.item:hover h3 { color: var(--accent); }
 
 /* hidden redirect page */
 .go { min-height: 80vh; display: grid; place-items: center; }
-.go-card { width: min(100%, 520px); padding: 36px; border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); display: grid; gap: 14px; }
+.go-card { width: min(100%, 520px); padding: 36px; border-radius: 24px; background: var(--surface); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: grid; gap: 14px; }
 .go-card h1 { font-size: clamp(30px, 5vw, 44px); line-height: 1.1; }
 .go-card .cta { margin-top: 10px; }
 
@@ -360,7 +360,7 @@ footer.site .foot-base { margin-top: 40px; padding-top: 20px; border-top: 1px so
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card { transition: none; } body::after { animation: none; opacity: .85; } }
 
-.cv-viewer { border: 1px solid var(--glass-border); border-radius: 18px; background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden; }
+.cv-viewer { border: 1px solid var(--glass-border); border-radius: 18px; background: rgba(255, 255, 255, 0.04); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); overflow: hidden; }
 .cv-viewer iframe { display: block; width: 100%; height: min(86vh, 1100px); min-height: 560px; border: 0; background: #fff; }
 .cv-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
 .cv-zoom { display: inline-flex; gap: 6px; }
@@ -395,3 +395,9 @@ p, li { text-wrap: pretty; }
 a.card, .card { transition: background .25s ease, border-color .25s ease, transform .25s ease; }
 a.card:hover { border-color: rgba(127, 178, 255, .45); transform: translateY(-2px); }
 @media (prefers-reduced-motion: reduce) { a.card:hover { transform: none; } }
+
+/* Browsers without backdrop-filter (older Firefox): make the glass panels a little more solid so text stays readable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .card, .figure, .nav .wrap { background: rgba(18, 18, 20, .92); }
+}
+.plain .muted { color: var(--muted); font-family: var(--font-mono); font-size: 13px; margin-left: 12px; white-space: nowrap; }

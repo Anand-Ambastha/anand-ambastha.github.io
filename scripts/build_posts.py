@@ -229,6 +229,21 @@ def main():
             % (SITE, SITE, items))
     (ROOT / "feed.xml").write_text(feed, encoding="utf-8")
 
+    # no-JS fallback on the blog index: a plain list of links between markers
+    import html as _h, re as _re  # _h: module (the name html is a local variable in main)
+    bi = ROOT / "blog" / "index.html"
+    items = "\n".join('<li><a href="%s/">%s</a> <span class="muted">%s</span></li>' % (
+        p["slug"], _h.escape(p["meta"].get("title", p["slug"])), _h.escape(fmt(p["meta"].get("date", "")))) for p in posts)
+    block = ('<!-- posts-noscript:start -->\n<noscript><style>.notice{display:none}</style>'
+             '<section style="padding-top: 40px;"><h2>All posts</h2><ul class="plain">\n%s\n</ul></section></noscript>\n'
+             '<!-- posts-noscript:end -->') % items
+    page = bi.read_text()
+    if "posts-noscript:start" in page:
+        page = _re.sub(r"<!-- posts-noscript:start -->.*?<!-- posts-noscript:end -->", lambda m: block, page, flags=_re.S)
+    else:
+        page = page.replace('  <section style="padding-top: 40px;">\n    <div class="filters"', "  " + block + '\n\n  <section style="padding-top: 40px;">\n    <div class="filters"', 1)
+    bi.write_text(page)
+
     # sitemap: replace post URLs
     sm = (ROOT / "sitemap.xml").read_text()
     sm = re.sub(r"  <url>\s*<loc>%sblog/[^<]+/</loc>.*?</url>\n" % re.escape(SITE), "", sm, flags=re.S)
