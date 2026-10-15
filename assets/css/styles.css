@@ -1,5 +1,35 @@
 /* Layout: multi-page editorial site. Left-aligned oversized light type, hairline-separated rows, soft grey cards. One accent used only for small marks and the hero figure. */
 @import url("../../theme/tokens.css");
+/* Moon and satellite: very low-key background details behind the star field. */
+html::before {
+  content: ""; position: fixed; z-index: -1; pointer-events: none;
+  width: clamp(130px, 17vw, 250px); aspect-ratio: 1; border-radius: 50%;
+  right: -4vw; bottom: -10vh;
+  background:
+    radial-gradient(circle at 34% 38%, rgba(0, 0, 0, .16) 0 7%, transparent 8%),
+    radial-gradient(circle at 60% 60%, rgba(0, 0, 0, .13) 0 10%, transparent 11%),
+    radial-gradient(circle at 68% 28%, rgba(0, 0, 0, .12) 0 5%, transparent 6%),
+    radial-gradient(circle at 40% 74%, rgba(0, 0, 0, .10) 0 6%, transparent 7%),
+    radial-gradient(circle at 32% 30%, #eceff6, #aab2c2 58%, #6a7285);
+  box-shadow: inset -30px -12px 54px rgba(0, 0, 0, .88), 0 0 90px rgba(150, 185, 255, .10);
+  opacity: .26;
+}
+html::after {
+  content: ""; position: fixed; z-index: -1; pointer-events: none; left: 0; top: 0;
+  width: 46px; height: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 28'%3E%3Cg fill='none' stroke='%23cfe0ff' stroke-width='1.2'%3E%3Crect x='25' y='8' width='14' height='12' rx='2' fill='%23222a3a'/%3E%3Crect x='2' y='9' width='20' height='10' fill='%2314305e'/%3E%3Crect x='42' y='9' width='20' height='10' fill='%2314305e'/%3E%3Cpath d='M8 9v10M14 9v10M48 9v10M54 9v10M22 14h3M39 14h3M32 8V3'/%3E%3Ccircle cx='32' cy='2.5' r='1.5' fill='%237fb2ff'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; opacity: .4;
+  animation: orbit 140s linear infinite;
+}
+@keyframes orbit {
+  from { transform: translate(-80px, 70vh) rotate(-14deg); }
+  to { transform: translate(calc(100vw + 80px), 14vh) rotate(-14deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html::after { animation: none; transform: translate(72vw, 24vh) rotate(-14deg); }
+}
+@media (max-width: 700px) {
+  html::before { right: -50px; bottom: -40px; opacity: .2; }
+  html::after { width: 36px; height: 16px; }
+}
 /* Space backdrop: pure black with two fixed star fields, one fine and one larger that twinkles slowly. */
 body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
 body::before {
@@ -327,7 +357,7 @@ footer.site .foot-base { margin-top: 40px; padding-top: 20px; border-top: 1px so
   .nav .wrap { flex-wrap: wrap; padding: 10px 16px 2px; min-height: 0; border-radius: 18px; }
   .brand { order: 1; }
   .nav .pill { order: 2; height: 36px; }
-  .links { order: 3; width: 100%; gap: 16px; font-size: 14px; overflow-x: auto; padding-block: 10px 12px; white-space: nowrap; }
+  .links { order: 3; width: 100%; gap: 14px; font-size: 14px; overflow-x: auto; padding-block: 10px 12px; white-space: nowrap; }
   .detail { grid-template-columns: minmax(0, 1fr); gap: 20px; padding-block: 36px; }
   .row { grid-template-columns: minmax(0, 1fr); }
   .card { padding: 22px; }
