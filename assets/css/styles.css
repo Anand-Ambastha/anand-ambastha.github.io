@@ -1,19 +1,5 @@
 /* Layout: multi-page editorial site. Left-aligned oversized light type, hairline-separated rows, soft grey cards. One accent used only for small marks and the hero figure. */
-:root {
-  --bg: #000000;
-  --surface: rgba(255, 255, 255, 0.055);
-  --surface-hover: rgba(255, 255, 255, 0.1);
-  --fg: #f5f5f7;
-  --muted: #a1a1aa;
-  --line: rgba(255, 255, 255, 0.12);
-  --accent: #7fb2ff;
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --font-display: "Geist", "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Geist", "Helvetica Neue", Arial, sans-serif;
-  --font-wordmark: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  color-scheme: dark;
-}
+@import url("../../theme/tokens.css");
 /* Space backdrop: pure black with two fixed star fields, one fine and one larger that twinkles slowly. */
 body::before, body::after { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; }
 body::before {

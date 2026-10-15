@@ -1,0 +1,61 @@
+# Brand and theme: Anand Kumar
+
+This folder holds the visual identity of the site. Colours and fonts are CSS custom properties in `tokens.css`, which `assets/css/styles.css` imports. Change a value there and every page follows.
+
+## Names
+
+| Use | Value |
+| --- | --- |
+| Primary name | Anand Kumar |
+| Also known as | Anand Verma, Anand Ambastha, AV |
+| Short form | AV |
+| Role line | Quantum communications researcher |
+| Location | New Delhi, India |
+
+Use "Anand Kumar" for the site title, bylines and the footer. The other names appear only in the "Also known as" line and in structured data (`alternateName`).
+
+## Colour
+
+The site is dark only: pure black with a starfield, white-ish text and one blue accent.
+
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--bg` | `#000000` | Page background |
+| `--fg` | `#f5f5f7` | Headings and body text |
+| `--muted` | `#a1a1aa` | Secondary text, labels, captions |
+| `--accent` | `#7fb2ff` | Small marks, links on hover, the hero figure |
+| `--surface` | `rgba(255,255,255,0.055)` | Cards and chips |
+| `--surface-hover` | `rgba(255,255,255,0.10)` | Card hover |
+| `--line` | `rgba(255,255,255,0.12)` | Hairline dividers |
+| `--glass-border` | `rgba(255,255,255,0.20)` | Glass navigation and panels |
+
+Star colours in the backdrop: `#ffffff`, `#cfe0ff`, `#bcd2ff`, `#dfe9ff`, `#e8f0ff`, `#e6eeff`.
+
+Rules: one accent only. Do not use the accent for large fills or body text. Keep contrast at or above 4.5:1 for text (`--fg` and `--muted` on `--bg` both pass).
+
+## Typography
+
+| Role | Font | Token |
+| --- | --- | --- |
+| Name wordmark | Instrument Serif, italic | `--font-wordmark` |
+| Headings | Geist, weight 300, tight tracking (-0.025em) | `--font-display` |
+| Body | Geist, weight 400, 17px / 1.55 | `--font-body` |
+| Labels, dates, code | Geist Mono | `--font-mono` |
+
+Fonts load from Google Fonts in each page's `<head>`. If you change a family, update that link on every page (and in `scripts/build_posts.py`, which writes the post pages), then rebuild.
+
+## Voice
+
+Plain, specific and first person. Say what was built, with numbers from the reports. No superlatives. Spell out an acronym on first use.
+
+## Assets
+
+- `assets/img/favicon.svg`, `apple-touch-icon.png`: site icons.
+- `assets/img/og-image.png`: social preview image (1200 x 630).
+- `assets/img/anand-kumar.jpg`: portrait for the About page.
+
+## Changing the theme
+
+1. Edit `theme/tokens.css`.
+2. Reload locally (`python3 -m http.server`) and check Home, Blog and a post page.
+3. If you change the accent, also check `assets/img/og-image.png` and `favicon.svg`, which use the accent colour baked in.

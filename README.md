@@ -73,7 +73,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 ├── robots.txt              Crawler rules and sitemap location
 ├── assets/
 │   ├── css/
-│   │   └── styles.css      Shared styles; design tokens at the top
+│   │   └── styles.css      Shared styles (imports theme/tokens.css)
 │   ├── js/
 │   │   └── blog.js         Blog engine: loads and renders Markdown posts
 │   └── img/
@@ -235,7 +235,7 @@ With the site on GitHub Pages, these become:
 | Page text, research entries, projects, publications | The `index.html` inside the matching folder |
 | Contact details | `contact/index.html` (and the footers if you want them elsewhere) |
 | Navigation links | The `<header class="nav">` block in each page, and the footer `<nav>` |
-| Colors, fonts, spacing, star field | `assets/css/styles.css` |
+| Colors, fonts, spacing, star field | `theme/tokens.css` (star field in `assets/css/styles.css`) |
 | Blog behavior | `assets/js/blog.js` |
 | List of blog posts | `posts/index.json` |
 
@@ -253,7 +253,7 @@ Remove the "No ... posted yet" row from a section when you add its first entry.
 
 ## Design system
 
-All colors, fonts and the star field are defined in `assets/css/styles.css`.
+Colors and fonts are defined in `theme/tokens.css`; brand rules (names, palette, type, voice) are in `theme/BRAND.md`. The star field is in `assets/css/styles.css`.
 
 **Color tokens** (at the top of the file):
 
