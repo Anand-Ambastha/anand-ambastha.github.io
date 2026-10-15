@@ -13,7 +13,7 @@ import json, re, html, datetime, pathlib, sys
 import markdown
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SITE = "https://anand-ambastha.github.io/portfolio/"
+SITE = "https://anand-ambastha.github.io/"
 AUTHOR = "Anand Kumar"
 PAGES = "research projects publications blog about contact cv".split()
 

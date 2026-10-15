@@ -2,112 +2,112 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>Anand Kumar: blog</title>
-  <link>https://anand-ambastha.github.io/portfolio/blog/</link>
+  <link>https://anand-ambastha.github.io/blog/</link>
   <description>Write-ups on free-space optics, satellite QKD and the simulation work behind them.</description>
   <language>en</language>
-  <atom:link href="https://anand-ambastha.github.io/portfolio/feed.xml" rel="self" type="application/rss+xml"/>
+  <atom:link href="https://anand-ambastha.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
     <title>QSAFire, a satellite SNS-TF-QKD simulator built layer by layer</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/</guid>
+    <link>https://anand-ambastha.github.io/blog/qsafire-satellite-sns-tf-qkd-simulator/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/qsafire-satellite-sns-tf-qkd-simulator/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>How I built QSAFire during my internship at DRDO&#x27;s Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.</description>
   </item>
   <item>
     <title>SateSim, a satellite link budget simulator with a dashboard</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/</guid>
+    <link>https://anand-ambastha.github.io/blog/satesim-satellite-link-budget-simulator/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/satesim-satellite-link-budget-simulator/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>How SateSim turns an orbit and a ground station into SNR, BER, Doppler shift and elevation, with a dashboard, CSV export and a PDF report.</description>
   </item>
   <item>
     <title>Simulating a decoy-state BB84 satellite constellation over India</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/</guid>
+    <link>https://anand-ambastha.github.io/blog/decoy-state-bb84-satellite-constellation-simulator/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/decoy-state-bb84-satellite-constellation-simulator/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>How the simulator behind my Springer paper works, from Walker-Delta orbits to the key a station collects in a day, and what its numbers do and do not say.</description>
   </item>
   <item>
     <title>VeriSure AI, asking plain questions of insurance policies</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/</guid>
+    <link>https://anand-ambastha.github.io/blog/verisure-ai-policy-question-answering/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/verisure-ai-policy-question-answering/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>How a hackathon prototype turns uploaded policy documents into a question-answering tool that cites the clauses behind each answer.</description>
   </item>
   <item>
     <title>VibeSense, finding the products and the vibe in a short video</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/vibesense-fashion-vibes-from-video/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/vibesense-fashion-vibes-from-video/</guid>
+    <link>https://anand-ambastha.github.io/blog/vibesense-fashion-vibes-from-video/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/vibesense-fashion-vibes-from-video/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>How a hackathon backend finds clothing items in a reel, matches them to a product catalog and names the aesthetic of the look.</description>
   </item>
   <item>
     <title>DeepSpeak, building a chatbot from a person&#x27;s own words</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/</guid>
+    <link>https://anand-ambastha.github.io/blog/deepspeak-persona-chatbot/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/deepspeak-persona-chatbot/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>A look at a CodeClash 2.0 hackathon project that turns messages, photos and voice notes into a conversational persona, and the questions it raises.</description>
   </item>
   <item>
     <title>Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/</guid>
+    <link>https://anand-ambastha.github.io/blog/paddy-microclimate-stress-classifier/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/paddy-microclimate-stress-classifier/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>A BiLSTM-LSTM model for three-class paddy stress, built with physiology-based labels and tested by holding out an entire coastal location.</description>
   </item>
   <item>
     <title>An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/</guid>
+    <link>https://anand-ambastha.github.io/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/</guid>
     <pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate>
     <description>How I built a physical-layer sending-or-not-sending twin-field QKD prototype in OptiSystem with MATLAB co-simulation, and the Python pipeline that turns its CSV logs into a key rate.</description>
   </item>
   <item>
     <title>Quantum Networks Under the Lens, Part 5: Can geography create quantum advantage?</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-5/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-5/</guid>
+    <link>https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-5/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-5/</guid>
     <pubDate>Mon, 13 Jul 2026 00:00:00 +0000</pubDate>
     <description>Two identical systems in different places will not perform the same. Can geography become a strategic resource for quantum communication?</description>
   </item>
   <item>
     <title>Quantum Networks Under the Lens, Part 4: Can stability be more valuable than performance?</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-4/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-4/</guid>
+    <link>https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-4/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-4/</guid>
     <pubDate>Mon, 06 Jul 2026 00:00:00 +0000</pubDate>
     <description>A slightly slower network that is easier to operate can be the better one. A trade-off from working on large-scale satellite QKD.</description>
   </item>
   <item>
     <title>Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/</guid>
+    <link>https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-3/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-3/</guid>
     <pubDate>Mon, 29 Jun 2026 00:00:00 +0000</pubDate>
     <description>Coverage and contact time favour high orbits, while path loss favours low ones. Which should a quantum network optimise for?</description>
   </item>
   <item>
     <title>Quantum Networks Under the Lens, Part 2: Is the atmosphere more important than the satellite?</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-2/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-2/</guid>
+    <link>https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-2/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-2/</guid>
     <pubDate>Mon, 22 Jun 2026 00:00:00 +0000</pubDate>
     <description>Could the location of a ground station matter more than improvements in the communication hardware? A question about atmosphere and quantum links.</description>
   </item>
   <item>
     <title>Quantum Networks Under the Lens, Part 1: Do more satellites always mean more throughput?</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-1/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-1/</guid>
+    <link>https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-1/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-1/</guid>
     <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
     <description>Adding satellites improves coverage, but does the useful key material grow at the same rate? A question from my work on large satellite QKD networks.</description>
   </item>
   <item>
     <title>Quantum Networks Under the Lens, Part 0: What does it take to build a global quantum network?</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-0/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-0/</guid>
+    <link>https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-0/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/quantum-networks-under-the-lens-part-0/</guid>
     <pubDate>Mon, 08 Jun 2026 00:00:00 +0000</pubDate>
     <description>The opening of a short series of open questions from my work on satellite quantum communication, asked before any results.</description>
   </item>
   <item>
     <title>The theory of QKD is moving faster than its tooling</title>
-    <link>https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/</link>
-    <guid isPermaLink="true">https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/</guid>
+    <link>https://anand-ambastha.github.io/blog/qkd-theory-is-moving-faster-than-its-tooling/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/qkd-theory-is-moving-faster-than-its-tooling/</guid>
     <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
     <description>Protocols and proofs are advancing quickly, but the tools to simulate, reproduce and extend them are still fragmented. A note on what is missing.</description>
   </item>

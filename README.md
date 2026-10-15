@@ -216,9 +216,9 @@ With the site on GitHub Pages, these become:
 
 | Short link | Goes to |
 | --- | --- |
-| `https://anand-ambastha.github.io/portfolio/go/#github` | GitHub profile |
-| `https://anand-ambastha.github.io/portfolio/go/#linkedin` | LinkedIn profile |
-| `https://anand-ambastha.github.io/portfolio/go/#springer-paper` | Springer paper (DOI) |
+| `https://anand-ambastha.github.io/go/#github` | GitHub profile |
+| `https://anand-ambastha.github.io/go/#linkedin` | LinkedIn profile |
+| `https://anand-ambastha.github.io/go/#springer-paper` | Springer paper (DOI) |
 
 **Add a link:** add a line to `links.json` with a lowercase name (letters, numbers and hyphens) and a full `https://` address, then commit and push. The target can also be a page on this site, such as `"cv": "assets/cv.pdf"`.
 
@@ -278,9 +278,9 @@ All colors, fonts and the star field are defined in `assets/css/styles.css`.
 2. Open **Settings → Pages**.
 3. Under **Build and deployment**, choose **Deploy from a branch**.
 4. Select the `main` branch and the `/ (root)` folder, then save.
-5. After a minute, the site is available at `https://anand-ambastha.github.io/portfolio/`.
+5. After a minute, the site is available at `https://anand-ambastha.github.io/`.
 
-All links in the site are relative, so it works both at a repository path (`/portfolio/`) and on a custom domain. To use a custom domain, add it under **Settings → Pages** and follow GitHub's DNS instructions.
+All links in the site are relative, so it works at the root of `github.io`, at a repository path and on a custom domain. To use a custom domain, add it under **Settings → Pages** and follow GitHub's DNS instructions.
 
 ## Search engine optimisation
 
@@ -296,7 +296,7 @@ All links in the site are relative, so it works both at a repository path (`/por
 
 **After deploying**
 
-1. Open [Google Search Console](https://search.google.com/search-console), add the site, and submit `https://anand-ambastha.github.io/portfolio/sitemap.xml`.
+1. Open [Google Search Console](https://search.google.com/search-console), add the site, and submit `https://anand-ambastha.github.io/sitemap.xml`.
 2. Do the same in [Bing Webmaster Tools](https://www.bing.com/webmasters).
 3. Test a link in the [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh the share preview.
 
@@ -304,15 +304,14 @@ All links in the site are relative, so it works both at a repository path (`/por
 
 ```bash
 grep -rl "anand-ambastha.github.io/portfolio" . --exclude-dir=.git \
-  | xargs sed -i 's#https://anand-ambastha.github.io/portfolio/#https://your-new-address/#g'
+  | xargs sed -i 's#https://anand-ambastha.github.io/#https://your-new-address/#g'
 ```
 
 Update `<lastmod>` in `sitemap.xml` when you change a page.
 
 **Known limits**
 
-- Search engines only read `robots.txt` at the root of a domain. On a project site (`/portfolio/`) it is ignored, so the sitemap must be submitted in Search Console. A custom domain or a repository named `Anand-Ambastha.github.io` fixes this.
-- Blog posts all open at `/post/#post-name`. Search engines treat the part after `#` as the same page, so individual posts are not indexed. Pre-rendering each post as its own page would fix this.
+- The site lives at the root of `anand-ambastha.github.io`, so `robots.txt` is read. Submit `sitemap.xml` in Search Console once for the new address.
 
 ## How the blog works
 
