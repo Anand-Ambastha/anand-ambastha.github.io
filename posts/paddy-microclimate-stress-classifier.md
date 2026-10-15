@@ -21,7 +21,7 @@ The weather is hourly, for January 2023 to December 2024, from six places chosen
 | Thanjavur, Tamil Nadu | Tropical wet |
 | Visakhapatnam, Andhra Pradesh | Coastal tropical |
 
-Each hour has seven variables: temperature, relative humidity, precipitation, wind speed, shortwave radiation, reference evapotranspiration (ET0, from the FAO-56 Penman-Monteith method) and soil moisture. A window of 48 consecutive hours, moved forward one hour at a time, is one sample. The window length reflects the agronomic idea that stress usually builds over a day or two, not in a single hour.
+With roughly 22,000–24,000 hourly samples per site, each hour is described by temperature, relative humidity, vapour pressure deficit (VPD, derived) and precipitation, together with short-term gradients (change in temperature, RH and VPD), 6 to 12 hour rolling means, and derived indices (heat index and humidity ratio). These features emphasise the short-term transitions that tend to come before stress. Soil moisture sensors were not available, so the model relies on weather-driven atmospheric demand. A window of 48 consecutive hours, moved forward one hour at a time, is one sample. The window length reflects the agronomic idea that stress usually builds over a day or two, not in a single hour.
 
 ## There are no field labels, so the labels are built
 
@@ -29,7 +29,7 @@ No dataset tells us, hour by hour, how stressed a paddy field was. So the labels
 
 **Physiology.** Four signals are checked: maximum temperature above 33 °C, minimum relative humidity below 50%, mean vapour pressure deficit (VPD) near or above 2.0 to 2.2 kPa, and a run of consecutive hot hours. Each one that fires adds to a score.
 
-**Atmospheric water deficit.** Over the 48 hours, the model adds up ET0 minus rainfall. A deficit from 15 mm up to 40 mm is moderate stress, and 40 mm or more is severe.
+**Atmospheric water deficit.** Over the 48 hours, the labelling rule adds up reference evapotranspiration (ET0) minus rainfall. A deficit from 15 mm up to 40 mm is moderate stress, and 40 mm or more is severe.
 
 The final class follows from both:
 
@@ -47,7 +47,7 @@ The network is small:
 2. A **32-unit LSTM** on top turns those features into one forward-only summary.
 3. A **dense softmax layer** gives the three class probabilities.
 
-It is trained with categorical cross-entropy and Adam, a batch size of 64, balanced class weights and early stopping. A light **attention** module is attached for analysis only. It does not feed the prediction, so it can show which hours mattered without changing what the classifier learned. The code is TensorFlow and Keras.
+It is trained with categorical cross-entropy and Adam, a batch size of 64, balanced class weights and early stopping on validation macro-F1. A light **attention** module is attached for analysis only. It does not feed the prediction, so it can show which hours mattered without changing what the classifier learned. The code is TensorFlow and Keras.
 
 ## The test that matters: leave one location out
 
@@ -88,13 +88,13 @@ Across locations, the attention weights tend to be highest 12 to 24 hours before
 
 ## The training curves
 
-![Training and validation accuracy and loss over seven epochs.](img/paddy-training-curves.png)
+![Training and validation accuracy and loss across epochs.](img/paddy-training-curves.png)
 
-Seen on their own, the curves show validation accuracy flattening at about 0.87 while validation loss starts rising after epoch 4. That is early stopping doing its job. The held-out location scores lower, at 73.39%, and the gap between the two numbers is the cost of moving to a new climate. It is the reason I trust the LOLO number more than the validation curve.
+The report trains for up to 50 epochs, with validation performance closely tracking training performance, which indicates limited overfitting. Early stopping typically triggers between epochs 7 and 12, depending on the held-out location. The held-out location scores lower, at 73.39%, and the gap between the two numbers is the cost of moving to a new climate. It is the reason I trust the LOLO number more than the validation curve.
 
 ## Limits
 
-- The model has no root-zone soil model and no crop-stage information, and rice responds to heat differently at different growth stages.
+- Soil moisture sensors were not available, and the model has no root-zone soil model and no crop-stage information, and rice responds to heat differently at different growth stages.
 - The labels are rule-based, not measured, so they may carry a systematic bias.
 - Two years of weather includes few extreme events.
 - The main result is one held-out location. Holding out the other five in turn would show how stable it is.

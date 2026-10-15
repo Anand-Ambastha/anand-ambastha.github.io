@@ -29,7 +29,7 @@ Three stations are connected by four spans of standard single-mode fibre (SMF-28
 | Laser | 193.1 THz (about 1552.52 nm), 0 dBm |
 | Fibre | 4 × 40 km SMF-28 |
 
-At 0.2 dB/km, each 40 km span loses about 8 dB.
+At 0.2 dB/km, each 40 km span loses roughly 9 dB, a fibre transmittance of about 0.126.
 
 ## Putting protocol logic into a physical simulator
 

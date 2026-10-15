@@ -101,7 +101,7 @@
 </tr>
 </tbody>
 </table></div>
-<p>At 0.2 dB/km, each 40 km span loses about 8 dB.</p>
+<p>At 0.2 dB/km, each 40 km span loses roughly 9 dB, a fibre transmittance of about 0.126.</p>
 <h2>Putting protocol logic into a physical simulator</h2>
 <p>OptiSystem models light, fibre and detectors well. It has no block for "with probability ε, do not send this symbol", or for "pick one of three decoy intensities from this distribution and log the choice". So that logic lives in MATLAB co-simulation blocks, which sit in the signal path as programmable taps:</p>
 <ul>

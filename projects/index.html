@@ -171,7 +171,7 @@
       </div>
       <div>
         <ul class="bullets">
-          <li>BiLSTM–LSTM model that labels paddy stress as low, medium or high from 48-hour weather windows (temperature, humidity, precipitation, wind, radiation, ET0 and soil moisture) at six Indian agroclimatic sites.</li>
+          <li>BiLSTM–LSTM model that labels paddy stress as low, medium or high from 48-hour weather windows (temperature, humidity, VPD, precipitation, short-term gradients, rolling means and derived indices) at six Indian agroclimatic sites.</li>
           <li>Labels are built from rice physiology thresholds (heat, low humidity, VPD, hot-hour runs) combined with the 48-hour ET0 minus rainfall deficit.</li>
           <li>Strict leave-one-location-out testing with Visakhapatnam held out. Beats logistic regression, random forest and a 1-layer LSTM; high-stress recall 0.99.</li>
           <li>Ablations, calibration and post-hoc attention analysis are in the project report.</li>

@@ -90,11 +90,11 @@
 </tr>
 </tbody>
 </table></div>
-<p>Each hour has seven variables: temperature, relative humidity, precipitation, wind speed, shortwave radiation, reference evapotranspiration (ET0, from the FAO-56 Penman-Monteith method) and soil moisture. A window of 48 consecutive hours, moved forward one hour at a time, is one sample. The window length reflects the agronomic idea that stress usually builds over a day or two, not in a single hour.</p>
+<p>With roughly 22,000–24,000 hourly samples per site, each hour is described by temperature, relative humidity, vapour pressure deficit (VPD, derived) and precipitation, together with short-term gradients (change in temperature, RH and VPD), 6 to 12 hour rolling means, and derived indices (heat index and humidity ratio). These features emphasise the short-term transitions that tend to come before stress. Soil moisture sensors were not available, so the model relies on weather-driven atmospheric demand. A window of 48 consecutive hours, moved forward one hour at a time, is one sample. The window length reflects the agronomic idea that stress usually builds over a day or two, not in a single hour.</p>
 <h2>There are no field labels, so the labels are built</h2>
 <p>No dataset tells us, hour by hour, how stressed a paddy field was. So the labels come from rules that come from rice physiology and irrigation practice, applied to each 48-hour window. Two parts are combined.</p>
 <p><strong>Physiology.</strong> Four signals are checked: maximum temperature above 33 °C, minimum relative humidity below 50%, mean vapour pressure deficit (VPD) near or above 2.0 to 2.2 kPa, and a run of consecutive hot hours. Each one that fires adds to a score.</p>
-<p><strong>Atmospheric water deficit.</strong> Over the 48 hours, the model adds up ET0 minus rainfall. A deficit from 15 mm up to 40 mm is moderate stress, and 40 mm or more is severe.</p>
+<p><strong>Atmospheric water deficit.</strong> Over the 48 hours, the labelling rule adds up reference evapotranspiration (ET0) minus rainfall. A deficit from 15 mm up to 40 mm is moderate stress, and 40 mm or more is severe.</p>
 <p>The final class follows from both:</p>
 <ul>
 <li><strong>High:</strong> physiology score of 4 or more, or a deficit of 40 mm or more</li>
@@ -109,7 +109,7 @@
 <li>A <strong>32-unit LSTM</strong> on top turns those features into one forward-only summary.</li>
 <li>A <strong>dense softmax layer</strong> gives the three class probabilities.</li>
 </ol>
-<p>It is trained with categorical cross-entropy and Adam, a batch size of 64, balanced class weights and early stopping. A light <strong>attention</strong> module is attached for analysis only. It does not feed the prediction, so it can show which hours mattered without changing what the classifier learned. The code is TensorFlow and Keras.</p>
+<p>It is trained with categorical cross-entropy and Adam, a batch size of 64, balanced class weights and early stopping on validation macro-F1. A light <strong>attention</strong> module is attached for analysis only. It does not feed the prediction, so it can show which hours mattered without changing what the classifier learned. The code is TensorFlow and Keras.</p>
 <h2>The test that matters: leave one location out</h2>
 <p>A random split of windows would put hours from the same place, and often the same week, on both sides of the split, and the score would flatter the model. Instead, I trained on five locations and tested on the sixth, which the model never sees. This is the leave-one-location-out (LOLO) protocol. The main run holds out Visakhapatnam, a coastal site where humidity swings quickly, which makes it the hardest case.</p>
 <div class="table-wrap"><table>
@@ -189,11 +189,11 @@
 <h2>Reading the attention</h2>
 <p>Across locations, the attention weights tend to be highest 12 to 24 hours before a stress transition, which is when heat builds up, VPD rises and humidity falls. At Visakhapatnam the weights vary more, and often rise in the early evening, around the peak of evaporative demand. This is a post-hoc view and it is not proof of cause. The report notes that its use is as a sanity check that the model leans on hours that make agronomic sense.</p>
 <h2>The training curves</h2>
-<p><img alt="Training and validation accuracy and loss over seven epochs." src="../../posts/img/paddy-training-curves.png" loading="lazy" /></p>
-<p>Seen on their own, the curves show validation accuracy flattening at about 0.87 while validation loss starts rising after epoch 4. That is early stopping doing its job. The held-out location scores lower, at 73.39%, and the gap between the two numbers is the cost of moving to a new climate. It is the reason I trust the LOLO number more than the validation curve.</p>
+<p><img alt="Training and validation accuracy and loss across epochs." src="../../posts/img/paddy-training-curves.png" loading="lazy" /></p>
+<p>The report trains for up to 50 epochs, with validation performance closely tracking training performance, which indicates limited overfitting. Early stopping typically triggers between epochs 7 and 12, depending on the held-out location. The held-out location scores lower, at 73.39%, and the gap between the two numbers is the cost of moving to a new climate. It is the reason I trust the LOLO number more than the validation curve.</p>
 <h2>Limits</h2>
 <ul>
-<li>The model has no root-zone soil model and no crop-stage information, and rice responds to heat differently at different growth stages.</li>
+<li>Soil moisture sensors were not available, and the model has no root-zone soil model and no crop-stage information, and rice responds to heat differently at different growth stages.</li>
 <li>The labels are rule-based, not measured, so they may carry a systematic bias.</li>
 <li>Two years of weather includes few extreme events.</li>
 <li>The main result is one held-out location. Holding out the other five in turn would show how stable it is.</li>
