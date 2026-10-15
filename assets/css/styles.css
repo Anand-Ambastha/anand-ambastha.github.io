@@ -374,3 +374,24 @@ footer.site .foot-base { margin-top: 40px; padding-top: 20px; border-top: 1px so
 
 .post-card.li-card { cursor: default; }
 .post-card.li-card:hover { background: var(--surface); }
+
+/* Hero figure: photons travel the slant path, and the ground station answers with a soft ring. */
+.photon { fill: var(--accent); offset-path: path("M400 95 L148 415"); offset-rotate: 0deg; opacity: 0; animation: photon 5.4s cubic-bezier(.4, 0, .6, 1) infinite; filter: drop-shadow(0 0 5px var(--accent)); }
+.photon:nth-child(2) { animation-delay: 1.8s; }
+.photon:nth-child(3) { animation-delay: 3.6s; }
+@keyframes photon {
+  0% { offset-distance: 0%; opacity: 0; }
+  8% { opacity: 1; }
+  62% { opacity: .95; }
+  66%, 100% { offset-distance: 100%; opacity: 0; }
+}
+.gs-pulse { transform-box: fill-box; transform-origin: center; opacity: 0; animation: gs-pulse 1.8s ease-out infinite; animation-delay: 1.72s; }
+@keyframes gs-pulse { 0% { transform: scale(1); opacity: .0; } 12% { opacity: .7; } 100% { transform: scale(4.2); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .photon, .gs-pulse { animation: none; opacity: 0; } }
+
+/* Small refinements */
+::selection { background: rgba(127, 178, 255, .32); color: #fff; }
+p, li { text-wrap: pretty; }
+a.card, .card { transition: background .25s ease, border-color .25s ease, transform .25s ease; }
+a.card:hover { border-color: rgba(127, 178, 255, .45); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { a.card:hover { transform: none; } }
