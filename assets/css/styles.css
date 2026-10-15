@@ -4,15 +4,10 @@
 html::before {
   content: ""; position: fixed; z-index: -1; pointer-events: none;
   width: clamp(130px, 17vw, 250px); aspect-ratio: 1; border-radius: 50%;
-  right: -4vw; bottom: -10vh;
-  background:
-    radial-gradient(circle at 34% 38%, rgba(0, 0, 0, .16) 0 7%, transparent 8%),
-    radial-gradient(circle at 60% 60%, rgba(0, 0, 0, .13) 0 10%, transparent 11%),
-    radial-gradient(circle at 68% 28%, rgba(0, 0, 0, .12) 0 5%, transparent 6%),
-    radial-gradient(circle at 40% 74%, rgba(0, 0, 0, .10) 0 6%, transparent 7%),
-    radial-gradient(circle at 32% 30%, #eceff6, #aab2c2 58%, #6a7285);
-  box-shadow: inset -30px -12px 54px rgba(0, 0, 0, .88), 0 0 90px rgba(150, 185, 255, .10);
-  opacity: .26;
+  right: -3vw; bottom: -7vh;
+  background: url("../img/moon.webp") center / cover no-repeat;
+  filter: drop-shadow(0 0 40px rgba(150, 185, 255, .14));
+  opacity: .34;
 }
 html::after {
   content: ""; position: fixed; z-index: -1; pointer-events: none; left: 0; top: 0;
@@ -27,7 +22,7 @@ html::after {
   html::after { animation: none; transform: translate(72vw, 24vh) rotate(-14deg); }
 }
 @media (max-width: 700px) {
-  html::before { right: -50px; bottom: -40px; opacity: .2; }
+  html::before { right: -50px; bottom: -40px; opacity: .26; }
   html::after { width: 36px; height: 16px; }
 }
 /* Space backdrop: pure black with two fixed star fields, one fine and one larger that twinkles slowly. */
