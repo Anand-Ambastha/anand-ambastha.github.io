@@ -10,6 +10,7 @@
   --glass-border: rgba(255, 255, 255, 0.2);
   --font-display: "Geist", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-wordmark: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
   color-scheme: dark;
 }
@@ -74,7 +75,9 @@ p { margin: 0; }
   backdrop-filter: blur(18px) saturate(170%); -webkit-backdrop-filter: blur(18px) saturate(170%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 8px 32px rgba(0, 0, 0, 0.6);
 }
-.brand { font-weight: 500; letter-spacing: -0.01em; font-size: 18px; }
+.brand { font-family: var(--font-wordmark); font-style: italic; font-weight: 400; letter-spacing: 0; font-size: 24px; line-height: 1; }
+.aka { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .03em; color: var(--muted); margin-top: 14px; }
+.aka b { font-weight: 400; color: var(--fg); }
 .links { display: flex; gap: 28px; font-size: 15px; color: var(--muted); }
 .links a:hover, .links a[aria-current="page"] { color: var(--fg); }
 .links a[aria-current="page"] { text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; }
@@ -326,7 +329,7 @@ a.item:hover h3 { color: var(--accent); }
 
 footer.site { margin-top: 104px; border-top: 1px solid var(--line); padding-block: 48px 36px; color: var(--muted); font-size: 14px; }
 footer.site .foot-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px; }
-footer.site .foot-brand .brand { color: var(--fg); font-weight: 500; font-size: 17px; }
+footer.site .foot-brand .brand { color: var(--fg); font-weight: 400; font-size: 22px; }
 footer.site .foot-brand p { margin-top: 12px; max-width: 38ch; line-height: 1.6; }
 footer.site nav { display: flex; flex-direction: column; gap: 10px; }
 footer.site h3 { font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--fg); margin-bottom: 4px; }
