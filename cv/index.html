@@ -58,9 +58,18 @@
   </div>
 
   <section style="padding-top: 32px;">
-    <div class="cv-viewer">
-      <iframe src="../assets/files/Anand_Kumar_CV.pdf#view=FitH&amp;toolbar=1" title="Anand Kumar, curriculum vitae (PDF)" loading="lazy"></iframe>
-      <p class="cv-fallback">Your browser may not show PDFs inline. <a class="inline-link" href="../assets/files/Anand_Kumar_CV.pdf" download="Anand_Kumar_CV.pdf">Download the CV</a> instead.</p>
+    <div class="cv-viewer" id="cv-viewer">
+      <div class="cv-bar" id="cv-bar" hidden>
+        <span id="cv-count" aria-live="polite"></span>
+        <span class="cv-zoom">
+          <button type="button" id="cv-out" aria-label="Zoom out">−</button>
+          <button type="button" id="cv-fit" aria-label="Fit to width">Fit</button>
+          <button type="button" id="cv-in" aria-label="Zoom in">+</button>
+        </span>
+      </div>
+      <div class="cv-pages" id="cv-pages" role="document" aria-label="Curriculum vitae, PDF pages"></div>
+      <noscript><iframe src="../assets/files/Anand_Kumar_CV.pdf#view=FitH&amp;toolbar=1" title="Anand Kumar, curriculum vitae (PDF)"></iframe></noscript>
+      <p class="cv-fallback" id="cv-fallback">Loading the viewer… If nothing appears, <a class="inline-link" href="../assets/files/Anand_Kumar_CV.pdf" download="Anand_Kumar_CV.pdf">download the CV</a> instead.</p>
     </div>
   </section>
 
@@ -94,5 +103,77 @@
   </footer>
 </main>
 
+<script>
+(function () {
+  var URL_PDF = '../assets/files/Anand_Kumar_CV.pdf';
+  var CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';
+  var pages = document.getElementById('cv-pages'), bar = document.getElementById('cv-bar');
+  var count = document.getElementById('cv-count'), note = document.getElementById('cv-fallback');
+  var viewer = document.getElementById('cv-viewer');
+  var pdf = null, zoom = 1, token = 0;
+
+  function fail() {
+    // Fall back to the browser's own PDF viewer.
+    pages.innerHTML = '<iframe src="' + URL_PDF + '#view=FitH&toolbar=1" title="Anand Kumar, curriculum vitae (PDF)"></iframe>';
+    note.innerHTML = 'Your browser may not show PDFs inline. <a class="inline-link" href="' + URL_PDF + '" download="Anand_Kumar_CV.pdf">Download the CV</a> instead.';
+    bar.hidden = true;
+  }
+
+  function load(src) {
+    return new Promise(function (ok, no) {
+      var s = document.createElement('script');
+      s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s);
+    });
+  }
+
+  function render() {
+    var my = ++token;
+    var width = Math.min(Math.max(260, pages.clientWidth - 28), 860) * zoom;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    pages.innerHTML = '';
+    var chain = Promise.resolve();
+    for (var n = 1; n <= pdf.numPages; n++) (function (n) {
+      chain = chain.then(function () {
+        if (my !== token) return;
+        return pdf.getPage(n).then(function (page) {
+          var base = page.getViewport({ scale: 1 });
+          var scale = width / base.width;
+          var vp = page.getViewport({ scale: scale * dpr });
+          var c = document.createElement('canvas');
+          c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+          c.style.width = Math.floor(vp.width / dpr) + 'px';
+          c.style.height = Math.floor(vp.height / dpr) + 'px';
+          c.setAttribute('aria-label', 'CV page ' + n + ' of ' + pdf.numPages);
+          pages.appendChild(c);
+          return page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+        });
+      });
+    })(n);
+    return chain;
+  }
+
+  function setZoom(z) {
+    zoom = Math.min(2.5, Math.max(0.6, z));
+    render();
+  }
+
+  load(CDN + 'pdf.min.js').then(function () {
+    var lib = window.pdfjsLib;
+    // A cross-origin worker must be started through a same-origin blob.
+    var blob = new Blob(["importScripts('" + CDN + "pdf.worker.min.js');"], { type: 'text/javascript' });
+    lib.GlobalWorkerOptions.workerSrc = URL.createObjectURL(blob);
+    return lib.getDocument(URL_PDF).promise;
+  }).then(function (doc) {
+    pdf = doc;
+    count.textContent = doc.numPages + (doc.numPages === 1 ? ' page' : ' pages');
+    bar.hidden = false; note.hidden = true; viewer.classList.add('ready');
+    var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(function () { if (zoom === 1) render(); }, 200); });
+    document.getElementById('cv-in').onclick = function () { setZoom(zoom + 0.2); };
+    document.getElementById('cv-out').onclick = function () { setZoom(zoom - 0.2); };
+    document.getElementById('cv-fit').onclick = function () { setZoom(1); };
+    return render();
+  }).catch(fail);
+})();
+</script>
 </body>
 </html>

@@ -346,4 +346,12 @@ footer.site .foot-base { margin-top: 40px; padding-top: 20px; border-top: 1px so
 
 .cv-viewer { border: 1px solid var(--glass-border); border-radius: 18px; background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow: hidden; }
 .cv-viewer iframe { display: block; width: 100%; height: min(86vh, 1100px); min-height: 560px; border: 0; background: #fff; }
+.cv-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.cv-zoom { display: inline-flex; gap: 6px; }
+.cv-zoom button { height: 32px; min-width: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, 0.06); color: var(--fg); font: inherit; cursor: pointer; }
+.cv-zoom button:hover { border-color: var(--fg); }
+.cv-pages { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 14px; overflow-x: auto; background: rgba(0, 0, 0, 0.35); }
+.cv-pages canvas { display: block; max-width: none; background: #fff; border-radius: 4px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); }
+.cv-pages iframe { display: block; width: 100%; height: min(86vh, 1100px); min-height: 560px; border: 0; background: #fff; }
+.cv-viewer.ready .cv-fallback { display: none; }
 .cv-fallback { padding: 14px 18px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); }
