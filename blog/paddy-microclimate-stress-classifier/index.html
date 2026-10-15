@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="A BiLSTM-LSTM model for three-class paddy stress, built with physiology-based labels and tested by holding out an entire coastal location.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen">
+<meta property="og:description" content="A BiLSTM-LSTM model for three-class paddy stress, built with physiology-based labels and tested by holding out an entire coastal location.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen">
+<meta name="twitter:description" content="A BiLSTM-LSTM model for three-class paddy stress, built with physiology-based labels and tested by holding out an entire coastal location.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen", "description": "A BiLSTM-LSTM model for three-class paddy stress, built with physiology-based labels and tested by holding out an entire coastal location.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "paddy, lstm, agri-ai, domain-shift", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen", "item": "https://anand-ambastha.github.io/portfolio/blog/paddy-microclimate-stress-classifier/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">paddy</span><span class="tag">lstm</span><span class="tag">agri-ai</span><span class="tag">domain-shift</span></div>
+      <h1>Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen</h1>
+      <p class="meta">15 October 2026 · 6 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>Rice is sensitive to short spells of heat, dry air and high evaporative demand, and farmers decide on irrigation on exactly that timescale. This post describes a course project for CMU 11-785 (Introduction to Deep Learning) in which I built a model that reads 48 hours of weather and labels the stress on the crop as low, medium or high. The harder part was not the model. It was asking whether it still works in a climate it was never trained on. The entry on the <a href="../../projects/">Projects page</a> has the short version, the full write-up is the <a href="https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier/blob/main/Project_Report.pdf">project report (PDF)</a>, and the code is on <a href="https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier">GitHub</a>.</p>
+<h2>The data</h2>
+<p>The weather is hourly, for January 2023 to December 2024, from six places chosen to cover very different rice-growing climates:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Climate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jorhat, Assam</td>
+<td>Humid subtropical</td>
+</tr>
+<tr>
+<td>Ludhiana, Punjab</td>
+<td>Semi-arid</td>
+</tr>
+<tr>
+<td>Lucknow, Uttar Pradesh</td>
+<td>Subhumid</td>
+</tr>
+<tr>
+<td>Kolkata, West Bengal</td>
+<td>Humid coastal-monsoon</td>
+</tr>
+<tr>
+<td>Thanjavur, Tamil Nadu</td>
+<td>Tropical wet</td>
+</tr>
+<tr>
+<td>Visakhapatnam, Andhra Pradesh</td>
+<td>Coastal tropical</td>
+</tr>
+</tbody>
+</table></div>
+<p>Each hour has seven variables: temperature, relative humidity, precipitation, wind speed, shortwave radiation, reference evapotranspiration (ET0, from the FAO-56 Penman-Monteith method) and soil moisture. A window of 48 consecutive hours, moved forward one hour at a time, is one sample. The window length reflects the agronomic idea that stress usually builds over a day or two, not in a single hour.</p>
+<h2>There are no field labels, so the labels are built</h2>
+<p>No dataset tells us, hour by hour, how stressed a paddy field was. So the labels come from rules that come from rice physiology and irrigation practice, applied to each 48-hour window. Two parts are combined.</p>
+<p><strong>Physiology.</strong> Four signals are checked: maximum temperature above 33 °C, minimum relative humidity below 50%, mean vapour pressure deficit (VPD) near or above 2.0 to 2.2 kPa, and a run of consecutive hot hours. Each one that fires adds to a score.</p>
+<p><strong>Atmospheric water deficit.</strong> Over the 48 hours, the model adds up ET0 minus rainfall. A deficit from 15 mm up to 40 mm is moderate stress, and 40 mm or more is severe.</p>
+<p>The final class follows from both:</p>
+<ul>
+<li><strong>High:</strong> physiology score of 4 or more, or a deficit of 40 mm or more</li>
+<li><strong>Medium:</strong> physiology score of 2 or more, or a deficit from 15 to 40 mm</li>
+<li><strong>Low:</strong> everything else</li>
+</ul>
+<p>The fast signals catch heat and dryness as they arrive, and the deficit catches the slower build-up of evaporative demand that temperature alone misses. The cost is plain: these are rule-based labels, so the model learns to reproduce the rules from raw weather, not to match measured crop damage. The report lists this as a limitation.</p>
+<h2>The model</h2>
+<p>The network is small:</p>
+<ol>
+<li>A <strong>bidirectional LSTM</strong> (64 units) reads the 48 hours in both directions, so it can use both a rising VPD trend and a humidity rebound after rain.</li>
+<li>A <strong>32-unit LSTM</strong> on top turns those features into one forward-only summary.</li>
+<li>A <strong>dense softmax layer</strong> gives the three class probabilities.</li>
+</ol>
+<p>It is trained with categorical cross-entropy and Adam, a batch size of 64, balanced class weights and early stopping. A light <strong>attention</strong> module is attached for analysis only. It does not feed the prediction, so it can show which hours mattered without changing what the classifier learned. The code is TensorFlow and Keras.</p>
+<h2>The test that matters: leave one location out</h2>
+<p>A random split of windows would put hours from the same place, and often the same week, on both sides of the split, and the score would flatter the model. Instead, I trained on five locations and tested on the sixth, which the model never sees. This is the leave-one-location-out (LOLO) protocol. The main run holds out Visakhapatnam, a coastal site where humidity swings quickly, which makes it the hardest case.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Accuracy</th>
+<th>Macro-F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logistic regression</td>
+<td>66.57%</td>
+<td>0.6636</td>
+</tr>
+<tr>
+<td>Random forest</td>
+<td>68.44%</td>
+<td>0.6912</td>
+</tr>
+<tr>
+<td>1-layer LSTM</td>
+<td>71.24%</td>
+<td>0.7128</td>
+</tr>
+<tr>
+<td><strong>BiLSTM-LSTM</strong></td>
+<td><strong>73.39%</strong></td>
+<td><strong>0.7368</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>On the held-out site the model also reaches a balanced accuracy of 0.755 and a macro ROC-AUC of 0.924. The ordering of the table is the useful part: each step from linear model to tree ensemble to recurrent network to the two-stage recurrent network helps a little, which supports the idea that the order of the hours carries information.</p>
+<h2>Where it works and where it does not</h2>
+<p><img alt="Normalised confusion matrix on the Visakhapatnam test set. The high-stress class is almost always recognised, and the errors sit between low and medium, and between medium and high." src="../../posts/img/paddy-confusion-matrix.png" loading="lazy" /></p>
+<p>High-stress windows are found almost every time: the recall for that class is 0.9914. The mistakes are mostly between neighbouring classes, and the report points to the coast as the reason. After rain, humidity rebounds and VPD is squeezed into a narrow range, so a mild window and a moderate one look alike. For an irrigation advisory, missing a severe window is the costly error, so that pattern is the more useful of the two possible ones. Even so, the model is not well calibrated: the report gives an expected calibration error of 0.19, and says its probabilities are overconfident.</p>
+<h2>What each part contributes</h2>
+<p>Removing one component at a time, on the same held-out site, gave these accuracies:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>Accuracy</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full model</td>
+<td>73.39%</td>
+<td></td>
+</tr>
+<tr>
+<td>No physiology term</td>
+<td>61.82%</td>
+<td>-11.57</td>
+</tr>
+<tr>
+<td>No water-deficit term</td>
+<td>65.04%</td>
+<td>-8.35</td>
+</tr>
+<tr>
+<td>No second LSTM</td>
+<td>67.40%</td>
+<td>-5.99</td>
+</tr>
+<tr>
+<td>No bidirectional encoder</td>
+<td>69.12%</td>
+<td>-4.27</td>
+</tr>
+</tbody>
+</table></div>
+<p>The largest drops come from removing the physiology or deficit terms. Because those terms define the labels, this tells us how much the labelling scheme matters to the task as posed, which is not the same as saying the model discovered them. The two architecture changes are worth smaller but consistent gains.</p>
+<h2>Reading the attention</h2>
+<p>Across locations, the attention weights tend to be highest 12 to 24 hours before a stress transition, which is when heat builds up, VPD rises and humidity falls. At Visakhapatnam the weights vary more, and often rise in the early evening, around the peak of evaporative demand. This is a post-hoc view and it is not proof of cause. The report notes that its use is as a sanity check that the model leans on hours that make agronomic sense.</p>
+<h2>The training curves</h2>
+<p><img alt="Training and validation accuracy and loss over seven epochs." src="../../posts/img/paddy-training-curves.png" loading="lazy" /></p>
+<p>Seen on their own, the curves show validation accuracy flattening at about 0.87 while validation loss starts rising after epoch 4. That is early stopping doing its job. The held-out location scores lower, at 73.39%, and the gap between the two numbers is the cost of moving to a new climate. It is the reason I trust the LOLO number more than the validation curve.</p>
+<h2>Limits</h2>
+<ul>
+<li>The model has no root-zone soil model and no crop-stage information, and rice responds to heat differently at different growth stages.</li>
+<li>The labels are rule-based, not measured, so they may carry a systematic bias.</li>
+<li>Two years of weather includes few extreme events.</li>
+<li>The main result is one held-out location. Holding out the other five in turn would show how stable it is.</li>
+</ul>
+<p>The report suggests transformers, stage-aware stress modelling, soil moisture from hydrological models or satellites, extra inputs such as NDVI and canopy temperature, and checks against field observations. This module was designed as one part of a larger agriculture advisory system.</p>
+<p>If you work on agricultural forecasting or domain shift, <a href="../../contact/">get in touch</a>. My other projects are on the <a href="../../projects/">Projects page</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../deepspeak-persona-chatbot/"><span class="when">Newer</span><h2>DeepSpeak, building a chatbot from a person&#x27;s own words</h2></a>
+      <a class="post-card" href="../optisystem-sns-tf-qkd-prototype-and-post-processing/"><span class="when">Older</span><h2>An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

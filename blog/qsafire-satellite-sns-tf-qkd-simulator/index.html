@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QSAFire, a satellite SNS-TF-QKD simulator built layer by layer | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="How I built QSAFire during my internship at DRDO&#x27;s Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="QSAFire, a satellite SNS-TF-QKD simulator built layer by layer">
+<meta property="og:description" content="How I built QSAFire during my internship at DRDO&#x27;s Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QSAFire, a satellite SNS-TF-QKD simulator built layer by layer">
+<meta name="twitter:description" content="How I built QSAFire during my internship at DRDO&#x27;s Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "QSAFire, a satellite SNS-TF-QKD simulator built layer by layer", "description": "How I built QSAFire during my internship at DRDO's Scientific Analysis Group, and why every stage of the link budget is checked against an outside reference.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "qsafire, sns-tf-qkd, satellite-qkd, simulation", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "QSAFire, a satellite SNS-TF-QKD simulator built layer by layer", "item": "https://anand-ambastha.github.io/portfolio/blog/qsafire-satellite-sns-tf-qkd-simulator/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">qsafire</span><span class="tag">sns-tf-qkd</span><span class="tag">satellite-qkd</span><span class="tag">simulation</span></div>
+      <h1>QSAFire, a satellite SNS-TF-QKD simulator built layer by layer</h1>
+      <p class="meta">15 October 2026 · 4 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>During my summer internship at the Scientific Analysis Group of the Defence Research and Development Organisation, I built a simulator that answers one question. How much secret key can a ground station share with a satellite, and how does that change with the sky, the hardware and the weather? The result is <strong>QSAFire</strong>, an open-source Python package for sending-or-not-sending twin-field quantum key distribution (SNS-TF-QKD). This post explains how it is put together and what I would still improve. The project entry is on the <a href="../../projects/">Projects page</a>, and the code is on <a href="https://github.com/Anand-Ambastha/QSAFIRE/tree/main/qsafire">GitHub</a>.</p>
+<h2>The protocol</h2>
+<p>SNS-TF-QKD lets two distant parties send weak pulses to a middle station. Each party decides in every time window whether to send or not send, which tolerates a large misalignment error between the two arms. QSAFire implements the asymptotic key-rate formula from Wang, Yu and Hu, <em>Sending or not sending: Twin-field quantum key distribution with large misalignment error</em>, Phys. Rev. A 98, 062323 (2018).</p>
+<p>The package runs the same protocol over three kinds of channel:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>What it models</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fiber</td>
+<td>A standard telecom-fiber point-to-point link</td>
+</tr>
+<tr>
+<td>Free space</td>
+<td>A near-ground optical link with Gamma-Gamma scintillation</td>
+</tr>
+<tr>
+<td>Ground to satellite</td>
+<td>An uplink to a sun-synchronous satellite, from orbit to detector</td>
+</tr>
+</tbody>
+</table></div>
+<h2>One copy of the physics</h2>
+<p>The first rule I set was that the rate equations exist in exactly one place. The photon-number weights, the gain and error model, the decoy-state bounds and the key-rate formula all live in a single module, <code>src/engine.py</code>. The fiber, free-space and satellite models import them unchanged. Gamma-Gamma fading works the same way: it lives in <code>src/fso/channel_models.py</code>, and every layer above it reuses that code.</p>
+<p>This matters more than it sounds. When a number looks wrong in a long pipeline, there is only one place where the protocol could be at fault. The satellite layers build on the validated fiber and free-space core and never re-derive it.</p>
+<h2>The satellite link, layer by layer</h2>
+<p>The satellite model is split into layers that can each be tested on their own:</p>
+<ul>
+<li><strong>Geometry.</strong> WGS-84 geodesy and a solved sun-synchronous orbit, with look angles along the pass. The orbit is computed from the design requirements instead of assumed.</li>
+<li><strong>Atmosphere.</strong> Rayleigh, aerosol and gas optical depth at zenith, scaled to the slant path with the Kasten and Young airmass formula.</li>
+<li><strong>Turbulence.</strong> A Hufnagel-Valley $C_n^2(h)$ profile, the Fried parameter, and the spherical-wave Rytov variance for an uplink.</li>
+<li><strong>Seasons.</strong> Winter, summer and monsoon aerosol and turbulence datasets.</li>
+<li><strong>Hardware.</strong> Diffraction loss from the Friis equation, Gaussian pointing jitter, a characterised avalanche photodiode, and day and night background light.</li>
+<li><strong>Optimisation.</strong> A Monte Carlo ensemble that folds turbulence fading into the real-loss channel, and a joint search over signal intensity, decoy intensity and sending probability.</li>
+<li><strong>Availability.</strong> Weather-gated annual availability from rainy-day and fog climatology.</li>
+<li><strong>Links.</strong> A six-city database and a fully asymmetric, per-arm version of the rate formulas, for links where the two ground stations see different channels.</li>
+</ul>
+<blockquote>
+<p>The turbulence layer is where I found a real error. A plane-wave Rytov variance had been used where an uplink needs the spherical-wave form. I corrected it and re-ran the whole framework end to end to confirm the fix.</p>
+</blockquote>
+<h2>Checking each stage against something outside the code</h2>
+<p>A simulator that only agrees with itself proves little, so every stage is compared with an external reference: a published formula, a textbook target, a reported link budget, or an internal algebraic identity. The Gamma-Gamma average is computed two ways, with Gauss-Laguerre quadrature and with direct Monte Carlo sampling, and the two must agree. The orbital solver and the elevation to slant-range formulas were checked against Landsat-8 and 9, Sentinel-2 and published Micius data, and agree to within 1 to 3 percent.</p>
+<p>The full list of checks is in <code>docs/theory.md</code> in the repository.</p>
+<h2>Running it</h2>
+<p>The pipelines are plain scripts, and there is a Streamlit dashboard over the whole satellite chain.</p>
+<div class="codeblock"><div class="codebar"><span>bash</span><button type="button">Copy</button></div><pre><code class="language-bash">python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python scripts/run_part3_to_13_satellite.py --no-plots   # full satellite pipeline
+streamlit run dashboard/app.py                           # interactive dashboard
+</code></pre></div>
+<p>The satellite pipeline runs Monte Carlo optimisation at many points along a pass and across four city-pair links, so a full run without plots takes a few minutes. The dashboard shows pass geometry, atmosphere, turbulence, key rate with real losses, annual availability, multi-city links and a final per-link table in one place.</p>
+<h2>What is not finished</h2>
+<p>I would rather list the gaps than hide them.</p>
+<ol>
+<li>The background-suppression factor was derived for the Delhi to Mumbai link and is reused for the other pairs. It should be derived again for each one.</li>
+<li>Only Delhi to Mumbai has a full annual model. The other city pairs need the same seasonal and weather analysis.</li>
+<li>The tests are plain-text smoke tests. They should become a <code>pytest</code> suite.</li>
+<li>The Gamma-Gamma table is slow because it runs global optimisation at every distance and turbulence case. Vectorising that loop would help.</li>
+</ol>
+<h2>Where to go next</h2>
+<p>The code and the figures from each stage are in the <a href="https://github.com/Anand-Ambastha/QSAFIRE/tree/main/qsafire">QSAFire folder on GitHub</a>. The internship report is in the root of the <a href="https://github.com/Anand-Ambastha/QSAFIRE">same repository</a>. The <a href="../../research/">Research page</a> describes the wider work at the Scientific Analysis Group. If you work on satellite quantum links and want to compare notes, <a href="../../contact/">get in touch</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <span></span>
+      <a class="post-card" href="../satesim-satellite-link-budget-simulator/"><span class="when">Older</span><h2>SateSim, a satellite link budget simulator with a dashboard</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>window.MathJax = { svg: { fontCache: 'local' } };</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

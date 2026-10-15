@@ -141,7 +141,7 @@
 
   function card(p) {
     var tags = p.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('');
-    return '<a class="post-card" href="' + ROOT + 'post/#' + encodeURIComponent(p.slug) + '">' +
+    return '<a class="post-card" href="' + ROOT + 'blog/' + encodeURIComponent(p.slug) + '/">' +
       '<span class="when">' + esc(fmt(p.date)) + ' · ' + p.minutes + ' min read</span>' +
       '<h2>' + esc(p.title) + '</h2><p>' + esc(p.summary) + '</p>' +
       (tags ? '<span class="tags">' + tags + '</span>' : '') + '</a>';

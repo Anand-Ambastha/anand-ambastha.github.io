@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VeriSure AI, asking plain questions of insurance policies | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="How a hackathon prototype turns uploaded policy documents into a question-answering tool that cites the clauses behind each answer.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="VeriSure AI, asking plain questions of insurance policies">
+<meta property="og:description" content="How a hackathon prototype turns uploaded policy documents into a question-answering tool that cites the clauses behind each answer.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VeriSure AI, asking plain questions of insurance policies">
+<meta name="twitter:description" content="How a hackathon prototype turns uploaded policy documents into a question-answering tool that cites the clauses behind each answer.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "VeriSure AI, asking plain questions of insurance policies", "description": "How a hackathon prototype turns uploaded policy documents into a question-answering tool that cites the clauses behind each answer.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "verisure-ai, rag, faiss, gemini", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "VeriSure AI, asking plain questions of insurance policies", "item": "https://anand-ambastha.github.io/portfolio/blog/verisure-ai-policy-question-answering/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">verisure-ai</span><span class="tag">rag</span><span class="tag">faiss</span><span class="tag">gemini</span></div>
+      <h1>VeriSure AI, asking plain questions of insurance policies</h1>
+      <p class="meta">15 October 2026 · 3 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>Insurance policies are long, and the answer to a simple question such as "is cataract surgery covered?" sits in one clause on page 31. VeriSure AI is a prototype I built for the HackRx 6.0 problem statement from the Bajaj Finserv Hackathon. You upload one or more policy documents, ask a question in plain language, and get back a structured decision with the clauses it relied on. The entry on the <a href="../../projects/">Projects page</a> has the short version, and the code is on <a href="https://github.com/Anand-Ambastha/VeriSure-AI">GitHub</a>.</p>
+<h2>The idea in one paragraph</h2>
+<p>A language model should not be asked to read a whole policy and answer from memory. Instead, the system first finds the few clauses that matter for the question, and then asks the model to decide using only those clauses. This pattern is usually called retrieval-augmented generation. It keeps the model's answer tied to text the user can check.</p>
+<h2>How a question travels through it</h2>
+<ol>
+<li><strong>Upload.</strong> The <code>/upload_docs</code> endpoint accepts PDF and DOCX files, extracts their text and splits it into chunks.</li>
+<li><strong>Embed and index.</strong> Each chunk is turned into a vector with a MiniLM sentence-transformer, and the vectors go into a FAISS index saved in a folder for that session.</li>
+<li><strong>Retrieve.</strong> The <code>/query</code> endpoint takes the question and the session ID, embeds the question, and pulls the most similar clauses from that session's index.</li>
+<li><strong>Decide.</strong> The clauses and the question go to Gemini 1.5 Flash, which replies with a JSON object.</li>
+</ol>
+<p>For the cataract question, the system returned this:</p>
+<div class="codeblock"><div class="codebar"><span>json</span><button type="button">Copy</button></div><pre><code class="language-json">{
+  &quot;decision&quot;: &quot;rejected&quot;,
+  &quot;amount&quot;: null,
+  &quot;justification&quot;: &quot;The provided policy clauses do not contain any information regarding coverage for cataract.&quot;
+}
+</code></pre></div>
+<p>The interface also lists the clauses the model was shown, so a reader can see what the answer was based on.</p>
+<h2>The stack</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backend</td>
+<td>FastAPI</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>Sentence-Transformers, MiniLM</td>
+</tr>
+<tr>
+<td>Vector search</td>
+<td>FAISS</td>
+</tr>
+<tr>
+<td>Reasoning</td>
+<td>Gemini 1.5 Flash</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td>Streamlit</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>One folder per session under <code>data/</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Two versions</h2>
+<p>Version 1 handled a single document and kept the FAISS index in one fixed place. Version 2 accepts several documents in one session and creates a new index folder for each session, named by timestamp. That keeps one user's documents from mixing with another's, and the stored session ID links the upload step to the questions that follow. The front end runs the whole loop, from upload to question to answer.</p>
+<h2>What a "rejected" answer means</h2>
+<p>In the example above, "rejected" means the retrieved clauses did not mention cataract surgery. It does not mean a claim was assessed and refused. A real claims decision depends on exclusions, waiting periods and the policy schedule, which a handful of retrieved clauses may not include. I would treat the output as a fast first reading that points the user to the right text, not as a decision.</p>
+<h2>What I would add</h2>
+<ul>
+<li>Login and saved session history for each user</li>
+<li>Highlighting of the source lines in the document itself</li>
+<li>Exportable reports in PDF and JSON</li>
+<li>A dashboard of trends across policies</li>
+</ul>
+<p>The project includes a Procfile for deployment on Railway. If you work on document question answering, or have a policy corpus you would like to try it on, <a href="../../contact/">get in touch</a>. My other projects are on the <a href="../../projects/">Projects page</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../decoy-state-bb84-satellite-constellation-simulator/"><span class="when">Newer</span><h2>Simulating a decoy-state BB84 satellite constellation over India</h2></a>
+      <a class="post-card" href="../vibesense-fashion-vibes-from-video/"><span class="when">Older</span><h2>VibeSense, finding the products and the vibe in a short video</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simulating a decoy-state BB84 satellite constellation over India | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="How the simulator behind my Springer paper works, from Walker-Delta orbits to the key a station collects in a day, and what its numbers do and do not say.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Simulating a decoy-state BB84 satellite constellation over India">
+<meta property="og:description" content="How the simulator behind my Springer paper works, from Walker-Delta orbits to the key a station collects in a day, and what its numbers do and do not say.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Simulating a decoy-state BB84 satellite constellation over India">
+<meta name="twitter:description" content="How the simulator behind my Springer paper works, from Walker-Delta orbits to the key a station collects in a day, and what its numbers do and do not say.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Simulating a decoy-state BB84 satellite constellation over India", "description": "How the simulator behind my Springer paper works, from Walker-Delta orbits to the key a station collects in a day, and what its numbers do and do not say.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "bb84, satellite-qkd, constellation, simulation", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "Simulating a decoy-state BB84 satellite constellation over India", "item": "https://anand-ambastha.github.io/portfolio/blog/decoy-state-bb84-satellite-constellation-simulator/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">bb84</span><span class="tag">satellite-qkd</span><span class="tag">constellation</span><span class="tag">simulation</span></div>
+      <h1>Simulating a decoy-state BB84 satellite constellation over India</h1>
+      <p class="meta">15 October 2026 · 4 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>How much quantum-secure key could a small satellite constellation deliver to ground stations in India in one day? That question is behind my first-author paper in the <em>International Journal of Information Technology</em> (Springer, 2025), and this post describes the simulator I wrote to answer it. The project entry is on the <a href="../../projects/">Projects page</a>, and the code is on <a href="https://github.com/Anand-Ambastha/qkd-satellite-constellation">GitHub</a>.</p>
+<h2>What it simulates</h2>
+<p>The simulator follows a Walker-Delta constellation of low-Earth-orbit satellites for 24 hours. For each satellite and ground station it finds when the satellite is visible, estimates the optical link loss, and computes the secret key rate and error rate of the decoy-state BB84 protocol. The output is a set of per-station CSV files, nine kinds of figure, and a dashboard for exploring the parameters.</p>
+<p>The default case has 3 orbital planes with 4 satellites each, at 600 km altitude and 97.5 degrees inclination, stepped every 5 minutes.</p>
+<h2>The pieces</h2>
+<p><strong>Constellation.</strong> A Walker-Delta generator builds the constellation from the usual T/P/F description and can export synthetic TLEs. The propagator is written in plain Python with no orbital library. It solves Kepler's equation by Newton-Raphson and adds the J2 secular drift of the orbit plane:</p>
+<p>$$
+\dot{\Omega} = -\tfrac{3}{2}\, J_2 \left(\frac{R_e}{p}\right)^2 n \cos i
+$$</p>
+<p>Positions go through the chain from orbital elements to ECI, then ECEF, then a local topocentric frame at the station. The chosen inclination is close to the sun-synchronous condition, so the orbit planes keep a steady angle to the Sun.</p>
+<p><strong>Ground stations.</strong> Five sites across India, a mix of observatory and research locations:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Station</th>
+<th>Latitude (°N)</th>
+<th>Longitude (°E)</th>
+<th>Altitude (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hanle</td>
+<td>32.78</td>
+<td>78.96</td>
+<td>4500</td>
+</tr>
+<tr>
+<td>Dehradun</td>
+<td>30.30</td>
+<td>78.00</td>
+<td>640</td>
+</tr>
+<tr>
+<td>Mt Abu</td>
+<td>24.60</td>
+<td>72.70</td>
+<td>1220</td>
+</tr>
+<tr>
+<td>Shillong</td>
+<td>25.60</td>
+<td>91.80</td>
+<td>1500</td>
+</tr>
+<tr>
+<td>Kodaikanal</td>
+<td>10.20</td>
+<td>77.40</td>
+<td>2343</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Optical channel.</strong> The model collects light with a receiver aperture $D_{rx}$ from a beam with divergence $\theta_{div}$ at slant range $r$, and applies atmospheric transmittance that falls as the satellite gets lower in the sky:</p>
+<p>$$
+\eta_{geo} = \left(\frac{D_{rx}}{\theta_{div}\, r}\right)^2, \qquad T_{atm} = \exp\!\left(-\frac{\tau_{zenith}}{\sin(\text{elevation})}\right)
+$$</p>
+<p>The defaults are a 0.5 m aperture and a 10 microradian divergence. A pass counts as usable only while the link loss stays below a threshold, 60 dB by default.</p>
+<p><strong>Protocol.</strong> The asymptotic decoy-state BB84 key rate is</p>
+<p>$$
+R \approx q_\mu \left[\, 1 - f_{EC}\, H(e_\mu) \,\right]
+$$</p>
+<p>where $q_\mu$ is the gain, $f_{EC} = 1.16$ is the error-correction efficiency and $H$ is the binary entropy. The error rate $e_\mu$ is modelled as rising linearly with link loss from a 2 percent floor.</p>
+<h2>What the default run says</h2>
+<p>For the default constellation over 24 hours, the best station and the worst station are not far apart.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Station</th>
+<th>Coverage (share of the day)</th>
+<th>Highest elevation reached</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hanle</td>
+<td>1.7%</td>
+<td>58.7°</td>
+</tr>
+<tr>
+<td>Dehradun</td>
+<td>1.6%</td>
+<td>40.9°</td>
+</tr>
+<tr>
+<td>Kodaikanal</td>
+<td>1.4%</td>
+<td>34.8°</td>
+</tr>
+<tr>
+<td>Shillong</td>
+<td>1.3%</td>
+<td>74.2°</td>
+</tr>
+<tr>
+<td>Mt Abu</td>
+<td>1.3%</td>
+<td>84.3°</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hanle collects the most key and Kodaikanal the least, but the differences are small. The larger point is that coverage stays below 2 percent of the day for every station. Twelve satellites in low orbit pass over a given site briefly and rarely. Larger constellations, different altitudes and more stations are changes you can try from the command line.</p>
+<h2>Running it</h2>
+<div class="codeblock"><div class="codebar"><span>bash</span><button type="button">Copy</button></div><pre><code class="language-bash">git clone https://github.com/Anand-Ambastha/qkd-satellite-constellation
+cd qkd-satellite-constellation
+pip install -r requirements.txt
+
+python cli/simulate.py                       # full 24 h run
+streamlit run dashboard/app.py               # interactive dashboard
+python cli/simulate.py --planes 3 --sats-per-plane 3 --altitude 550 \
+                       --inclination 98 --duration 720 --step 2
+</code></pre></div>
+<p>Every parameter can also be set in a YAML file and loaded with <code>--config</code>.</p>
+<h2>Testing</h2>
+<p>The repository has unit tests for the orbit mechanics, the constellation generator and the QKD channel and protocol, plus one integration test that runs a whole simulation. In the README, 28 of 29 tests pass. The remaining test, a check of the RAAN position, is skipped on purpose, because J2 precession moves the perigee over one orbit, so the radius is preserved and the position is not.</p>
+<h2>Limits to keep in mind</h2>
+<p>This is a feasibility model, and I would not read its key numbers as predictions for hardware.</p>
+<ul>
+<li>The error rate is a simple function of link loss, not derived from detector noise, background light or pointing errors.</li>
+<li>Weather is not part of the model, so availability depends only on geometry and link loss.</li>
+<li>The atmosphere is a single transmittance law, without the turbulence and pointing layers I added later in <a href="../qsafire-satellite-sns-tf-qkd-simulator/">QSAFire</a>.</li>
+</ul>
+<p>The code is released for viewing and learning. Reuse needs permission, which you can ask for through the <a href="../../contact/">contact page</a>. The paper is on the <a href="../../publications/">Publications page</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../satesim-satellite-link-budget-simulator/"><span class="when">Newer</span><h2>SateSim, a satellite link budget simulator with a dashboard</h2></a>
+      <a class="post-card" href="../verisure-ai-policy-question-answering/"><span class="when">Older</span><h2>VeriSure AI, asking plain questions of insurance policies</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>window.MathJax = { svg: { fontCache: 'local' } };</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

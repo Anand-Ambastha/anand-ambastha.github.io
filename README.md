@@ -151,6 +151,17 @@ Then open <http://localhost:8000>. Pages open at `/research/`, `/blog/` and so o
 | `draft` | No | Set to `true` to hide the post until it is ready. |
 | `category` | No | Set to `project` to list the post under **Project blogs**. Leave it out and the post appears under **My thoughts**, the first group on the Blog page. |
 
+### Build step for posts
+
+Each post also gets its own real page at `/blog/<slug>/`, so search engines can index it. After adding or editing a post, run this from the repository root and commit the result:
+
+```bash
+pip install markdown
+python3 scripts/build_posts.py
+```
+
+It writes `blog/<slug>/index.html` for every post, updates `feed.xml` (RSS) and adds the post URLs to `sitemap.xml`. Old `/post/#slug` links still work: they redirect to the new page.
+
 ### File naming
 
 Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The file name (without `.md`) becomes the post address: `/post/#my-first-post`.

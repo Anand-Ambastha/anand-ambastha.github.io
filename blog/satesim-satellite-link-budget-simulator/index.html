@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SateSim, a satellite link budget simulator with a dashboard | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="How SateSim turns an orbit and a ground station into SNR, BER, Doppler shift and elevation, with a dashboard, CSV export and a PDF report.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="SateSim, a satellite link budget simulator with a dashboard">
+<meta property="og:description" content="How SateSim turns an orbit and a ground station into SNR, BER, Doppler shift and elevation, with a dashboard, CSV export and a PDF report.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SateSim, a satellite link budget simulator with a dashboard">
+<meta name="twitter:description" content="How SateSim turns an orbit and a ground station into SNR, BER, Doppler shift and elevation, with a dashboard, CSV export and a PDF report.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "SateSim, a satellite link budget simulator with a dashboard", "description": "How SateSim turns an orbit and a ground station into SNR, BER, Doppler shift and elevation, with a dashboard, CSV export and a PDF report.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "satesim, link-budget, satellite, python", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "SateSim, a satellite link budget simulator with a dashboard", "item": "https://anand-ambastha.github.io/portfolio/blog/satesim-satellite-link-budget-simulator/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">satesim</span><span class="tag">link-budget</span><span class="tag">satellite</span><span class="tag">python</span></div>
+      <h1>SateSim, a satellite link budget simulator with a dashboard</h1>
+      <p class="meta">15 October 2026 · 3 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>SateSim answers a basic question in satellite communication. For a satellite passing over a ground station, how good is the radio link at every moment? It combines orbit propagation, an RF link budget and a dashboard, and it produces SNR, bit error rate, Doppler shift and elevation angle for each pass. This post explains how it is organised and what it leaves out. The entry on the <a href="../../projects/">Projects page</a> has the short version, and the code is on <a href="https://github.com/Anand-Ambastha/SateSim">GitHub</a>.</p>
+<h2>From an orbit to a link budget</h2>
+<p>The pipeline has three steps, and each one feeds the next.</p>
+<ol>
+<li><strong>Where is the satellite?</strong> SGP4, run through Skyfield, propagates the orbit and gives the satellite's position and velocity relative to the ground station at each time step.</li>
+<li><strong>How strong is the signal?</strong> The range and elevation from step one go into a link budget. Free-space path loss and the Friis transmission equation turn distance and frequency into received power, and the received power gives the signal-to-noise ratio.</li>
+<li><strong>How good is the link?</strong> The SNR is mapped to a bit error rate for BPSK or QPSK modulation.</li>
+</ol>
+<p>Doppler shift comes from the same geometry. It is the projection of the satellite's relative velocity onto the line of sight, scaled by the carrier frequency. Satellites below a minimum elevation angle are dropped, because a link close to the horizon is not usable.</p>
+<p>For reference, the two standard relations behind the budget are:</p>
+<p>$$
+\mathrm{FSPL(dB)} = 20\log_{10}(d_{\mathrm{km}}) + 20\log_{10}(f_{\mathrm{MHz}}) + 32.44
+$$</p>
+<p>$$
+P_r = P_t\, G_t\, G_r \left(\frac{\lambda}{4\pi d}\right)^2
+$$</p>
+<p>Path loss grows with both distance and frequency, so a satellite at low elevation, far away, always has the weakest link of the pass.</p>
+<h2>How the code is split</h2>
+<p>SateSim keeps the physics apart from the interface, which makes each part easy to test and reuse.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>core.py</code></td>
+<td>Physics and communication models, with vectorised multi-satellite propagation and no UI code</td>
+</tr>
+<tr>
+<td><code>app.py</code></td>
+<td>Streamlit dashboard with Plotly maps and time series, session state and exports</td>
+</tr>
+<tr>
+<td><code>report.py</code></td>
+<td>Matplotlib figures and a multi-page PDF report built with ReportLab</td>
+</tr>
+<tr>
+<td><code>run_simulation.py</code></td>
+<td>Command-line interface for headless, parameterised runs</td>
+</tr>
+</tbody>
+</table></div>
+<p>The dashboard and the command line share the same <code>core.py</code>, so a result from one can be reproduced with the other.</p>
+<h2>Running it</h2>
+<div class="codeblock"><div class="codebar"><span>bash</span><button type="button">Copy</button></div><pre><code class="language-bash">pip install -r requirements.txt
+
+streamlit run app.py                                              # interactive dashboard
+python run_simulation.py --duration 90 --modulation BPSK --freq 2.0   # headless run
+</code></pre></div>
+<p>A run produces an interactive dashboard, CSV datasets for analysis, high-resolution PNG plots and a structured technical PDF report that includes the equations, the plots and a short analysis.</p>
+<h2>Where it came from</h2>
+<p>SateSim is my own implementation of ideas from the satellite communication lectures by Prof. A. Al-Hourani of RMIT University. I wrote it to learn the material by building it, and it is not affiliated with or endorsed by RMIT or Prof. Al-Hourani. That origin also explains its scope: it is a clear, working model of the basics and not a mission-grade tool.</p>
+<h2>What it does not model yet</h2>
+<ul>
+<li>Rain attenuation and other atmospheric loss</li>
+<li>Modulation schemes beyond BPSK and QPSK</li>
+<li>Live TLE data</li>
+<li>Performance work for very large constellations</li>
+</ul>
+<p>The atmospheric part is the one I care about most. It is the bridge to my work on optical satellite links, where turbulence, absorption and weather decide the key rate, as in <a href="../qsafire-satellite-sns-tf-qkd-simulator/">QSAFire</a>.</p>
+<h2>Try it</h2>
+<p>The code, the dashboard screenshots and the README are in the <a href="https://github.com/Anand-Ambastha/SateSim">SateSim repository</a> under an MIT license. If you have a use for a small link-budget tool, or ideas for the missing pieces, <a href="../../contact/">get in touch</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../qsafire-satellite-sns-tf-qkd-simulator/"><span class="when">Newer</span><h2>QSAFire, a satellite SNS-TF-QKD simulator built layer by layer</h2></a>
+      <a class="post-card" href="../decoy-state-bb84-satellite-constellation-simulator/"><span class="when">Older</span><h2>Simulating a decoy-state BB84 satellite constellation over India</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>window.MathJax = { svg: { fontCache: 'local' } };</script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

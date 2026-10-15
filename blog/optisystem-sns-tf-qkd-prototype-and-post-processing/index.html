@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="How I built a physical-layer sending-or-not-sending twin-field QKD prototype in OptiSystem with MATLAB co-simulation, and the Python pipeline that turns its CSV logs into a key rate.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs">
+<meta property="og:description" content="How I built a physical-layer sending-or-not-sending twin-field QKD prototype in OptiSystem with MATLAB co-simulation, and the Python pipeline that turns its CSV logs into a key rate.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs">
+<meta name="twitter:description" content="How I built a physical-layer sending-or-not-sending twin-field QKD prototype in OptiSystem with MATLAB co-simulation, and the Python pipeline that turns its CSV logs into a key rate.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs", "description": "How I built a physical-layer sending-or-not-sending twin-field QKD prototype in OptiSystem with MATLAB co-simulation, and the Python pipeline that turns its CSV logs into a key rate.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "optisystem, sns-tf-qkd, matlab, python", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs", "item": "https://anand-ambastha.github.io/portfolio/blog/optisystem-sns-tf-qkd-prototype-and-post-processing/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">optisystem</span><span class="tag">sns-tf-qkd</span><span class="tag">matlab</span><span class="tag">python</span></div>
+      <h1>An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs</h1>
+      <p class="meta">15 October 2026 · 7 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>My internship at the Scientific Analysis Group of the Defence Research and Development Organisation had two halves. The satellite half became <a href="../qsafire-satellite-sns-tf-qkd-simulator/">QSAFire</a>. The other half was smaller and more hands-on: a 40 km fibre version of the same protocol, built at the level of lasers, modulators and detectors in OptiSystem, plus a Python pipeline that reads what that prototype logs. The two halves share no code, data or file format. This post covers the second half. Everything is in the <code>osd</code> folder of the <a href="https://github.com/Anand-Ambastha/QSAFIRE/tree/main/osd">QSAFIRE repository</a>: the OptiSystem project files, the MATLAB blocks, the exported CSV logs and the post-processing notebook, which also runs in <a href="https://colab.research.google.com/drive/1NHLbkTHHAY6hFgKvyQyOSZjMTd9DnaTz?usp=sharing">Google Colab</a>. The full description is in the <a href="https://github.com/Anand-Ambastha/QSAFIRE/blob/main/Summer_Internship_Report_DRDO.pdf">internship report</a>.</p>
+<h2>The protocol, briefly</h2>
+<p>In twin-field QKD, Alice and Bob each send weak pulses to a middle station, Charlie, who interferes them on a beam splitter. A single click at one of Charlie's two detectors links their bits, and the key rate scales with the square root of the total channel transmittance, not with the full transmittance. That is how it gets past the limit for repeaterless point-to-point links.</p>
+<p>The original proposal had a gap. Its bit values were encoded in a global phase that has to be disclosed later, and Wang, Yu and Hu showed that this leaves room for an attack. Their <strong>sending-or-not-sending (SNS)</strong> protocol removes the gap by changing where the bit comes from. In the key-generating Z windows, each party privately decides to send a pulse of intensity μ′ (with probability ε) or send nothing. That decision is the bit, and no phase for those pulses is ever announced. A separate set of X windows carries phase-randomised decoy pulses, used only to estimate how much of the signal is single-photon and what its phase error is. The prototype is built around exactly this split.</p>
+<h2>The layout</h2>
+<p>Three stations are connected by four spans of standard single-mode fibre (SMF-28), each 40 km long, two per user. Alice and Bob are mirror images. Each has a Z branch and an X branch, fed by a shared stream of window-selection bits. At Charlie, a 50:50 coupler combines the two fields for each basis, and a pair of single-photon detectors watches its two outputs.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bit rate</td>
+<td>10 Gbit/s</td>
+</tr>
+<tr>
+<td>Sequence length</td>
+<td>1,024 bits per run</td>
+</tr>
+<tr>
+<td>Samples per bit</td>
+<td>32 (320 GSa/s), so 32,768 samples per run</td>
+</tr>
+<tr>
+<td>Signal pulse (Z windows)</td>
+<td>mean photon number μ′ = 0.1</td>
+</tr>
+<tr>
+<td>Decoy pulses (X windows)</td>
+<td>μ₁ = 0.05 and μ₂ = 0.2, plus vacuum, drawn with probabilities 0.4, 0.4 and 0.2</td>
+</tr>
+<tr>
+<td>Phase slices</td>
+<td>M = 16</td>
+</tr>
+<tr>
+<td>Laser</td>
+<td>193.1 THz (about 1552.52 nm), 0 dBm</td>
+</tr>
+<tr>
+<td>Fibre</td>
+<td>4 × 40 km SMF-28</td>
+</tr>
+</tbody>
+</table></div>
+<p>At 0.2 dB/km, each 40 km span loses about 8 dB.</p>
+<h2>Putting protocol logic into a physical simulator</h2>
+<p>OptiSystem models light, fibre and detectors well. It has no block for "with probability ε, do not send this symbol", or for "pick one of three decoy intensities from this distribution and log the choice". So that logic lives in MATLAB co-simulation blocks, which sit in the signal path as programmable taps:</p>
+<ul>
+<li><strong>Window selection</strong> reads a pseudo-random bit and labels each window Z or X.</li>
+<li><strong>SNS logic</strong> (Z windows) draws send or not-send and gates the pulse accordingly, with the bit value assigned from that decision.</li>
+<li><strong>Decoy estimation</strong> (X windows) picks a signal, weak-decoy or vacuum intensity.</li>
+<li><strong>Random phase</strong> draws a phase uniformly in [0, 2π) and drives the phase modulator.</li>
+<li><strong>CSV logging</strong> at Charlie writes down what the detectors saw.</li>
+</ul>
+<p>Two details are easy to get wrong. Bob's bit convention is the complement of Alice's (send means 1 for Alice and 0 for Bob), so that a good key window is one where their bits differ. And Alice's and Bob's random streams must be independently seeded, otherwise their correlated choices would invent agreement that no physical process produces.</p>
+<h2>Keeping the simulation honest</h2>
+<p>The design rule is that nothing inside OptiSystem computes a key. The simulator only produces physical-layer events and logs them. Sifting, error rates, decoy-state bounds and the key rate all happen afterwards in Python. This keeps the physical model from using information a real Charlie or Eve would not have, such as Alice's private send decision. It also means one expensive simulation run can be analysed again under different protocol assumptions.</p>
+<p>The hand-off is five CSV files: records for Alice, for Bob and for Charlie's X and Z detectors, plus an X-basis log kept at Charlie. They are joined on a window index, and in these logs a window is one sample of the run, so each file has 32,768 rows. The rule that matters most is that every window gets a row, including the windows with no click, because the gain is clicks divided by windows sent and dropping the empty rows would corrupt the denominator.</p>
+<h2>The Python pipeline</h2>
+<p>The pipeline reads the five files and applies the post-processing that the SNS security analysis requires:</p>
+<ol>
+<li><strong>Synchronise and check.</strong> Row counts, duplicate indices and missing columns are verified across all five files.</li>
+<li><strong>Separate the bases.</strong> Windows where Alice and Bob chose different bases are dropped.</li>
+<li><strong>Select X-basis phases.</strong> Matching decoy intensities are kept, and a pair is accepted only if 1 − |cos(δ_A − δ_B)| ≤ |λ|, using a discretised phase slice.</li>
+<li><strong>Estimate with decoys.</strong> A two-decoy lower bound on the single-photon yield and an upper bound on its phase error.</li>
+<li><strong>Z-basis gain and error rate.</strong> Windows are split into four categories by who sent: Alice only, Bob only, both, or neither. Only the first two carry genuine key bits.</li>
+<li><strong>Key rate.</strong> The final rate is computed with every term reported, and a 95% Wilson confidence interval on each rate estimated from a finite count.</li>
+</ol>
+<h2>What it returned</h2>
+<p>The pipeline runs end to end on the logs in the repository, and its checks pass: all five files have 32,768 rows, no duplicate window indices, no missing columns, and every window appears in every file. Then the numbers show that the data carries no key:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows where Alice and Bob chose the same basis</td>
+<td>17,248 of 32,768 (about 53%, as expected for independent choices)</td>
+</tr>
+<tr>
+<td>X windows, both parties, same decoy intensity</td>
+<td>3,464</td>
+</tr>
+<tr>
+<td>Of those, accepted by the phase-slice rule</td>
+<td>215 (6.97%, close to the 1/16 expected for random phases)</td>
+</tr>
+<tr>
+<td>Z windows with a single detector click</td>
+<td>1,458 of 7,712</td>
+</tr>
+<tr>
+<td>Z-basis error rate</td>
+<td>0.59</td>
+</tr>
+<tr>
+<td>X-basis detector error rate</td>
+<td>0.51 (22 of 43)</td>
+</tr>
+<tr>
+<td>Phase-error bound from the decoy estimate</td>
+<td>−0.93, which is outside the valid range of 0 to 1</td>
+</tr>
+<tr>
+<td>Secret key rate (Eq. 4 of Wang et al.)</td>
+<td>−0.20 per window pair</td>
+</tr>
+</tbody>
+</table></div>
+<p>An error rate of 0.59 is worse than guessing, and a phase-error bound below zero is not physically meaningful. Both are the signature of detector clicks that are not statistically coupled to the phase or to the send decisions that are supposed to cause them. So the negative key rate is a property of this dataset, and I traced it to the data in the report, not to the pipeline. The pipeline does what it should, and reports an invalid bound as invalid. I would rather show that than a flattering number. The next step I recommended is to validate the pipeline on a properly noise-calibrated simulation run, so that a known-good dataset gives a known-good rate.</p>
+<h2>What I would change</h2>
+<ul>
+<li><strong>A longer link.</strong> 40 km and 1,024 bits per run are chosen to keep the simulation fast. The advantage of TF-QKD shows up at hundreds of kilometres, where active phase tracking at Charlie matters.</li>
+<li><strong>More accepted events.</strong> Only 215 X windows survive the phase rule, which makes every X-basis estimate noisy. A real study would sweep many runs and concatenate their logs.</li>
+<li><strong>Finite-key bounds.</strong> The estimates are asymptotic. Confidence-interval widening would give a rate that can be defended for a finite sample.</li>
+<li><strong>Detector realism.</strong> Dark counts, dead time and afterpulsing would show how much of the rate they take away.</li>
+</ul>
+<p>If you work on twin-field QKD or on simulation workflows for it, <a href="../../contact/">get in touch</a>. My other projects are on the <a href="../../projects/">Projects page</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../paddy-microclimate-stress-classifier/"><span class="when">Newer</span><h2>Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen</h2></a>
+      <a class="post-card" href="../welcome-to-the-blog/"><span class="when">Older</span><h2>Welcome to the blog</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

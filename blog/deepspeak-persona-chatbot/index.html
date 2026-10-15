@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DeepSpeak, building a chatbot from a person&#x27;s own words | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="A look at a CodeClash 2.0 hackathon project that turns messages, photos and voice notes into a conversational persona, and the questions it raises.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="DeepSpeak, building a chatbot from a person&#x27;s own words">
+<meta property="og:description" content="A look at a CodeClash 2.0 hackathon project that turns messages, photos and voice notes into a conversational persona, and the questions it raises.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-10-15">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DeepSpeak, building a chatbot from a person&#x27;s own words">
+<meta name="twitter:description" content="A look at a CodeClash 2.0 hackathon project that turns messages, photos and voice notes into a conversational persona, and the questions it raises.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "DeepSpeak, building a chatbot from a person's own words", "description": "A look at a CodeClash 2.0 hackathon project that turns messages, photos and voice notes into a conversational persona, and the questions it raises.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "url": "https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "deepspeak, nlp, whisper, hackathon", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "DeepSpeak, building a chatbot from a person's own words", "item": "https://anand-ambastha.github.io/portfolio/blog/deepspeak-persona-chatbot/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">deepspeak</span><span class="tag">nlp</span><span class="tag">whisper</span><span class="tag">hackathon</span></div>
+      <h1>DeepSpeak, building a chatbot from a person&#x27;s own words</h1>
+      <p class="meta">15 October 2026 · 3 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>DeepSpeak was our entry at CodeClash 2.0. The idea is to help someone keep a loved one's way of speaking: you upload messages, photos and voice notes, and the system builds a chatbot that answers in that person's style. It was a team of four. Naivedya Giri, Krish Tanwar and Vasu Chaudhary built the front end and the full-stack parts, and I built the AI component. The entry on the <a href="../../projects/">Projects page</a> has the short version, and the code is on <a href="https://github.com/Anand-Ambastha/DeepSpeak">GitHub</a>.</p>
+<h2>What goes in</h2>
+<p>The system accepts three kinds of material about one person:</p>
+<ul>
+<li><strong>Text</strong>, such as chat exports, and screenshots of messages that are read with Tesseract OCR</li>
+<li><strong>Voice recordings</strong>, which Whisper turns into text</li>
+<li><strong>Photos</strong>, used to build a visual profile</li>
+</ul>
+<p>Everything is converted to text or features, because the chatbot works from language.</p>
+<h2>From material to persona</h2>
+<p>My part was the analysis that sits between the raw files and the chatbot.</p>
+<ol>
+<li><strong>Extraction.</strong> OCR and transcription turn images and audio into text, alongside the text that was uploaded directly.</li>
+<li><strong>Personality analysis.</strong> The text is analysed for emotional tone, vocabulary and common phrases, so the persona has a recognisable voice.</li>
+<li><strong>Visual profile.</strong> Face detection and landmark checks, using the <code>face_recognition</code> library and OpenCV, assess the uploaded photos.</li>
+<li><strong>Chatbot.</strong> A GPT-style model, with OpenAI, DeepSeek or Gemini as the options, is prompted with the extracted profile and answers in character.</li>
+<li><strong>Portraits.</strong> Stable Diffusion can generate a portrait from a name and a style.</li>
+</ol>
+<p>Profiles and chat history are stored in SQLite, and a profile can be exported as a JSON file.</p>
+<h2>The stack</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Technology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interface</td>
+<td>Streamlit</td>
+</tr>
+<tr>
+<td>API</td>
+<td>FastAPI with Uvicorn</td>
+</tr>
+<tr>
+<td>Language models</td>
+<td>OpenAI, DeepSeek or Gemini</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Whisper</td>
+</tr>
+<tr>
+<td>OCR</td>
+<td>Tesseract</td>
+</tr>
+<tr>
+<td>Vision</td>
+<td>face_recognition, OpenCV, PIL</td>
+</tr>
+<tr>
+<td>Image generation</td>
+<td>Stable Diffusion through <code>diffusers</code></td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>SQLite through SQLAlchemy</td>
+</tr>
+</tbody>
+</table></div>
+<p>The app has five screens: upload and create, chat, profile viewer, image generation, and export. It was deployed on Vercel.</p>
+<h2>Questions this kind of project raises</h2>
+<p>A hackathon gives you a weekend, not enough time to settle the hard questions, and I do not think any single prototype can. They are still worth stating plainly:</p>
+<ul>
+<li>Whose data is it, and who is allowed to upload it?</li>
+<li>How clearly should the interface say that the replies come from a model and not from the person?</li>
+<li>What should happen to the data when a user wants it removed?</li>
+</ul>
+<p>The sentence that framed our project was that we cannot bring anyone back, but we can remember how they spoke. I think that is the right ambition, and it is also the reason these questions need answers before a tool like this is released to the public.</p>
+<h2>Notes on the repository</h2>
+<p>The project was built in rounds. The first README was drafted with ChatGPT as a placeholder for the first presentation, with a plan to rewrite it before the final round, so read its feature list as the design we were aiming at. The repository also holds the presentation deck from round one and a workflow diagram.</p>
+<p>If you want to talk about voice, language and personalisation systems, <a href="../../contact/">get in touch</a>. My other projects are on the <a href="../../projects/">Projects page</a>.</p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../vibesense-fashion-vibes-from-video/"><span class="when">Newer</span><h2>VibeSense, finding the products and the vibe in a short video</h2></a>
+      <a class="post-card" href="../paddy-microclimate-stress-classifier/"><span class="when">Older</span><h2>Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>
