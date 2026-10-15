@@ -162,6 +162,17 @@ python3 scripts/build_posts.py
 
 It writes `blog/<slug>/index.html` for every post, updates `feed.xml` (RSS) and adds the post URLs to `sitemap.xml`. Old `/post/#slug` links still work: they redirect to the new page.
 
+### LinkedIn feed on the Blog page
+
+The **From LinkedIn** group reads `posts/linkedin.json`. LinkedIn offers no public feed for personal posts, so the file is built from text you copy yourself: open your profile's Posts page, scroll to load the posts, select all, paste into a text file, then run
+
+```bash
+python3 scripts/import_linkedin.py feed.txt
+```
+
+It skips reposts and posts that already exist as full blog posts, keeps the 10 newest, and writes `posts/linkedin.json`. Commit and push the result.
+
+
 ### File naming
 
 Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The file name (without `.md`) becomes the post address: `/post/#my-first-post`.

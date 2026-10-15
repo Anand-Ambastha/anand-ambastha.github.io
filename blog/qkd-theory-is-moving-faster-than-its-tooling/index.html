@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The theory of QKD is moving faster than its tooling | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="Protocols and proofs are advancing quickly, but the tools to simulate, reproduce and extend them are still fragmented. A note on what is missing.">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="The theory of QKD is moving faster than its tooling">
+<meta property="og:description" content="Protocols and proofs are advancing quickly, but the tools to simulate, reproduce and extend them are still fragmented. A note on what is missing.">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-05-11">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The theory of QKD is moving faster than its tooling">
+<meta name="twitter:description" content="Protocols and proofs are advancing quickly, but the tools to simulate, reproduce and extend them are still fragmented. A note on what is missing.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "The theory of QKD is moving faster than its tooling", "description": "Protocols and proofs are advancing quickly, but the tools to simulate, reproduce and extend them are still fragmented. A note on what is missing.", "datePublished": "2026-05-11", "dateModified": "2026-05-11", "url": "https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "qkd, simulation, open-source, research-tools", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "The theory of QKD is moving faster than its tooling", "item": "https://anand-ambastha.github.io/portfolio/blog/qkd-theory-is-moving-faster-than-its-tooling/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">qkd</span><span class="tag">simulation</span><span class="tag">open-source</span><span class="tag">research-tools</span></div>
+      <h1>The theory of QKD is moving faster than its tooling</h1>
+      <p class="meta">11 May 2026 · 1 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>One thing I’ve slowly realized while exploring quantum communication and QKD research is that the theory side of the field is progressing much faster than the tooling ecosystem around it.</p>
+<p>We already have:</p>
+<ul>
+<li>Beautiful protocols</li>
+<li>Strong security proofs</li>
+<li>Satellite QKD demonstrations</li>
+<li>Free-space optical research</li>
+<li>Attack models</li>
+<li>Quantum network architectures</li>
+</ul>
+<p>But when it comes to actually experimenting, simulating, reproducing, or extending these systems computationally, things still feel very fragmented.</p>
+<p>A lot of implementations are: paper-specific, hard to extend, minimally documented, or abandoned after publication.</p>
+<p>And honestly, once realistic conditions enter the picture like turbulence, detector imperfections, atmospheric losses, pointing errors, and attack-aware simulations, the gap becomes even more visible.</p>
+<p>Sometimes it feels like researchers spend almost as much time rebuilding infrastructure as they do exploring new ideas.</p>
+<p>There are good tools in the ecosystem already, and many researchers have built genuinely impressive simulators and frameworks over the years.</p>
+<p>But it still feels like there’s room for something more modular, reusable, physics-aware, and easier to build upon collaboratively.</p>
+<p>Especially as quantum communication slowly moves from theory-heavy demonstrations toward scalable real-world systems.</p>
+<p>Curious to hear thoughts from others working around quantum networks, QKD, photonics, or simulation infrastructure.</p>
+<p>... more</p>
+<p><em>First shared on <a href="https://www.linkedin.com/in/anand-kumar05/recent-activity/all/">LinkedIn</a>.</em></p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../quantum-networks-under-the-lens-part-0/"><span class="when">Newer</span><h2>Quantum Networks Under the Lens, Part 0: What does it take to build a global quantum network?</h2></a>
+      <span></span>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

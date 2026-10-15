@@ -357,3 +357,6 @@ footer.site .foot-base { margin-top: 40px; padding-top: 20px; border-top: 1px so
 .cv-pages iframe { display: block; width: 100%; height: min(86vh, 1100px); min-height: 560px; border: 0; background: #fff; }
 .cv-viewer.ready .cv-fallback { display: none; }
 .cv-fallback { padding: 14px 18px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); }
+
+.post-card.li-card { cursor: default; }
+.post-card.li-card:hover { background: var(--surface); }

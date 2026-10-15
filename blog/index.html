@@ -71,6 +71,12 @@
     <div class="post-list" id="list-projects"></div>
   </section>
 
+  <section class="blog-group" id="g-linkedin" style="padding-top: 24px;" hidden>
+    <div class="sec-head"><h2>From LinkedIn</h2><p>Recent updates from my LinkedIn feed.</p></div>
+    <div class="post-list" id="list-linkedin"></div>
+    <p style="margin-top: 28px;"><a class="pill ghost" href="https://www.linkedin.com/in/anand-kumar05/recent-activity/all/" target="_blank" rel="noopener">See all activity on LinkedIn ↗</a></p>
+  </section>
+
   <footer class="site">
     <div class="foot-grid">
       <div class="foot-brand">
@@ -111,6 +117,15 @@
   ];
   var posts = [], active = 'All';
 
+  var li = [];
+  function drawLinkedIn() {
+    var sec = document.getElementById('g-linkedin'), list = document.getElementById('list-linkedin');
+    sec.hidden = !li.length || active !== 'All';
+    list.innerHTML = li.map(function (p) {
+      return '<article class="post-card li-card"><span class="when">' + Blog.esc(Blog.fmt(p.date)) + '</span><p>' + Blog.esc(p.text) + '</p></article>';
+    }).join('');
+  }
+
   function draw() {
     groups.forEach(function (g) {
       var sec = document.getElementById('g-' + g.key), list = document.getElementById('list-' + g.key);
@@ -137,12 +152,15 @@
     var b = e.target.closest('button[data-tag]');
     if (!b) return;
     active = b.getAttribute('data-tag');
-    chips(); draw();
+    chips(); draw(); drawLinkedIn();
   });
+
+  fetch(Blog.ROOT + 'posts/linkedin.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (d) { li = Array.isArray(d) ? d : []; drawLinkedIn(); }).catch(function () {});
 
   Blog.load().then(function (p) {
     posts = p;
-    chips(); draw();
+    chips(); draw(); drawLinkedIn();
   }).catch(function () {
     document.getElementById('list-thoughts').innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
   });

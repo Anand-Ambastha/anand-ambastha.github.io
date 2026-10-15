@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites? | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="Coverage and contact time favour high orbits, while path loss favours low ones. Which should a quantum network optimise for?">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/svg+xml" href="../../assets/img/favicon.svg">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="canonical" href="https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/">
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/portfolio/feed.xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?">
+<meta property="og:description" content="Coverage and contact time favour high orbits, while path loss favours low ones. Which should a quantum network optimise for?">
+<meta property="og:url" content="https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/">
+<meta property="og:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<meta property="article:published_time" content="2026-06-29">
+<meta property="article:author" content="Anand Kumar">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?">
+<meta name="twitter:description" content="Coverage and contact time favour high orbits, while path loss favours low ones. Which should a quantum network optimise for?">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/portfolio/assets/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?", "description": "Coverage and contact time favour high orbits, while path loss favours low ones. Which should a quantum network optimise for?", "datePublished": "2026-06-29", "dateModified": "2026-06-29", "url": "https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/", "mainEntityOfPage": "https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/", "image": "https://anand-ambastha.github.io/portfolio/assets/img/og-image.png", "keywords": "quantum-networks, satellite-qkd, series", "author": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/portfolio/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/portfolio/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/portfolio/blog/"}, {"@type": "ListItem", "position": 3, "name": "Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?", "item": "https://anand-ambastha.github.io/portfolio/blog/quantum-networks-under-the-lens-part-3/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../../research/">Research</a><a href="../../projects/">Projects</a><a href="../../publications/">Publications</a><a href="../../blog/" aria-current="page">Blog</a><a href="../../about/">About</a>
+    </nav>
+    <a class="pill" href="../../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <article class="post" id="post">
+    <header class="post-head">
+      <a class="back" href="../">← All posts</a>
+      <div class="tags"><span class="tag">quantum-networks</span><span class="tag">satellite-qkd</span><span class="tag">series</span></div>
+      <h1>Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?</h1>
+      <p class="meta">29 June 2026 · 1 min read · Anand Kumar</p>
+    </header>
+    <div class="prose" id="prose">
+<p>Suppose you're designing a future quantum communication network.</p>
+<p><strong>Would you place your satellites at 300 km or 1200 km altitude?</strong></p>
+<p>At first glance, higher sounds better.</p>
+<ul>
+<li>More coverage</li>
+<li>Longer visibility windows</li>
+<li>Fewer coverage gaps</li>
+</ul>
+<p>But physics introduces a catch.</p>
+<p>As satellites move farther away, photons have to travel longer distances, and optical losses begin to grow.</p>
+<p>Lower orbits can provide:</p>
+<ul>
+<li>Stronger optical links</li>
+<li>Lower path loss</li>
+<li>Higher potential throughput</li>
+</ul>
+<p>Higher orbits can provide:</p>
+<ul>
+<li>Larger coverage footprints</li>
+<li>Better availability</li>
+<li>Longer contact times</li>
+</ul>
+<p>So which one should we optimize for?
+Availability or throughput?</p>
+<p>The interesting part is that improving one doesn't necessarily improve the other.</p>
+<p>Every design choice seems to solve one problem while creating a new one.</p>
+<p>I've been thinking a lot about this tradeoff while working on system-level models for satellite Quantum Key Distribution (QKD) networks.</p>
+<p>If you were designing a global quantum communication network from scratch, where would you start?</p>
+<h1>QuantumCommunication #QKD #SatelliteCommunication #QuantumNetworks #SpaceSystems #Research... more</h1>
+<p><em>First shared on <a href="https://www.linkedin.com/in/anand-kumar05/recent-activity/all/">LinkedIn</a>.</em></p>
+    </div>
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-card" href="../quantum-networks-under-the-lens-part-4/"><span class="when">Newer</span><h2>Quantum Networks Under the Lens, Part 4: Can stability be more valuable than performance?</h2></a>
+      <a class="post-card" href="../quantum-networks-under-the-lens-part-2/"><span class="when">Older</span><h2>Quantum Networks Under the Lens, Part 2: Is the atmosphere more important than the satellite?</h2></a>
+    </nav>
+  </article>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../../research/">Research</a>
+        <a href="../../projects/">Projects</a>
+        <a href="../../publications/">Publications</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../about/">About</a>
+        <a href="../../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved.</span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script>
+document.querySelectorAll('.codeblock button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var pre = b.closest('.codeblock').querySelector('pre');
+    try { navigator.clipboard.writeText(pre.innerText).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }); } catch (e) {}
+  });
+});
+</script>
+</body>
+</html>

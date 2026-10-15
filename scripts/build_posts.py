@@ -82,7 +82,7 @@ def fmt(d):
 
 nav_links = "".join('<a href="../../%s/"%s>%s</a>' % (p, ' aria-current="page"' if p == "blog" else "", p.title())
                     for p in "research projects publications blog about".split())
-FOOT = (ROOT / "post" / "index.html").read_text(encoding="utf-8")
+FOOT = (ROOT / "about" / "index.html").read_text(encoding="utf-8")
 FOOT = re.search(r'  <footer class="site">.*?</footer>\n', FOOT, re.S).group(0)
 FOOT = (FOOT.replace('href="../', 'href="../../'))
 
