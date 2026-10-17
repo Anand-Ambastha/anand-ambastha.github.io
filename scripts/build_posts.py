@@ -18,6 +18,18 @@ AUTHOR = "Anand Kumar"
 PAGES = "research projects publications blog about contact cv".split()
 
 
+BASE_KEYWORDS = ["Anand Kumar", "Anand Ambastha", "Anand Verma"]
+QUANTUM_KEYWORDS = ["quantum key distribution", "QKD", "quantum communication"]
+
+def keywords(tags, text=""):
+    extra = QUANTUM_KEYWORDS if re.search(r"qkd|quantum|satellite|optisystem", " ".join(tags) + " " + text, re.I) else []
+    seen, out = set(), []
+    for k in list(tags) + BASE_KEYWORDS + extra:
+        k = str(k).strip()
+        if k and k.lower() not in seen:
+            seen.add(k.lower()); out.append(k)
+    return ", ".join(out)
+
 def parse(path):
     raw = path.read_text(encoding="utf-8")
     meta, body = {}, raw
@@ -94,6 +106,7 @@ TEMPLATE = """<!doctype html>
 <title>{title} | Anand Kumar</title>
 <!-- seo:start -->
 <meta name="description" content="{desc}">
+<meta name="keywords" content="{kw}">
 <meta name="author" content="Anand Kumar">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#000000">
@@ -202,7 +215,7 @@ def main():
                 {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + "blog/"},
                 {"@type": "ListItem", "position": 3, "name": title, "item": url}]}]}
         page = TEMPLATE.format(
-            title=html.escape(title), desc=html.escape(summary, quote=True), url=url, site=SITE,
+            title=html.escape(title), desc=html.escape(summary, quote=True), url=url, site=SITE, kw=html.escape(keywords(tags, title + ' ' + summary), quote=True),
             date=m.get("date", ""), jsonld=json.dumps(ld, ensure_ascii=False).replace("</", "<\\/"),
             nav=nav_links, tags=('<div class="tags">%s</div>' % "".join('<span class="tag">%s</span>' % html.escape(t) for t in tags)) if tags else "",
             when=fmt(m.get("date", "")), minutes=max(1, round(words / 200)), body=h,
