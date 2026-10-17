@@ -366,7 +366,7 @@ Loaded from [cdnjs](https://cdnjs.com/) on the post page only:
 | [DOMPurify](https://github.com/cure53/DOMPurify) | 3.0.6 | Sanitizes rendered HTML |
 | [MathJax](https://www.mathjax.org/) | 3.2.2 (`tex-svg`) | TeX math rendering |
 
-The home and blog pages need none of these. The `/admin/` editor uses its own copies of marked and DOMPurify from `assets/js/vendor/`, not the CDN. Fonts load from Google Fonts.
+The home and blog pages need none of these. Fonts load from Google Fonts.
 
 ## Browser support
 
