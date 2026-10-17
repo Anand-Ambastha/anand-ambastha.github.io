@@ -17,6 +17,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 - [Project structure](#project-structure)
 - [Run locally](#run-locally)
 - [Write a blog post](#write-a-blog-post)
+- [Edit posts from the browser (admin page)](#edit-posts-from-the-browser-admin-page)
 - [Markdown features supported in posts](#markdown-features-supported-in-posts)
 - [Hidden short links](#hidden-short-links)
 - [Edit the content](#edit-the-content)
@@ -176,6 +177,35 @@ It skips reposts and posts that already exist as full blog posts, keeps the 10 n
 ### File naming
 
 Use lowercase letters, numbers and hyphens, for example `my-first-post.md`. The file name (without `.md`) becomes the post address: `/post/#my-first-post`.
+
+## Edit posts from the browser (admin page)
+
+`/admin/` is a private editor for posts, so you can write and edit without VS Code. It is not linked from the site, is marked `noindex`, and is not in the sitemap.
+
+**How it works.** The page talks to the GitHub API from your browser. It lists, opens, creates, edits and deletes files in `posts/` and uploads images to `posts/img/`. Every save is one commit on `main`. A GitHub Action (`.github/workflows/build-posts.yml`) then runs `scripts/build_posts.py`, so the static post pages, `feed.xml` and the sitemap update by themselves, and asks GitHub Pages to publish. Allow one to two minutes after saving.
+
+**Sign in (one time).** The login is a GitHub fine-grained access token:
+
+1. Open <https://github.com/settings/personal-access-tokens/new>.
+2. Name it "Website editor" and set an expiry (90 days is a good choice).
+3. Repository access: **Only select repositories**, then `anand-ambastha.github.io`.
+4. Repository permissions: **Contents → Read and write**. Leave everything else off.
+5. Generate the token, then paste it on the `/admin/` page. Tick "Remember me on this device" to avoid pasting it again; leave it unticked on shared computers.
+
+The token stays in your browser (session storage, or local storage if you tick "Remember me") and is sent only to `api.github.com`. Treat it like a password: anyone who has it can change the site. If you lose a device, revoke the token at <https://github.com/settings/personal-access-tokens>. Sign out clears it from the browser.
+
+**Using it.**
+
+- **All posts** shows every post, drafts included. Click one to edit it, or choose **New post**.
+- Fill in title, date, section (My thoughts or Project blogs), tags and summary, then write the body in Markdown. The toolbar inserts headings, bold, links, code, quotes and lists.
+- **Image** uploads a picture from your device and inserts it; the file is committed together with your post. Give it a short description for accessibility.
+- **Draft** keeps a post hidden from the site. New posts start as drafts. Untick it when you are ready.
+- **Preview** shows the post with the site's own styling. Equations between dollar signs show as plain text in the preview and are drawn on the live page.
+- **Save to GitHub** (or Ctrl/Cmd+S) commits. **Delete** removes the post from the site; it stays in git history.
+
+The file name of a post is its address and cannot be changed in the editor after the first save. Unknown front matter fields are kept as they were, and a post you open and save without changes is left byte for byte the same.
+
+**Security notes.** The page has a strict Content Security Policy (scripts only from this site, network calls only to `api.github.com`). The preview is sanitised with DOMPurify. The two libraries it uses, marked 4.3.0 and DOMPurify 3.0.6, are stored in `assets/js/vendor/` so nothing is loaded from a third-party host. Because the page is public, protection comes from the token: without it, the page can only show a sign-in form.
 
 ## Markdown features supported in posts
 
