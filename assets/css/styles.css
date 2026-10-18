@@ -445,3 +445,41 @@ footer.site .foot-base a:hover { color: var(--fg); }
 .cp-nav button:hover { color: var(--fg); }
 @media (max-width: 700px) { .city-stage { height: 82vh; border-radius: 20px; } .city-panel { border-radius: 14px; } }
 @media (prefers-reduced-motion: reduce) { .city-panel.in { animation: none; } }
+
+/* Blog city: on/off switch and the moon intro. */
+.city-bar { display: flex; align-items: center; gap: 12px; margin: 0 4px 14px; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); letter-spacing: .02em; }
+.city-switch { position: relative; width: 44px; height: 24px; border-radius: 999px; border: 1px solid var(--glass-border); background: rgba(255, 255, 255, .08); cursor: pointer; padding: 0; transition: background .2s; flex: none; }
+.city-switch .cs-knob { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--muted); transition: transform .2s, background .2s; }
+.city-switch[aria-checked="true"] { background: rgba(140, 170, 255, .35); }
+.city-switch[aria-checked="true"] .cs-knob { transform: translateX(20px); background: var(--fg); }
+.city-switch:focus-visible { outline: 2px solid #9db6ff; outline-offset: 3px; }
+.city.is-off .city-stage, .city.is-off .city-hint { display: none; }
+.city.is-off .city-bar { margin-bottom: 0; }
+.city-stage.has-intro .city-canvas { visibility: hidden; }
+.city-stage.entering .city-canvas { animation: city-in 1.4s cubic-bezier(.2, .7, .2, 1) both; }
+@keyframes city-in { from { opacity: 0; transform: scale(1.12); } to { opacity: 1; transform: none; } }
+.city-intro { position: absolute; inset: 0; z-index: 6; overflow: hidden; background: #000; }
+.ci-moon { position: absolute; left: 50%; top: 50%; width: min(34%, 300px); aspect-ratio: 1; margin: calc(min(34%, 300px) / -2) 0 0 calc(min(34%, 300px) / -2); border-radius: 50%; background-size: cover; background-position: center; box-shadow: 0 0 80px rgba(150, 185, 255, .2); animation: ci-zoom 2.6s cubic-bezier(.55, 0, .25, 1) both; }
+.ci-crater { position: absolute; inset: 0; background-size: cover; background-position: 50% 50%; transform-origin: 49.6% 50%; animation: ci-crater-in 2.4s ease-out 1s both, ci-drift 24s ease-in-out 3.4s infinite alternate; }
+.ci-shade { position: absolute; inset: 0; background: radial-gradient(90% 80% at 50% 50%, rgba(0, 0, 0, .15), rgba(0, 0, 0, .78)); }
+.ci-copy { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(92%, 560px); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; animation: ci-copy-in 1s ease 2.4s both; }
+.ci-eyebrow { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
+.ci-copy h2 { font-size: clamp(30px, 5.4vw, 56px); line-height: 1.05; font-weight: 400; text-shadow: 0 2px 30px rgba(0, 0, 0, .8); }
+.ci-sub { font-family: var(--font-serif, "Instrument Serif", Georgia, serif); font-style: italic; font-size: clamp(20px, 3vw, 30px); color: rgba(255, 255, 255, .85); margin-bottom: 14px; text-shadow: 0 2px 20px rgba(0, 0, 0, .8); }
+.ci-enter:disabled { opacity: .6; cursor: default; }
+.ci-skip { margin-top: 8px; background: none; border: 0; color: rgba(255, 255, 255, .6); font-family: var(--font-mono); font-size: 12.5px; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+.ci-skip:hover { color: #fff; }
+.city-intro.leaving { animation: ci-leave 1.3s ease-in both; pointer-events: none; }
+.city-intro.leaving .ci-crater { animation: ci-dive 1.3s ease-in both; }
+.city-intro.leaving .ci-copy { animation: ci-copy-out .5s ease both; }
+@keyframes ci-zoom { 0% { transform: scale(1); opacity: 1; } 70% { opacity: 1; } 100% { transform: scale(26); opacity: 0; } }
+@keyframes ci-crater-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes ci-drift { from { transform: scale(1); } to { transform: scale(1.14); } }
+@keyframes ci-copy-in { from { opacity: 0; transform: translate(-50%, -46%); } to { opacity: 1; transform: translate(-50%, -50%); } }
+@keyframes ci-copy-out { to { opacity: 0; } }
+@keyframes ci-dive { from { opacity: 1; transform: scale(1.1); } to { opacity: 0; transform: scale(5); } }
+@keyframes ci-leave { 0%, 40% { background: #000; } to { background: transparent; } }
+@media (prefers-reduced-motion: reduce) {
+  .ci-moon { display: none; } .ci-crater, .ci-copy, .city-stage.entering .city-canvas { animation: none; opacity: 1; }
+  .city-intro.leaving, .city-intro.leaving .ci-crater, .city-intro.leaving .ci-copy { animation: none; opacity: 0; }
+}

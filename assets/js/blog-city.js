@@ -11,7 +11,10 @@
   }
 
   var city = null, posts = [], bySlug = {}, current = null, token = 0;
-  var panel, body, tip, hint;
+  var panel, body, tip, hint, bar, sw, intro;
+  var enabled = true;
+  function store(k, v) { try { if (v === undefined) return window.localStorage.getItem(k); window.localStorage.setItem(k, v); } catch (e) {} return null; }
+  function seen(v) { try { if (v === undefined) return window.sessionStorage.getItem('cityIntro'); window.sessionStorage.setItem('cityIntro', v); } catch (e) {} return null; }
 
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
 
@@ -24,6 +27,54 @@
     stage.addEventListener('pointermove', function (e) {
       var r = stage.getBoundingClientRect(); tip.style.left = (e.clientX - r.left + 14) + 'px'; tip.style.top = (e.clientY - r.top + 16) + 'px';
     });
+  }
+
+  function buildBar() {
+    bar = el('div', 'city-bar');
+    bar.innerHTML = '<span class="cb-label" id="cb-label">3D city view</span>' +
+      '<button type="button" class="city-switch" role="switch" aria-labelledby="cb-label" aria-checked="true"><span class="cs-knob"></span></button>' +
+      '<span class="cb-state" aria-live="polite"></span>';
+    sec.insertBefore(bar, stage); sw = bar.querySelector('button');
+    sw.addEventListener('click', function () { setEnabled(!enabled, true); });
+  }
+
+  function setEnabled(on, remember) {
+    enabled = on;
+    sw.setAttribute('aria-checked', String(on));
+    bar.querySelector('.cb-state').textContent = on ? 'On' : 'Off, showing the plain post list';
+    sec.classList.toggle('is-off', !on);
+    if (remember) store('blogCity', on ? 'on' : 'off');
+    if (!on) {
+      if (intro) endIntro(true);
+      if (current) { current = null; token++; panel.hidden = true; if (city) city.back(); }
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    }
+  }
+
+  function startIntro() {
+    var moon = stage.getAttribute('data-moon'), crater = stage.getAttribute('data-crater');
+    intro = el('div', 'city-intro');
+    intro.innerHTML = '<div class="ci-moon"></div><div class="ci-crater"></div><div class="ci-shade"></div>' +
+      '<div class="ci-copy"><p class="ci-eyebrow">Blog</p><h2>Want to know my thoughts?</h2>' +
+      '<p class="ci-sub">Let\u2019s enter the city.</p>' +
+      '<button type="button" class="pill ci-enter" disabled>Loading the city\u2026</button>' +
+      '<button type="button" class="ci-skip">Just show me the posts</button></div>';
+    intro.querySelector('.ci-moon').style.backgroundImage = 'url("' + moon + '")';
+    intro.querySelector('.ci-crater').style.backgroundImage = 'url("' + crater + '")';
+    stage.appendChild(intro); stage.classList.add('has-intro');
+    var top = stage.getBoundingClientRect().top + window.pageYOffset - 96;
+    try { window.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, top); }
+    intro.querySelector('.ci-enter').addEventListener('click', function () { endIntro(false); });
+    intro.querySelector('.ci-skip').addEventListener('click', function () { setEnabled(false, true); });
+  }
+
+  function endIntro(instant) {
+    if (!intro) return;
+    var node = intro; intro = null; seen('1');
+    stage.classList.remove('has-intro');
+    if (instant) { node.remove(); return; }
+    node.classList.add('leaving'); stage.classList.add('entering');
+    setTimeout(function () { node.remove(); stage.classList.remove('entering'); }, 1400);
   }
 
   function slugOf(href) {
@@ -85,7 +136,7 @@
   }
 
   function open(slug) {
-    if (!city || !city.has(slug)) return false;
+    if (!city || !enabled || !city.has(slug)) return false;
     current = slug; panel.hidden = true; token++;
     var top = stage.getBoundingClientRect().top + window.pageYOffset - 96;
     try { window.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, top); }
@@ -103,7 +154,12 @@
   function init(list) {
     if (!webgl()) return;
     posts = list; bySlug = {}; list.forEach(function (p) { bySlug[p.slug] = p; });
-    buildPanel();
+    buildPanel(); buildBar();
+    sec.hidden = false;
+    var wantOn = store('blogCity') !== 'off', deep = '';
+    try { deep = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    setEnabled(wantOn, false);
+    if (wantOn && !seen() && !(deep && bySlug[deep])) startIntro();
     var s = document.createElement('script'); s.src = stage.getAttribute('data-bundle');
     s.onload = function () {
       if (!window.BlogCity) return;
@@ -113,16 +169,16 @@
         c.onFocus = show;
         c.onPick = function (slug) { if (slug) open(slug); else close(); };
         c.onHover = function (slug) { var p = slug && bySlug[slug]; tip.hidden = !p; if (p) tip.textContent = p.title; };
-        sec.hidden = false; sec.classList.add('ready');
-        var h = ''; try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
-        if (h && bySlug[h]) setTimeout(function () { open(h); }, 400);
-      }, function () { sec.hidden = true; });
+        sec.classList.add('ready');
+        if (intro) { var b = intro.querySelector('.ci-enter'); b.disabled = false; b.textContent = 'Enter the city'; }
+        if (enabled && deep && bySlug[deep]) setTimeout(function () { open(deep); }, 400);
+      }, function () { sec.hidden = true; if (intro) endIntro(true); });
     };
-    s.onerror = function () { sec.hidden = true; };
+    s.onerror = function () { sec.hidden = true; if (intro) endIntro(true); };
     document.head.appendChild(s);
 
     document.addEventListener('click', function (e) {
-      if (!city || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (!city || !enabled || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var t = e.target;
       var btn = t.closest && t.closest('.city-panel button');
       if (btn) {
@@ -134,7 +190,7 @@
       var slug = slugOf(a.getAttribute('href') || '');
       if (slug && open(slug)) e.preventDefault();
     });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && current) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && current && enabled) close(); });
   }
 
   window.BlogCityUI = { init: init };

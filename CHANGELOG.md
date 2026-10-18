@@ -5,6 +5,7 @@ All notable changes to this site, newest first. Dates are 2026. Each release is 
 ## v1.5 - 18 Oct
 - Blog page: a 3D street scene where every post lives in its own building. Picking a post (or a building) flies the camera to that building and opens the post on its wall. Needs WebGL; without it the normal post list is shown.
 - The street model is in `assets/city/`; the scene code is built from `scripts/city/` into `assets/js/city.bundle.js`.
+- Blog intro: the first visit in a session zooms into a moon crater ("Want to know my thoughts? Let's enter the city") before the city appears. A switch above the scene turns the 3D city off and back to the plain post list; the choice is remembered.
 - Background moon now rotates with scroll, uses a real lunar texture, and is larger.
 
 ## v1.4 - 18 Oct
