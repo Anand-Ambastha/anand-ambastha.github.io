@@ -2,6 +2,9 @@
 
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
+## v1.4 - 18 Oct
+- Coursework on the About page now includes Control Systems and Microelectronics.
+
 ## v1.3 - 18 Oct
 - Fixed: stars, moon and satellite were hidden behind the page background; they show again.
 - BVP Optica role now links to bvpoptica.com (home and About).
