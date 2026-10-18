@@ -382,3 +382,8 @@ cd scripts/city && npm install && npm run build
 ## Credits
 
 - Moon texture: ["moon"](https://skfb.ly/oFRLK) by RenderX, licensed under [Creative Commons Attribution 4.0](http://creativecommons.org/licenses/by/4.0/). Credited on the Privacy policy page and in `theme/BRAND.md`.
+
+## Maintainers
+
+- Anand (site owner)
+- Photon (AI assistant)
