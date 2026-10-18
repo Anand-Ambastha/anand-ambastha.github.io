@@ -2,6 +2,11 @@
 
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
+## v1.5 - 18 Oct
+- Blog page: a 3D street scene where every post lives in its own building. Picking a post (or a building) flies the camera to that building and opens the post on its wall. Needs WebGL; without it the normal post list is shown.
+- The street model is in `assets/city/`; the scene code is built from `scripts/city/` into `assets/js/city.bundle.js`.
+- Background moon now rotates with scroll, uses a real lunar texture, and is larger.
+
 ## v1.4 - 18 Oct
 - Coursework on the About page now includes Control Systems and Microelectronics.
 

@@ -82,6 +82,10 @@
 </ul></section></noscript>
 <!-- posts-noscript:end -->
 
+  <section class="city" id="city" hidden aria-label="Blog city">
+    <div class="city-stage" id="city-stage" data-model="../assets/city/street.fbx" data-bundle="../assets/js/city.bundle.js"></div>
+  </section>
+
   <section style="padding-top: 40px;">
     <div class="filters" id="filters" hidden></div>
   </section>
@@ -135,6 +139,7 @@
 </main>
 
 <script src="../assets/js/blog.js"></script>
+<script src="../assets/js/blog-city.js"></script>
 <script>
 (function () {
   var filters = document.getElementById('filters');
@@ -188,6 +193,7 @@
   Blog.load().then(function (p) {
     posts = p;
     chips(); draw(); drawLinkedIn();
+    if (window.BlogCityUI) BlogCityUI.init(p);
   }).catch(function () {
     document.getElementById('list-thoughts').innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
   });

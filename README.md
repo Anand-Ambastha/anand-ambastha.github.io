@@ -368,3 +368,13 @@ Notes:
 ## License
 
 No license has been chosen yet. Until one is added, all rights are reserved by the author. Add a `LICENSE` file to allow reuse.
+
+## Blog city
+
+The Blog page shows a 3D street (`assets/city/street.fbx`); each post is assigned a building, newest posts nearest the opening view. The scene code lives in `scripts/city/city.src.js` and is bundled with three.js into `assets/js/city.bundle.js`:
+
+```
+cd scripts/city && npm install && npm run build
+```
+
+`assets/js/blog-city.js` connects the posts to the scene. Without WebGL the plain post list is shown.
