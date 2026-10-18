@@ -378,3 +378,7 @@ cd scripts/city && npm install && npm run build
 ```
 
 `assets/js/blog-city.js` connects the posts to the scene. Without WebGL the plain post list is shown.
+
+## Credits
+
+- Moon texture: ["moon"](https://skfb.ly/oFRLK) by RenderX, licensed under [Creative Commons Attribution 4.0](http://creativecommons.org/licenses/by/4.0/). Credited on the Privacy policy page and in `theme/BRAND.md`.
