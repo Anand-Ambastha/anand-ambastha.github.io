@@ -15,8 +15,7 @@
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function size() {
-    var css = Math.max(130, Math.min(250, window.innerWidth * 0.17));
-    if (window.innerWidth <= 700) css = Math.max(130, Math.min(250, window.innerWidth * 0.17));
+    var css = Math.max(190, Math.min(360, window.innerWidth * 0.24));
     return Math.round(css * Math.min(window.devicePixelRatio || 1, 2));
   }
 
