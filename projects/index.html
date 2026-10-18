@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QKD and Satellite Link Projects | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="Open-source Python frameworks and simulators for twin-field QKD, satellite SNS-TF-QKD links, climate-aware channels and satellite link budgets.">
+<meta name="keywords" content="Anand Kumar projects, TF-QKD framework, QSAFire, SateSim, decoy-state BB84 simulator, satellite constellation QKD, satellite link budget, OptiSystem QKD, CVXPY, Python simulation, climate-aware quantum channel, paddy stress classifier, VeriSure AI, VibeSense, DeepSpeak">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../favicon.ico?v=2" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png?v=2">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://anand-ambastha.github.io/projects/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="QKD and Satellite Link Projects | Anand Kumar">
+<meta property="og:description" content="Open-source Python frameworks and simulators for twin-field QKD, satellite SNS-TF-QKD links, climate-aware channels and satellite link budgets.">
+<meta property="og:url" content="https://anand-ambastha.github.io/projects/">
+<meta property="og:image" content="https://anand-ambastha.github.io/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anand Kumar, quantum communications researcher, with a satellite-to-ground link diagram">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QKD and Satellite Link Projects | Anand Kumar">
+<meta name="twitter:description" content="Open-source Python frameworks and simulators for twin-field QKD, satellite SNS-TF-QKD links, climate-aware channels and satellite link budgets.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/assets/img/og-image.png">
+<meta name="twitter:image:alt" content="Anand Kumar, quantum communications researcher, with a satellite-to-ground link diagram">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anand-ambastha.github.io/"},{"@type":"ListItem","position":2,"name":"Projects","item":"https://anand-ambastha.github.io/projects/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../research/">Research</a>
+      <a href="../projects/" aria-current="page">Projects</a>
+      <a href="../publications/">Publications</a>
+      <a href="../blog/">Blog</a>
+      <a href="../about/">About</a>
+    </nav>
+    <a class="pill" href="../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Projects</p>
+    <h1>Simulators and frameworks for quantum and satellite links.</h1>
+    <p class="lede">Six research projects, from QKD security proofs to satellite link budgets, and three early AI hackathon builds.</p>
+    <div class="cta"><a class="pill ghost" href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">All code on GitHub ↗</a></div>
+  </div>
+
+  <section>
+    <article class="detail">
+      <div>
+        <span class="when">2026 – present</span>
+        <h2>TF-QKD / FSO Research Framework</h2>
+        <p class="org">Open-source Python, documented with MkDocs.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">CVXPY</span><span class="tag">TF-QKD</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Modular implementation of the Curty–Azuma–Lo Protocol-3 TF-QKD security proof: X and Z basis gain and QBER, cat-state phase-error estimation, an asymptotic secret-key-rate pipeline and a PLOB repeaterless-bound comparison.</li>
+          <li>Extended to a finite-decoy linear-programming framework (CVXPY) for finite-decoy yield and phase-error bounds, with convergence, feasibility and finite-versus-infinite-decoy consistency diagnostics.</li>
+          <li>Built deterministic and log-normal-turbulence FSO channel models: Beer–Lambert attenuation, Gaussian beam propagation, Rytov variance and Monte Carlo channel realisations for ergodic key-rate estimation.</li>
+          <li>Developing an analytical log-normal averaging framework to replace Monte-Carlo-only averaging, keeping Monte Carlo for validation.</li>
+        </ul>
+        <a class="inline-link" href="../research/">Related experience: Indian Institute of Technology Delhi →</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">Jun – Aug 2026</span>
+        <h2>QSAFire</h2>
+        <p class="org">Satellite-to-ground SNS-TF-QKD simulation package, built at the Scientific Analysis Group, Defence Research and Development Organisation.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">SNS-TF-QKD</span><span class="tag">Orbits</span><span class="tag">Monte Carlo</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Independent Python package for sending-or-not-sending twin-field QKD (SNS-TF-QKD) over three channels: fiber, free-space optics with Gamma-Gamma turbulence, and a ground-to-satellite uplink. It implements the asymptotic key-rate formula of Wang, Yu and Hu (Phys. Rev. A 98, 062323).</li>
+          <li>The protocol equations live in one module and are reused unchanged by every channel model, so no physics is duplicated.</li>
+          <li>The satellite link is built in separable layers: WGS-84 geodesy and a solved sun-synchronous orbit, Rayleigh, aerosol and gas optical depth, a Hufnagel-Valley turbulence profile with the spherical-wave Rytov variance, and seasonal datasets for winter, summer and monsoon.</li>
+          <li>Hardware and environment are modeled explicitly: Friis diffraction loss, Gaussian pointing jitter, a characterised avalanche photodiode, day and night background light, and weather-gated annual availability from rainy-day and fog climatology.</li>
+          <li>Joint optimisation of signal intensity, decoy intensity and sending probability, with a Monte Carlo ensemble that folds turbulence fading into the real-loss channel.</li>
+          <li>A six-city link database and a fully asymmetric, per-arm version of the rate formulas, applied across four city-pair links. A Streamlit dashboard shows the whole chain.</li>
+          <li>Each stage is checked against an outside reference. Orbital solver and elevation–slant-range formulas agree with Landsat-8/9, Sentinel-2 and published Micius data to within 1–3%, and the Gamma-Gamma average is cross-validated between quadrature and Monte Carlo.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/qsafire-satellite-sns-tf-qkd-simulator/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="../blog/optisystem-sns-tf-qkd-prototype-and-post-processing/">OptiSystem prototype write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/QSAFIRE/tree/main/qsafire" target="_blank" rel="noopener">Source on GitHub ↗</a>
+          <a class="inline-link" style="margin-top:0" href="../research/">Related experience: Scientific Analysis Group, Defence Research and Development Organisation →</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2026</span>
+        <h2>Climate-Aware Quantum Channel Modeling</h2>
+        <p class="org">Satellite QKD channel model from reanalysis data.</p>
+        <div class="tags"><span class="tag">ERA5</span><span class="tag">CAMS</span><span class="tag">BB84</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Physics-consistent satellite-to-ground optical channel using ERA5 meteorological and CAMS aerosol reanalysis data. It models Rayleigh scattering, aerosol extinction, atmospheric absorption, turbulence and geometric beam-spreading loss.</li>
+          <li>Integrated these effects into decoy-state BB84 simulations to evaluate QBER and secure key rate.</li>
+          <li>Benchmarked wavelength-dependent performance across geographically diverse Indian ground stations.</li>
+        </ul>
+        <a class="inline-link" href="../research/">Related experience: Bharati Vidyapeeth’s College of Engineering →</a>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>Decoy-State BB84 Satellite QKD Constellation Simulator</h2>
+        <p class="org">Satellite QKD constellation simulator behind a first-author paper in the International Journal of Information Technology (Springer, 2025).</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Satellite QKD</span><span class="tag">BB84</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Simulates a decoy-state BB84 QKD network over a Walker-Delta LEO constellation, for a 24-hour period and five Indian ground stations: Hanle, Dehradun, Mt Abu, Shillong and Kodaikanal.</li>
+          <li>Pure-Python Keplerian and J2 orbit propagator with a Walker-Delta generator and TLE export, and an aperture-based optical channel with atmospheric transmittance that depends on elevation.</li>
+          <li>Computes secret key rate and QBER from first principles, with coverage windows, link-budget breakdowns and nine kinds of publication-quality figure.</li>
+          <li>Command-line interface, YAML configuration, Streamlit dashboard and unit and integration tests. Default run: 3 planes of 4 satellites at 600 km, with 1.3–1.7% of the day usable per station.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/decoy-state-bb84-satellite-constellation-simulator/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/qkd-satellite-constellation" target="_blank" rel="noopener">Source on GitHub ↗</a>
+          <a class="inline-link" style="margin-top:0" href="../publications/">See the paper →</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2026</span>
+        <h2>SateSim</h2>
+        <p class="org">Satellite communication link-budget simulator with a dashboard. Self-implemented from lectures by Prof. A. Al-Hourani (RMIT University).</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Skyfield</span><span class="tag">Streamlit</span><span class="tag">Plotly</span><span class="tag">BPSK / QPSK</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Orbit propagation with SGP4 through Skyfield, vectorised across several satellites, feeds an RF link budget built from free-space path loss and the Friis transmission equation.</li>
+          <li>Computes SNR, bit error rate for BPSK and QPSK, Doppler shift from range-rate projection, and elevation, with visibility filtering by minimum elevation.</li>
+          <li>Physics lives in one UI-free module. A Streamlit and Plotly dashboard and a command-line runner share it, so results can be reproduced either way.</li>
+          <li>Exports CSV datasets, PNG plots and a multi-page technical PDF report with equations, figures and analysis. MIT licensed.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/satesim-satellite-link-budget-simulator/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/SateSim" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>Paddy Microclimate Stress Classifier</h2>
+        <p class="org">Course project for CMU 11-785 Deep Learning.</p>
+        <div class="tags"><span class="tag">TensorFlow</span><span class="tag">BiLSTM</span><span class="tag">LOLO validation</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>BiLSTM–LSTM model that labels paddy stress as low, medium or high from 48-hour weather windows (temperature, humidity, VPD, precipitation, short-term gradients, rolling means and derived indices) at six Indian agroclimatic sites.</li>
+          <li>Labels are built from rice physiology thresholds (heat, low humidity, VPD, hot-hour runs) combined with the 48-hour ET0 minus rainfall deficit.</li>
+          <li>Strict leave-one-location-out testing with Visakhapatnam held out. Beats logistic regression, random forest and a 1-layer LSTM; high-stress recall 0.99.</li>
+          <li>Ablations, calibration and post-hoc attention analysis are in the project report.</li>
+        </ul>
+        <p class="metric">Accuracy <b>73.4%</b> · Macro-F1 <b>0.737</b> · ROC-AUC <b>0.924</b></p>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/paddy-microclimate-stress-classifier/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier/blob/main/Project_Report.pdf" target="_blank" rel="noopener">Project report (PDF) ↗</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <section id="early-ai">
+    <div class="sec-head">
+      <h2>Early AI projects</h2>
+      <p>Hackathon builds in retrieval, computer vision and language models.</p>
+    </div>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>VeriSure AI</h2>
+        <p class="org">Insurance policy question answering, built for the HackRx 6.0 problem statement (Bajaj Finserv Hackathon).</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">FAISS</span><span class="tag">Gemini</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Upload one or more insurance policy documents (PDF or DOCX) and ask questions in plain language, such as whether a procedure is covered.</li>
+          <li>Each session gets its own FAISS index. Documents are chunked and embedded with a MiniLM sentence-transformer, and a question retrieves the most relevant clauses.</li>
+          <li>Gemini 1.5 Flash reads those clauses and returns a structured JSON decision with an amount, a justification and the clauses it relied on.</li>
+          <li>FastAPI backend with upload and query endpoints, a Streamlit front end, and a Procfile for deployment on Railway.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/verisure-ai-policy-question-answering/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/VeriSure-AI" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>VibeSense</h2>
+        <p class="org">Fashion and aesthetic detection from short videos, built for the Flickd AI Hackathon 2025.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">YOLOv8</span><span class="tag">CLIP</span><span class="tag">FAISS</span><span class="tag">Sentence Transformers</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Backend engine that takes a short video, such as a reel, and returns the clothing products in it and the style it expresses, for example Coquette, Streetwear or Vintage.</li>
+          <li>Pipeline: FFmpeg frame extraction, YOLOv8n detection trained on the Fashionpedia dataset (45 clothing categories), cropping of detected items, and CLIP embeddings of each crop.</li>
+          <li>Products are matched against a pre-indexed catalog with cosine-similarity FAISS search. Vibes come from the video caption using MiniLM embeddings.</li>
+          <li>Output is structured JSON with the vibe tags and each matched product, its type, colour, match type and confidence.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/vibesense-fashion-vibes-from-video/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/VibeSense" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">2025</span>
+        <h2>DeepSpeak</h2>
+        <p class="org">AI persona chatbot built from a person’s messages, photos and voice notes, for CodeClash 2.0. Team of four.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Whisper</span><span class="tag">Stable Diffusion</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Users upload text chats, photos and voice recordings related to a loved one who has died, and the system builds a chatbot that answers in that person’s style.</li>
+          <li>My part was the AI component: Whisper transcription of audio, Tesseract OCR, personality and tone analysis from the text, face detection for the visual profile, and the chatbot on top of OpenAI, DeepSeek or Gemini models.</li>
+          <li>Stable Diffusion generates portraits, SQLite stores profiles and chat history, and profiles can be exported as JSON. Streamlit and FastAPI interfaces, deployed on Vercel.</li>
+          <li>Built with Naivedya Giri, Krish Tanwar and Vasu Chaudhary, who led the front end and full-stack work.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../blog/deepspeak-persona-chatbot/">Read the write-up →</a>
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/DeepSpeak" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../research/">Research</a>
+        <a href="../projects/">Projects</a>
+        <a href="../publications/">Publications</a>
+        <a href="../blog/">Blog</a>
+        <a href="../about/">About</a>
+        <a href="../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://scholar.google.com/citations?user=f2o0JekAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a>
+        <a href="https://www.researchgate.net/profile/Anand-Kumar-315" target="_blank" rel="noopener">ResearchGate ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved. <a href="../privacy/">Privacy policy</a></span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+<script src="../assets/js/moon.js" defer></script>
+</body>
+</html>
