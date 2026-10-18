@@ -1,0 +1,4 @@
+{ "name": "city-build", "private": true, "version": "1.0.0",
+  "description": "Bundles the blog city scene (three.js + FBXLoader) into assets/js/city.bundle.js",
+  "scripts": { "build": "esbuild city.src.js --bundle --minify --target=es2017 --format=iife --outfile=../../assets/js/city.bundle.js" },
+  "devDependencies": { "esbuild": "^0.21.5", "three": "0.160.0" } }
