@@ -11,7 +11,7 @@
   var S = 0, tex = null, TW = 1024, TH = 512, img, out;
   var u0, vv, shade, mask;                 // per-pixel precomputed data
   var rot = 0, target = 0, queued = false, ready = false;
-  var TILT = 0.38, SPEED = 0.0032;         // axial tilt (rad), radians turned per scrolled pixel
+  var TILT = 0.38, SPEED = 0.0012;         // axial tilt (rad), radians turned per scrolled pixel
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function size() {
@@ -56,7 +56,7 @@
   function frame() {
     queued = false;
     var diff = target - rot;
-    if (Math.abs(diff) < 0.0004) rot = target; else { rot += diff * 0.14; queue(); }
+    if (Math.abs(diff) < 0.0004) rot = target; else { rot += diff * 0.08; queue(); }
     draw();
   }
   function queue() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
