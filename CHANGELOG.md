@@ -7,6 +7,7 @@ All notable changes to this site, newest first. Dates are 2026. Each release is 
 - The street model is in `assets/city/`; the scene code is built from `scripts/city/` into `assets/js/city.bundle.js`.
 - The city is now the whole Blog page background (replacing the moon there); posts open on the building's wall over the page. The switch above the list is a "City background / Moon" theme toggle.
 - Blog intro: the first visit in a session zooms into a moon crater ("Want to know my thoughts? Let's enter the city") before the city appears. A switch above the scene turns the 3D city off and back to the plain post list; the choice is remembered.
+- Moon credit (RenderX, CC BY 4.0) added to every footer and the brand guide.
 - Background moon now rotates with scroll, uses a real lunar texture, and is larger.
 
 ## v1.4 - 18 Oct

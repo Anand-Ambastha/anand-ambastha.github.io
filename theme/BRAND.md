@@ -60,3 +60,7 @@ Plain, specific and first person. Say what was built, with numbers from the repo
 1. Edit `theme/tokens.css`.
 2. Reload locally (`python3 -m http.server`) and check Home, Blog and a post page.
 3. If you change the accent, also check `assets/img/og-image.png` and `favicon.svg`, which use the accent colour baked in.
+
+## Credits
+
+- Moon texture: ["moon"](https://skfb.ly/oFRLK) by RenderX, licensed under [Creative Commons Attribution 4.0](http://creativecommons.org/licenses/by/4.0/). Used for the background moon and the Blog intro.

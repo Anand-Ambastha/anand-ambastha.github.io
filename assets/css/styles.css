@@ -410,6 +410,8 @@ a.card:hover { border-color: rgba(127, 178, 255, .45); transform: translateY(-2p
   .card, .figure, .nav .wrap { background: rgba(18, 18, 20, .92); }
 }
 .plain .muted { color: var(--muted); font-family: var(--font-mono); font-size: 13px; margin-left: 12px; white-space: nowrap; }
+footer.site .foot-credit { margin-top: 10px; font-size: 12.5px; color: var(--muted); }
+footer.site .foot-credit a { text-decoration: underline; text-underline-offset: 3px; }
 footer.site .foot-base a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; margin-left: 10px; }
 footer.site .foot-base a:hover { color: var(--fg); }
 
