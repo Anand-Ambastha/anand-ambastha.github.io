@@ -1,0 +1,18 @@
+/* Anand Kumar: design tokens. Single source of truth for colour and type.
+   Edit values here; every page picks them up through assets/css/styles.css.
+   Usage notes and brand rules are in theme/BRAND.md. */
+:root {
+  --bg: #000000;
+  --surface: rgba(255, 255, 255, 0.055);
+  --surface-hover: rgba(255, 255, 255, 0.1);
+  --fg: #f5f5f7;
+  --muted: #a1a1aa;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #7fb2ff;
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --font-display: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-wordmark: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
