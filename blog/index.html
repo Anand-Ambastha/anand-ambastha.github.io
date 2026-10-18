@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog | Notes on Quantum Communication | Anand Kumar</title>
+<!-- seo:start -->
+<meta name="description" content="Notes and write-ups on free-space optics, satellite QKD and the simulation work behind them.">
+<meta name="keywords" content="Anand Kumar blog, quantum communication blog, QKD blog, quantum networks, satellite QKD, free-space optics, SNS-TF-QKD, QSAFire, SateSim, project write-ups">
+<meta name="author" content="Anand Kumar">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="../favicon.ico?v=2" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="48x48" href="../assets/img/favicon-48.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon-192.png?v=2">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png?v=2">
+<link rel="canonical" href="https://anand-ambastha.github.io/blog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anand Kumar">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Blog | Notes on Quantum Communication | Anand Kumar">
+<meta property="og:description" content="Notes and write-ups on free-space optics, satellite QKD and the simulation work behind them.">
+<meta property="og:url" content="https://anand-ambastha.github.io/blog/">
+<meta property="og:image" content="https://anand-ambastha.github.io/assets/img/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Anand Kumar, quantum communications researcher, with a satellite-to-ground link diagram">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog | Notes on Quantum Communication | Anand Kumar">
+<meta name="twitter:description" content="Notes and write-ups on free-space optics, satellite QKD and the simulation work behind them.">
+<meta name="twitter:image" content="https://anand-ambastha.github.io/assets/img/og-image.png">
+<meta name="twitter:image:alt" content="Anand Kumar, quantum communications researcher, with a satellite-to-ground link diagram">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://anand-ambastha.github.io/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://anand-ambastha.github.io/blog/"}]},{"@type":"Blog","name":"Anand Kumar: notes on quantum communication","url":"https://anand-ambastha.github.io/blog/","author":{"@id":"https://anand-ambastha.github.io/#person"}}]}</script>
+<link rel="alternate" type="application/rss+xml" title="Anand Kumar: blog" href="https://anand-ambastha.github.io/feed.xml">
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="../">Anand Kumar</a>
+    <nav class="links" aria-label="Primary">
+      <a href="../research/">Research</a>
+      <a href="../projects/">Projects</a>
+      <a href="../publications/">Publications</a>
+      <a href="../blog/" aria-current="page">Blog</a>
+      <a href="../about/">About</a>
+    </nav>
+    <a class="pill" href="../contact/">Contact</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Blog</p>
+    <h1>Notes on quantum communication.</h1>
+    <p class="lede">Write-ups on free-space optics, satellite QKD and the simulation work behind them.</p>
+  </div>
+
+  <!-- posts-noscript:start -->
+<noscript><style>.notice{display:none}</style><section style="padding-top: 40px;"><h2>All posts</h2><ul class="plain">
+<li><a href="qsafire-satellite-sns-tf-qkd-simulator/">QSAFire, a satellite SNS-TF-QKD simulator built layer by layer</a> <span class="muted">15 October 2026</span></li>
+<li><a href="satesim-satellite-link-budget-simulator/">SateSim, a satellite link budget simulator with a dashboard</a> <span class="muted">15 October 2026</span></li>
+<li><a href="decoy-state-bb84-satellite-constellation-simulator/">Simulating a decoy-state BB84 satellite constellation over India</a> <span class="muted">15 October 2026</span></li>
+<li><a href="verisure-ai-policy-question-answering/">VeriSure AI, asking plain questions of insurance policies</a> <span class="muted">15 October 2026</span></li>
+<li><a href="vibesense-fashion-vibes-from-video/">VibeSense, finding the products and the vibe in a short video</a> <span class="muted">15 October 2026</span></li>
+<li><a href="deepspeak-persona-chatbot/">DeepSpeak, building a chatbot from a person&#x27;s own words</a> <span class="muted">15 October 2026</span></li>
+<li><a href="paddy-microclimate-stress-classifier/">Classifying paddy stress from 48 hours of weather, and testing it on a place it has never seen</a> <span class="muted">15 October 2026</span></li>
+<li><a href="optisystem-sns-tf-qkd-prototype-and-post-processing/">An SNS-TF-QKD link in OptiSystem, and the Python pipeline that reads its logs</a> <span class="muted">15 October 2026</span></li>
+<li><a href="quantum-networks-under-the-lens-part-5/">Quantum Networks Under the Lens, Part 5: Can geography create quantum advantage?</a> <span class="muted">13 July 2026</span></li>
+<li><a href="quantum-networks-under-the-lens-part-4/">Quantum Networks Under the Lens, Part 4: Can stability be more valuable than performance?</a> <span class="muted">6 July 2026</span></li>
+<li><a href="quantum-networks-under-the-lens-part-3/">Quantum Networks Under the Lens, Part 3: Higher satellites or lower satellites?</a> <span class="muted">29 June 2026</span></li>
+<li><a href="quantum-networks-under-the-lens-part-2/">Quantum Networks Under the Lens, Part 2: Is the atmosphere more important than the satellite?</a> <span class="muted">22 June 2026</span></li>
+<li><a href="quantum-networks-under-the-lens-part-1/">Quantum Networks Under the Lens, Part 1: Do more satellites always mean more throughput?</a> <span class="muted">15 June 2026</span></li>
+<li><a href="quantum-networks-under-the-lens-part-0/">Quantum Networks Under the Lens, Part 0: What does it take to build a global quantum network?</a> <span class="muted">8 June 2026</span></li>
+<li><a href="qkd-theory-is-moving-faster-than-its-tooling/">The theory of QKD is moving faster than its tooling</a> <span class="muted">11 May 2026</span></li>
+</ul></section></noscript>
+<!-- posts-noscript:end -->
+
+  <section class="city" id="city" hidden aria-label="Blog city">
+    <div class="city-stage" id="city-stage" data-model="../assets/city/street.fbx" data-bundle="../assets/js/city.bundle.js" data-moon="../assets/img/moon.webp" data-crater="../assets/img/moon-crater.jpg"></div>
+  </section>
+
+  <section style="padding-top: 40px;">
+    <div class="filters" id="filters" hidden></div>
+  </section>
+
+  <section class="blog-group" id="g-thoughts" style="padding-top: 24px;">
+    <div class="sec-head"><h2>My thoughts</h2><p>Things I think about and like to share.</p></div>
+    <div class="post-list" id="list-thoughts" aria-live="polite"><p class="notice">Loading posts…</p></div>
+  </section>
+
+  <section class="blog-group" id="g-projects" style="padding-top: 24px;">
+    <div class="sec-head"><h2>Project blogs</h2><p>Write-ups on the projects listed on the Projects page.</p></div>
+    <div class="post-list" id="list-projects"></div>
+  </section>
+
+  <section class="blog-group" id="g-linkedin" style="padding-top: 24px;" hidden>
+    <div class="sec-head"><h2>From LinkedIn</h2><p>Recent updates from my LinkedIn feed.</p></div>
+    <div class="post-list" id="list-linkedin"></div>
+    <p style="margin-top: 28px;"><a class="pill ghost" href="https://www.linkedin.com/in/anand-kumar05/recent-activity/all/" target="_blank" rel="noopener">See all activity on LinkedIn ↗</a></p>
+  </section>
+
+  <footer class="site">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="../">Anand Kumar</a>
+        <p>Quantum communications, free-space optical channel modeling, and satellite and non-terrestrial networks.</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <a href="../research/">Research</a>
+        <a href="../projects/">Projects</a>
+        <a href="../publications/">Publications</a>
+        <a href="../blog/">Blog</a>
+        <a href="../about/">About</a>
+        <a href="../cv/">CV</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h3>Connect</h3>
+        <a href="../contact/">Contact</a>
+        <a href="https://www.linkedin.com/in/anand-kumar05" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://scholar.google.com/citations?user=f2o0JekAAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a>
+        <a href="https://www.researchgate.net/profile/Anand-Kumar-315" target="_blank" rel="noopener">ResearchGate ↗</a>
+        <a href="mailto:anandambastha72@gmail.com">Email</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Anand Kumar. All rights reserved. <a href="../privacy/">Privacy policy</a></span>
+      <span>Text and figures on this site are the author's own unless credited. Please cite or link when sharing.</span>
+    </div>
+  </footer>
+</main>
+
+<script src="../assets/js/blog.js"></script>
+<script src="../assets/js/blog-city.js"></script>
+<script>
+(function () {
+  var filters = document.getElementById('filters');
+  var groups = [
+    { key: 'thoughts', empty: 'Nothing here yet. Posts will appear soon.' },
+    { key: 'projects', empty: 'No project blogs yet.' }
+  ];
+  var posts = [], active = 'All';
+
+  var li = [];
+  function drawLinkedIn() {
+    var sec = document.getElementById('g-linkedin'), list = document.getElementById('list-linkedin');
+    sec.hidden = !li.length || active !== 'All';
+    list.innerHTML = li.map(function (p) {
+      return '<article class="post-card li-card"><span class="when">' + Blog.esc(Blog.fmt(p.date)) + '</span><p>' + Blog.esc(p.text) + '</p></article>';
+    }).join('');
+  }
+
+  function draw() {
+    groups.forEach(function (g) {
+      var sec = document.getElementById('g-' + g.key), list = document.getElementById('list-' + g.key);
+      var items = posts.filter(function (p) {
+        var inGroup = (p.category === 'project') === (g.key === 'projects');
+        return inGroup && (active === 'All' || p.tags.indexOf(active) > -1);
+      });
+      sec.hidden = active !== 'All' ? !items.length : false;
+      list.innerHTML = items.length ? items.map(Blog.card).join('') : '<p class="notice">' + g.empty + '</p>';
+    });
+  }
+
+  function chips() {
+    var tags = [];
+    posts.forEach(function (p) { p.tags.forEach(function (t) { if (tags.indexOf(t) < 0) tags.push(t); }); });
+    if (!tags.length) return;
+    filters.hidden = false;
+    filters.innerHTML = ['All'].concat(tags).map(function (t) {
+      return '<button type="button" class="chip" aria-pressed="' + (t === active) + '" data-tag="' + Blog.esc(t) + '">' + Blog.esc(t) + '</button>';
+    }).join('');
+  }
+
+  filters.addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-tag]');
+    if (!b) return;
+    active = b.getAttribute('data-tag');
+    chips(); draw(); drawLinkedIn();
+  });
+
+  fetch(Blog.ROOT + 'posts/linkedin.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (d) { li = Array.isArray(d) ? d : []; drawLinkedIn(); }).catch(function () {});
+
+  Blog.load().then(function (p) {
+    posts = p;
+    chips(); draw(); drawLinkedIn();
+    if (window.BlogCityUI) BlogCityUI.init(p);
+  }).catch(function () {
+    document.getElementById('list-thoughts').innerHTML = '<p class="notice">Posts could not be loaded. Refresh the page to try again.</p>';
+  });
+})();
+</script>
+<script src="../assets/js/moon.js" defer></script>
+</body>
+</html>
