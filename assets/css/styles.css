@@ -9,6 +9,15 @@ html::before {
   filter: drop-shadow(0 0 40px rgba(150, 185, 255, .14));
   opacity: .34;
 }
+/* Scroll-driven 3D moon (assets/js/moon.js); replaces the static moon once it is ready. */
+#moon3d {
+  position: fixed; z-index: -1; pointer-events: none;
+  width: clamp(130px, 17vw, 250px); height: clamp(130px, 17vw, 250px);
+  right: -3vw; bottom: -7vh; opacity: .55;
+  filter: drop-shadow(0 0 40px rgba(150, 185, 255, .14));
+}
+html.moon-3d::before { display: none; }
+@media (max-width: 700px) { #moon3d { right: -50px; bottom: -40px; opacity: .4; } }
 html::after {
   content: ""; position: fixed; z-index: -1; pointer-events: none; left: 0; top: 0;
   width: 46px; height: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 28'%3E%3Cg fill='none' stroke='%23cfe0ff' stroke-width='1.2'%3E%3Crect x='25' y='8' width='14' height='12' rx='2' fill='%23222a3a'/%3E%3Crect x='2' y='9' width='20' height='10' fill='%2314305e'/%3E%3Crect x='42' y='9' width='20' height='10' fill='%2314305e'/%3E%3Cpath d='M8 9v10M14 9v10M48 9v10M54 9v10M22 14h3M39 14h3M32 8V3'/%3E%3Ccircle cx='32' cy='2.5' r='1.5' fill='%237fb2ff'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat; opacity: .4;

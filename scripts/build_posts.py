@@ -174,6 +174,7 @@ document.querySelectorAll('.codeblock button').forEach(function (b) {{
   }});
 }});
 </script>
+<script src="../../assets/js/moon.js" defer></script>
 </body>
 </html>
 """
