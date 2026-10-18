@@ -61,7 +61,7 @@ body::after {
 html { scroll-behavior: smooth; background: var(--bg); }
 body {
   margin: 0;
-  background-color: var(--bg);
+  background-color: transparent; /* the page colour comes from html, so the stars and moon behind the content stay visible */
   color: var(--fg);
   font-family: var(--font-body); font-size: 17px; line-height: 1.55; font-weight: 400;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
