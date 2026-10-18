@@ -12,7 +12,7 @@
 
   var city = null, posts = [], bySlug = {}, current = null, token = 0;
   var panel, body, tip, hint, bar, sw, intro;
-  var enabled = true;
+  var enabled = true, root = document.documentElement;
   function store(k, v) { try { if (v === undefined) return window.localStorage.getItem(k); window.localStorage.setItem(k, v); } catch (e) {} return null; }
   function seen(v) { try { if (v === undefined) return window.sessionStorage.getItem('cityIntro'); window.sessionStorage.setItem('cityIntro', v); } catch (e) {} return null; }
 
@@ -31,22 +31,24 @@
 
   function buildBar() {
     bar = el('div', 'city-bar');
-    bar.innerHTML = '<span class="cb-label" id="cb-label">3D city view</span>' +
+    bar.innerHTML = '<span class="cb-label" id="cb-label">City background</span>' +
       '<button type="button" class="city-switch" role="switch" aria-labelledby="cb-label" aria-checked="true"><span class="cs-knob"></span></button>' +
       '<span class="cb-state" aria-live="polite"></span>';
-    sec.insertBefore(bar, stage); sw = bar.querySelector('button');
+    sec.insertBefore(bar, sec.firstChild); sw = bar.querySelector('button');
     sw.addEventListener('click', function () { setEnabled(!enabled, true); });
   }
 
   function setEnabled(on, remember) {
     enabled = on;
     sw.setAttribute('aria-checked', String(on));
-    bar.querySelector('.cb-state').textContent = on ? 'On' : 'Off, showing the plain post list';
+    bar.querySelector('.cb-state').textContent = on ? 'City' : 'Moon';
     sec.classList.toggle('is-off', !on);
+    root.classList.toggle('city-bg', on);
     if (remember) store('blogCity', on ? 'on' : 'off');
     if (!on) {
       if (intro) endIntro(true);
       if (current) { current = null; token++; panel.hidden = true; if (city) city.back(); }
+      root.classList.remove('city-open');
       try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
     }
   }
@@ -61,9 +63,7 @@
       '<button type="button" class="ci-skip">Just show me the posts</button></div>';
     intro.querySelector('.ci-moon').style.backgroundImage = 'url("' + moon + '")';
     intro.querySelector('.ci-crater').style.backgroundImage = 'url("' + crater + '")';
-    stage.appendChild(intro); stage.classList.add('has-intro');
-    var top = stage.getBoundingClientRect().top + window.pageYOffset - 96;
-    try { window.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, top); }
+    document.body.appendChild(intro); stage.classList.add('has-intro'); root.classList.add('city-open');
     intro.querySelector('.ci-enter').addEventListener('click', function () { endIntro(false); });
     intro.querySelector('.ci-skip').addEventListener('click', function () { setEnabled(false, true); });
   }
@@ -71,7 +71,7 @@
   function endIntro(instant) {
     if (!intro) return;
     var node = intro; intro = null; seen('1');
-    stage.classList.remove('has-intro');
+    stage.classList.remove('has-intro'); root.classList.remove('city-open');
     if (instant) { node.remove(); return; }
     node.classList.add('leaving'); stage.classList.add('entering');
     setTimeout(function () { node.remove(); stage.classList.remove('entering'); }, 1400);
@@ -101,13 +101,13 @@
   }
 
   function layout(rect) {
-    var W = rect.stageW, H = rect.stageH, narrow = W < 720;
+    var W = rect.stageW, H = rect.stageH, narrow = W < 720, TOP = 96;
     var w, h, x, y;
-    if (narrow) { x = 8; y = Math.max(8, H * 0.12); w = W - 16; h = H - y - 8; }
+    if (narrow) { x = 8; y = TOP; w = W - 16; h = H - y - 10; }
     else {
-      w = Math.max(380, Math.min(rect.w, 760)); h = Math.max(H * 0.72, Math.min(rect.h, H - 24));
+      w = Math.max(380, Math.min(rect.w, 760)); h = Math.max((H - TOP) * 0.8, Math.min(rect.h, H - TOP - 16));
       x = rect.x + (rect.w - w) / 2; y = rect.y + (rect.h - h) / 2;
-      x = Math.max(12, Math.min(x, W - w - 12)); y = Math.max(12, Math.min(y, H - h - 12));
+      x = Math.max(12, Math.min(x, W - w - 12)); y = Math.max(TOP, Math.min(y, H - h - 14));
     }
     panel.style.left = x + 'px'; panel.style.top = y + 'px'; panel.style.width = w + 'px'; panel.style.height = h + 'px';
   }
@@ -138,8 +138,7 @@
   function open(slug) {
     if (!city || !enabled || !city.has(slug)) return false;
     current = slug; panel.hidden = true; token++;
-    var top = stage.getBoundingClientRect().top + window.pageYOffset - 96;
-    try { window.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, top); }
+    root.classList.add('city-open');
     city.focus(slug);
     try { history.replaceState(null, '', '#' + encodeURIComponent(slug)); } catch (e) {}
     return true;
@@ -147,19 +146,21 @@
 
   function close() {
     if (!current) return;
-    current = null; token++; panel.hidden = true; city.back();
+    current = null; token++; panel.hidden = true; root.classList.remove('city-open'); city.back();
     try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
   }
 
   function init(list) {
     if (!webgl()) return;
     posts = list; bySlug = {}; list.forEach(function (p) { bySlug[p.slug] = p; });
+    document.body.insertBefore(stage, document.body.firstChild);   // fixed backdrop, outside the page content
     buildPanel(); buildBar();
     sec.hidden = false;
     var wantOn = store('blogCity') !== 'off', deep = '';
     try { deep = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
     setEnabled(wantOn, false);
     if (wantOn && !seen() && !(deep && bySlug[deep])) startIntro();
+    function fail() { sec.hidden = true; root.classList.remove('city-bg', 'city-open'); if (intro) endIntro(true); }
     var s = document.createElement('script'); s.src = stage.getAttribute('data-bundle');
     s.onload = function () {
       if (!window.BlogCity) return;
@@ -172,9 +173,9 @@
         sec.classList.add('ready');
         if (intro) { var b = intro.querySelector('.ci-enter'); b.disabled = false; b.textContent = 'Enter the city'; }
         if (enabled && deep && bySlug[deep]) setTimeout(function () { open(deep); }, 400);
-      }, function () { sec.hidden = true; if (intro) endIntro(true); });
+      }, function () { fail(); });
     };
-    s.onerror = function () { sec.hidden = true; if (intro) endIntro(true); };
+    s.onerror = fail;
     document.head.appendChild(s);
 
     document.addEventListener('click', function (e) {
