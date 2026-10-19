@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.6 - 19 Oct
+- Contact page: "Open to" line for research internships, Jan to Apr 2027. Remove or update it once the dates pass.
 - Blog "From LinkedIn": added the portfolio-launch post and the Photonics Spectrum 2026 post.
 
 ## v1.5 - 18 Oct
