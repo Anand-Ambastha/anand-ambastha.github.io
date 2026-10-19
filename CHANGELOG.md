@@ -2,6 +2,9 @@
 
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
+## v1.6 - 19 Oct
+- Blog "From LinkedIn": added the portfolio-launch post and the Photonics Spectrum 2026 post.
+
 ## v1.5 - 18 Oct
 - Blog page: a 3D street scene where every post lives in its own building. Picking a post (or a building) flies the camera to that building and opens the post on its wall. Needs WebGL; without it the normal post list is shown.
 - The street model is in `assets/city/`; the scene code is built from `scripts/city/` into `assets/js/city.bundle.js`.
