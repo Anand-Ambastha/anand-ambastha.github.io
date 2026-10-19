@@ -13,7 +13,7 @@ out by listing a phrase from them in SKIP below. Newest first, at most LIMIT.
 import json, re, sys, pathlib, unicodedata, datetime
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-LIMIT = 10
+LIMIT = 12
 SKIP = ["Quantum Networks Under the Lens", "One thing I’ve slowly realized while exploring quantum communication"]
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
 DATE = re.compile(r"^(?:with .*?• )?(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{1,2})(?:, (\d{4}))?(?: • Edited)?\s*$", re.M)
