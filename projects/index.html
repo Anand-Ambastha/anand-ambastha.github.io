@@ -286,6 +286,26 @@
       </div>
     </article>
 
+    <article class="detail" id="dcn-final">
+      <div>
+        <span class="when">Final lab project</span>
+        <h2>DropTail vs RED vs CoDel in NS-3</h2>
+        <p class="org">My final project for the DCN lab, submitted to Dr. Monica Bhutani: how three queue disciplines behave when TCP and UDP fight over one bottleneck.</p>
+        <div class="tags"><span class="tag">NS-3</span><span class="tag">C++</span><span class="tag">Queue management</span><span class="tag">FlowMonitor</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>I built a dumbbell network with a shared 10 Mbps bottleneck and sent one TCP flow and one constant-rate UDP flow through it. The bottleneck queue was DropTail, RED or CoDel, and the UDP load was 4, 8 or 12 Mbps. That makes nine runs.</li>
+          <li>The biggest effect came from the UDP load, not the queue. TCP throughput fell from about 5 Mbps at 4 Mbps of UDP to under 0.15 Mbps at 12 Mbps (0.041 with DropTail, 0.145 with RED, 0.105 with CoDel). UDP does not slow down when the link is full, so TCP gets squeezed out.</li>
+          <li>RED had the lowest average delay at every load (for example 111 ms against 179 ms for DropTail at 12 Mbps). CoDel lost the fewest packets at 4 Mbps, and DropTail delivered the most UDP. So there was no single winner.</li>
+          <li>The report also lists what the numbers cannot tell you. The delay and jitter are averaged over all flows, FlowMonitor&rsquo;s lost-packet count is not a count of queue drops, and each case ran once. It ends with a list of what I would measure next.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../assets/files/DCN_Lab_Project_AQM_NS3.pdf" target="_blank" rel="noopener">Read the report (PDF) ↗</a>
+        </p>
+      </div>
+    </article>
+
     <article class="detail">
       <div>
         <span class="when">Project-based learning</span>
