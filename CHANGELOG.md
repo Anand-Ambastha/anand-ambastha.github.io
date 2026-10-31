@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Blog feed: added the BVP Optica repost about the CQT IIIT-Delhi visit (Qiskit Fall Fest 2026).
 - Coursework: Speech Signal project is marked as submitted to Prof. Parshuram Patel; the section intro tells QKD visitors it is not meant for them.
 - DCN final project: link to the simulation results (CSV, console output and nine FlowMonitor XML files). The NS-3 source file `mini-project11.cc` is not in the site yet.
 - Projects, Coursework: the DCN lab is now one entry, its final project, with a link to all the lab practicals on GitHub. Added the DCN final lab project (DropTail vs RED vs CoDel in NS-3) with its report PDF. The roll number on the cover page is blacked out in the hosted copy.
