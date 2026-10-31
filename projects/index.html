@@ -6,7 +6,7 @@
 <title>QKD and Satellite Link Projects | Anand Kumar</title>
 <!-- seo:start -->
 <meta name="description" content="Open-source Python frameworks and simulators for twin-field QKD, satellite SNS-TF-QKD links, climate-aware channels and satellite link budgets.">
-<meta name="keywords" content="Anand Kumar projects, TF-QKD framework, QSAFire, SateSim, decoy-state BB84 simulator, satellite constellation QKD, satellite link budget, OptiSystem QKD, CVXPY, Python simulation, climate-aware quantum channel, paddy stress classifier, VeriSure AI, VibeSense, DeepSpeak">
+<meta name="keywords" content="coursework, NS-3 network simulation, Data Communication and Networking lab, speech signal FFT, common-emitter amplifier LTspice, Anand Kumar projects, TF-QKD framework, QSAFire, SateSim, decoy-state BB84 simulator, satellite constellation QKD, satellite link budget, OptiSystem QKD, CVXPY, Python simulation, climate-aware quantum channel, paddy stress classifier, VeriSure AI, VibeSense, DeepSpeak">
 <meta name="author" content="Anand Kumar">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#000000">
@@ -256,6 +256,71 @@
         <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
           <a class="inline-link" style="margin-top:0" href="../blog/deepspeak-persona-chatbot/">Read the write-up →</a>
           <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/DeepSpeak" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <section id="coursework">
+    <div class="sec-head">
+      <h2>Coursework</h2>
+      <p>Lab and project-based work from my B.Tech, shared in case it helps the next student.</p>
+    </div>
+
+    <article class="detail">
+      <div>
+        <span class="when">Lab course</span>
+        <h2>Data Communication and Networking Lab</h2>
+        <p class="org">NS-3 network simulation practicals for the DCN lab at Bharati Vidyapeeth&rsquo;s College of Engineering (GGSIPU).</p>
+        <div class="tags"><span class="tag">NS-3</span><span class="tag">C++</span><span class="tag">Google Colab</span><span class="tag">FlowMonitor</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Practicals on NS-3 installation, a UDP echo application over a point-to-point link, point-to-point and CSMA topologies, Random Early Detection queues, Wi-Fi rate adaptation, a dumbbell topology with TCP and UDP, an ad hoc wireless network and UDP data transfer, plus a mini project.</li>
+          <li>Each practical comes with the C++ source, a topology diagram and the simulation output, with PCAP, CSV and XML files where the run produces them.</li>
+          <li>Colab versions let students run the simulations in a browser without setting up Linux. The first NS-3 build on Colab takes about an hour, and later runs are much quicker.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/Data-Communication-and-Networking-Lab" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">Project-based learning</span>
+        <h2>Speech Signal Analysis using FFT</h2>
+        <p class="org">Signals and Systems project: finding the dominant frequencies in recorded speech.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">Matplotlib</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Records three seconds of speech from the microphone at 44.1 kHz, then applies a pre-emphasis filter (coefficient 0.97) and a Hamming window to reduce spectral leakage.</li>
+          <li>Zero-pads to the next power of two, takes the real FFT, and plots the magnitude spectrum in decibels up to 5 kHz.</li>
+          <li>Picks out the ten strongest peaks above 5% of the maximum, which shows the pitch, its harmonics and the formant regions of the voice.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/Speech-Signal-Analysis-FFT" target="_blank" rel="noopener">Source on GitHub ↗</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="detail">
+      <div>
+        <span class="when">Project-based learning</span>
+        <h2>Common-Emitter Amplifier Design and Simulation</h2>
+        <p class="org">Analog Electronics project, submitted to Prof. Aekta Singh, Department of Electronics and Communication Engineering.</p>
+        <div class="tags"><span class="tag">LTspice</span><span class="tag">BJT</span><span class="tag">Biasing</span><span class="tag">Analog design</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>Designed a small-signal common-emitter amplifier for audio frequencies (10 to 100 Hz test range) with voltage-divider bias and emitter self-bias, on a 15 V supply.</li>
+          <li>Worked out the component values by hand: 33 k&Omega; collector resistor, 3.3 k&Omega; emitter resistor, a 10 k&Omega; and 1.18 k&Omega; divider, coupling capacitors of 47 &micro;F and 10 &micro;F, and a 10 &micro;F bypass capacitor.</li>
+          <li>Checked the design in LTspice: operating point, frequency response and a 5 ms transient. Midband gain is about 64 dB (1585 V/V) with a lower cutoff near 19 Hz, and the stability factor is 3.35.</li>
+          <li>Hand calculation and simulation agree closely on base voltage (0.02% apart) and collector current (0.7%). Collector voltage differs by about 11%.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="https://www.dropbox.com/scl/fo/l5u56t8rc55xg1r295o3y/AJw_8vr1YQWPYetxBlr-HRY?rlkey=rm1bl939hv4n9ly5qn7cpjr3n&amp;st=q9rjuvea&amp;dl=0" target="_blank" rel="noopener">Simulation files (Dropbox) ↗</a>
         </p>
       </div>
     </article>
