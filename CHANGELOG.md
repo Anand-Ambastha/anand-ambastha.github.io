@@ -3,7 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
-- Projects, Coursework: added the DCN final lab project (DropTail vs RED vs CoDel in NS-3) with its report PDF. The roll number on the cover page is blacked out in the hosted copy.
+- Projects, Coursework: the DCN lab is now one entry, its final project, with a link to all the lab practicals on GitHub. Added the DCN final lab project (DropTail vs RED vs CoDel in NS-3) with its report PDF. The roll number on the cover page is blacked out in the hosted copy.
 - Projects page: new "Coursework" section with the Data Communication and Networking lab (NS-3), the Speech Signal Analysis FFT project and the Analog Electronics common-emitter amplifier project.
 - Home page: a quiet "Open to research internships, January to April 2027" line under the facts strip.
 
