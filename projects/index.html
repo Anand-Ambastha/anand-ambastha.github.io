@@ -271,17 +271,11 @@
       <div>
         <span class="when">Final lab project</span>
         <h2>DropTail vs RED vs CoDel in NS-3</h2>
-        <p class="org">My final project for the DCN lab, submitted to Dr. Monica Bhutani: how three queue disciplines behave when TCP and UDP fight over one bottleneck.</p>
+        <p class="org">DCN lab final project, submitted to Dr. Monica Bhutani.</p>
         <div class="tags"><span class="tag">NS-3</span><span class="tag">C++</span><span class="tag">Queue management</span><span class="tag">FlowMonitor</span></div>
       </div>
       <div>
-        <ul class="bullets">
-          <li>I built a dumbbell network with a shared 10 Mbps bottleneck and sent one TCP flow and one constant-rate UDP flow through it. The bottleneck queue was DropTail, RED or CoDel, and the UDP load was 4, 8 or 12 Mbps. That makes nine runs.</li>
-          <li>The biggest effect came from the UDP load, not the queue. TCP throughput fell from about 5 Mbps at 4 Mbps of UDP to under 0.15 Mbps at 12 Mbps (0.041 with DropTail, 0.145 with RED, 0.105 with CoDel). UDP does not slow down when the link is full, so TCP gets squeezed out.</li>
-          <li>RED had the lowest average delay at every load (for example 111 ms against 179 ms for DropTail at 12 Mbps). CoDel lost the fewest packets at 4 Mbps, and DropTail delivered the most UDP. So there was no single winner.</li>
-          <li>The report also lists what the numbers cannot tell you. The delay and jitter are averaged over all flows, FlowMonitor&rsquo;s lost-packet count is not a count of queue drops, and each case ran once. It ends with a list of what I would measure next.</li>
-        </ul>
-        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+        <p style="margin-top:4px; display:flex; flex-wrap:wrap; gap:8px 24px">
           <a class="inline-link" style="margin-top:0" href="../assets/files/DCN_Lab_Project_AQM_NS3.pdf" target="_blank" rel="noopener">Read the report (PDF) ↗</a>
           <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/Data-Communication-and-Networking-Lab" target="_blank" rel="noopener">All the DCN lab practicals on GitHub ↗</a>
           <a class="inline-link" style="margin-top:0" href="../assets/files/DCN_Exp11_Results.zip" target="_blank" rel="noopener">Simulation results: CSV, output and FlowMonitor XML (ZIP) ↓</a>
@@ -293,16 +287,11 @@
       <div>
         <span class="when">Project-based learning</span>
         <h2>Speech Signal Analysis using FFT</h2>
-        <p class="org">Signals and Systems project, submitted to Prof. Parshuram Patel: what frequencies are hiding in a few seconds of speech?</p>
+        <p class="org">Signals and Systems project, submitted to Prof. Parshuram Patel.</p>
         <div class="tags"><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">Matplotlib</span></div>
       </div>
       <div>
-        <ul class="bullets">
-          <li>I record three seconds of speech at 44.1 kHz, then run a pre-emphasis filter (0.97) and a Hamming window so the spectrum comes out cleaner.</li>
-          <li>Next I zero-pad to the next power of two, take the real FFT and plot the spectrum in decibels up to 5 kHz.</li>
-          <li>The program then prints the ten strongest peaks (above 5% of the maximum). You can see the pitch, its harmonics and the formant regions, which was a fun way to watch Fourier analysis work on something real.</li>
-        </ul>
-        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+        <p style="margin-top:4px; display:flex; flex-wrap:wrap; gap:8px 24px">
           <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/Speech-Signal-Analysis-FFT" target="_blank" rel="noopener">Source on GitHub ↗</a>
         </p>
       </div>
@@ -312,16 +301,11 @@
       <div>
         <span class="when">Lab course (ECC-351)</span>
         <h2>Digital Signal Processing Lab</h2>
-        <p class="org">Fourteen DSP experiments, each written in MATLAB and then ported to Python so I could check that both give the same answer.</p>
+        <p class="org">ECC-351 lab: 14 experiments in MATLAB and Python.</p>
         <div class="tags"><span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">NumPy</span><span class="tag">SciPy</span></div>
       </div>
       <div>
-        <ul class="bullets">
-          <li>The list starts with the DFT and IDFT, Parseval&rsquo;s theorem, circular shifting and linear and circular convolution (with zero padding).</li>
-          <li>Then come FIR low-pass and high-pass filters, Butterworth and Chebyshev Type-I low-pass filters, decimation and interpolation.</li>
-          <li>The last two run FFT and frequency-domain filtering on an audio clip. The repo has the scripts, the generated plots and the compiled lab report.</li>
-        </ul>
-        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+        <p style="margin-top:4px; display:flex; flex-wrap:wrap; gap:8px 24px">
           <a class="inline-link" style="margin-top:0" href="https://github.com/Anand-Ambastha/dsp-lab" target="_blank" rel="noopener">DSP lab on GitHub ↗</a>
         </p>
       </div>
@@ -331,17 +315,11 @@
       <div>
         <span class="when">Project-based learning</span>
         <h2>Common-Emitter Amplifier Design and Simulation</h2>
-        <p class="org">Analog Electronics project for Prof. Aekta Singh: design a common-emitter amplifier and check it in simulation.</p>
+        <p class="org">Analog Electronics project for Prof. Aekta Singh.</p>
         <div class="tags"><span class="tag">LTspice</span><span class="tag">BJT</span><span class="tag">Biasing</span><span class="tag">Analog design</span></div>
       </div>
       <div>
-        <ul class="bullets">
-          <li>I designed a small-signal common-emitter amplifier for audio (tested from 10 to 100 Hz) with voltage-divider bias and emitter self-bias, on a 15 V supply.</li>
-          <li>The component values came from hand calculation: a 33 k&Omega; collector resistor, 3.3 k&Omega; emitter resistor, a 10 k&Omega; and 1.18 k&Omega; divider, coupling capacitors of 47 &micro;F and 10 &micro;F, and a 10 &micro;F bypass capacitor.</li>
-          <li>Then I checked it in LTspice: operating point, frequency response and a 5 ms transient. Midband gain came out at about 64 dB (1585 V/V), with a lower cutoff near 19 Hz and a stability factor of 3.35.</li>
-          <li>Hand calculation and simulation matched well for base voltage (0.02% apart) and collector current (0.7%). Collector voltage was about 11% off.</li>
-        </ul>
-        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+        <p style="margin-top:4px; display:flex; flex-wrap:wrap; gap:8px 24px">
           <a class="inline-link" style="margin-top:0" href="https://www.dropbox.com/scl/fo/l5u56t8rc55xg1r295o3y/AJw_8vr1YQWPYetxBlr-HRY?rlkey=rm1bl939hv4n9ly5qn7cpjr3n&amp;st=q9rjuvea&amp;dl=0" target="_blank" rel="noopener">Simulation files (Dropbox) ↗</a>
         </p>
       </div>

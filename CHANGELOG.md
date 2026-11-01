@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Coursework entries cut down to a title, one short line and links (no write-ups).
 - Coursework: added the Digital Signal Processing Lab (14 MATLAB and Python experiments) with a link to its GitHub repo.
 - Blog feed: added the BVP Optica repost about the CQT IIIT-Delhi visit (Qiskit Fall Fest 2026).
 - Coursework: Speech Signal project is marked as submitted to Prof. Parshuram Patel; the section intro tells QKD visitors it is not meant for them.
