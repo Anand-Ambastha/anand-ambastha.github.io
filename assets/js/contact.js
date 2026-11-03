@@ -8,13 +8,12 @@
     if (f.elements._honey && f.elements._honey.value) return;
     st.className = 'cstatus'; st.textContent = 'Sending...'; btn.disabled = true;
     var body = {
+      access_key: '74dec15c-a155-4f0a-8def-88132bd4634a',
       name: f.elements.name.value,
       email: f.elements.email.value,
       message: f.elements.message.value,
-      _subject: 'Website message from ' + f.elements.name.value,
-      _replyto: f.elements.email.value,
-      _captcha: 'false',
-      _template: 'table'
+      subject: 'Website message from ' + f.elements.name.value,
+      from_name: 'Portfolio contact form'
     };
     fetch(f.getAttribute('data-endpoint'), {
       method: 'POST',
