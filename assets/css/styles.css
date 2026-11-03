@@ -495,3 +495,11 @@ html:not(.city-bg) .city-stage, .city.is-off .city-hint { display: none; }
   .ci-moon { display: none; } .ci-crater, .ci-copy, .city-stage.entering .city-canvas { animation: none; opacity: 1; }
   .city-intro.leaving, .city-intro.leaving .ci-crater, .city-intro.leaving .ci-copy { animation: none; opacity: 0; }
 }
+
+/* coursework: compact side-by-side cards */
+.cw-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.cw-grid .cw { padding: 18px 20px; gap: 8px; border-radius: 18px; }
+.cw-grid .cw h3 { font-size: 18px; line-height: 1.2; }
+.cw-grid .cw p { font-size: 13.5px; }
+.cw-grid .cw .tags { margin-top: 2px; }
+.cw-grid .cw .cw-links { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13.5px; }
