@@ -5,7 +5,7 @@
   var btn = f.querySelector('button[type=submit]');
   f.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (f.elements._honey && f.elements._honey.value) return;
+    if (f.elements.botcheck && f.elements.botcheck.value) return;
     st.className = 'cstatus'; st.textContent = 'Sending...'; btn.disabled = true;
     var body = {
       access_key: '74dec15c-a155-4f0a-8def-88132bd4634a',
