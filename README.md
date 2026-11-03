@@ -4,7 +4,7 @@ Personal research portfolio of **Anand Kumar**, an undergraduate researcher work
 
 The site is fully static: plain HTML, CSS and a small amount of JavaScript, with **no build step and no dependencies to install**. It has a black background with a star field, frosted-glass navigation and cards, and a Markdown-powered blog.
 
-- Live site: _add your GitHub Pages URL here after deploying_
+- Live site: [Website](https://anand-ambastha.github.io/)
 - GitHub: [github.com/Anand-Ambastha](https://github.com/Anand-Ambastha)
 - LinkedIn: [linkedin.com/in/anand-kumar05](https://www.linkedin.com/in/anand-kumar05)
 
