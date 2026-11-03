@@ -21,13 +21,16 @@
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(body)
     }).then(function (r) { return r.json(); }).then(function (j) {
+      if (window.console) console.log('contact form response', j);
       if (j && (j.success === 'true' || j.success === true)) {
         f.reset(); st.className = 'cstatus ok';
         st.textContent = 'Sent. Thank you, I will reply by email.';
       } else { throw new Error('fail'); }
     }).catch(function () {
       st.className = 'cstatus err';
-      st.innerHTML = 'That did not go through. Please email <a href="mailto:anandambastha72@gmail.com">anandambastha72@gmail.com</a> instead.';
+      var m = 'mailto:anandambastha72@gmail.com?subject=' + encodeURIComponent('Website message from ' + body.name) +
+        '&body=' + encodeURIComponent(body.message + '\n\n' + body.name + '\n' + body.email);
+      st.innerHTML = 'That did not go through. <a href="' + m + '">Open it in your mail app</a> with your message filled in, or write to anandambastha72@gmail.com.';
     }).then(function () { btn.disabled = false; });
   });
 })();
