@@ -5,19 +5,17 @@
   var btn = f.querySelector('button[type=submit]');
   f.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (f.elements.botcheck && f.elements.botcheck.value) return;
-    st.className = 'cstatus'; st.textContent = 'Sending...'; btn.disabled = true;
+        st.className = 'cstatus'; st.textContent = 'Sending...'; btn.disabled = true;
     var body = {
-      access_key: '',
       name: f.elements.name.value,
       email: f.elements.email.value,
       message: f.elements.message.value,
-      subject: 'Website message from ' + f.elements.name.value,
-      from_name: 'Portfolio contact form'
+      botcheck: f.elements.botcheck ? f.elements.botcheck.value : ''
     };
-    var go = body.access_key ? fetch(f.getAttribute('data-endpoint'), {
+    var endpoint = f.getAttribute('data-endpoint');
+    var go = endpoint ? fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     }) : Promise.reject(new Error('no key'));
     go.then(function (r) { return r.json(); }).then(function (j) {
@@ -30,7 +28,7 @@
       st.className = 'cstatus err';
       var m = 'mailto:anandambastha72@gmail.com?subject=' + encodeURIComponent('Website message from ' + body.name) +
         '&body=' + encodeURIComponent(body.message + '\n\n' + body.name + '\n' + body.email);
-      st.innerHTML = (err && err.message === 'no key' ? 'One more step: ' : 'That did not go through. ') + '<a href="' + m + '">Open it in your mail app</a> with your message filled in, or write to anandambastha72@gmail.com.';
+      st.innerHTML = (err && err.message === 'no key' ? 'Sending from the page is not switched on yet. ' : 'That did not go through. ') + '<a href="' + m + '">Open it in your mail app</a> with your message filled in, or write to anandambastha72@gmail.com.';
     }).then(function () { btn.disabled = false; });
   });
 })();
