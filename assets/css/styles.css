@@ -503,3 +503,6 @@ html:not(.city-bg) .city-stage, .city.is-off .city-hint { display: none; }
 .cw-grid .cw p { font-size: 13.5px; }
 .cw-grid .cw .tags { margin-top: 2px; }
 .cw-grid .cw .cw-links { margin-top: auto; padding-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13.5px; }
+
+.strip .inline-link { margin-top: 0; }
+.strip .nw { white-space: nowrap; color: var(--muted); font-size: 14px; }
