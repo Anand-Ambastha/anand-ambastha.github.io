@@ -37,7 +37,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="stylesheet" href="../assets/css/styles.css?v=3">
+<link rel="stylesheet" href="../assets/css/styles.css?v=5">
 </head>
 <body>
 <header class="nav">
@@ -73,6 +73,18 @@
       <div><dt>GitHub</dt><dd><a href="https://github.com/Anand-Ambastha" target="_blank" rel="noopener">github.com/Anand-Ambastha ↗</a></dd></div>
       <div><dt>Based in</dt><dd>New Delhi, India</dd></div>
     </dl>
+  </section>
+
+  <section class="cform-wrap">
+    <h2>Send me a message</h2>
+    <form id="cform" class="cform" data-endpoint="https://formsubmit.co/ajax/anandambastha72@gmail.com">
+      <label>Name<input name="name" type="text" required maxlength="100" autocomplete="name"></label>
+      <label>Your email<input name="email" type="email" required maxlength="150" autocomplete="email"></label>
+      <label class="full">Message<textarea name="message" required rows="6" maxlength="4000"></textarea></label>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <div class="full cform-row"><button class="pill primary" type="submit">Send message</button><span id="cstatus" class="cstatus" role="status" aria-live="polite"></span></div>
+      <p class="full cform-note">This sends your message to my inbox through FormSubmit. See the <a href="../privacy/">privacy policy</a>.</p>
+    </form>
   </section>
 
   <footer class="site">
@@ -130,5 +142,6 @@
 })();
 </script>
 <script src="../assets/js/moon.js" defer></script>
+<script src="../assets/js/contact.js" defer></script>
 </body>
 </html>
