@@ -3,7 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
-- Contact page: a message form that emails anandambastha72@gmail.com from the browser (via Web3Forms). Privacy policy updated to say so.
+- Contact page: a message form that emails anandambastha72@gmail.com from the browser (through a Cloudflare Worker relay so no key is in the page; see worker/README.md). Privacy policy updated to say so.
 - Home: the info strip shows CGPA on its own line and the Leading row is aligned.
 - Coursework: smaller side-by-side cards, and added the Control Systems Lab (13 experiments, MATLAB and Python) with its GitHub link.
 - Coursework entries cut down to a title, one short line and links (no write-ups).
