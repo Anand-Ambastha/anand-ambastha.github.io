@@ -3,7 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
-- About: a "Lab and course projects" line under the B.Tech education block links the lab repos and coursework projects.
+- Coursework: a small B.Tech tab above the cards, ready for M.Tech or PhD tabs later.
 - Coursework: the Speech Signal card also links to all the Signals and Systems lab practicals on GitHub.
 - Home: the info strip shows CGPA on its own line and the Leading row is aligned.
 - Coursework: smaller side-by-side cards, and added the Control Systems Lab (13 experiments, MATLAB and Python) with its GitHub link.
