@@ -39,23 +39,47 @@
 
     var lights = d.createElement('div'); lights.id = 'dw-lights'; lights.setAttribute('aria-hidden', 'true'); d.body.appendChild(lights);
     var COLS = ['#ffc86b', '#ff9a3c', '#ffe6a8', '#ff7f50'];
+    var bulbs = [], geo = null, rot = 0, target = 0, queued = false, SPEED = 0.0012; // same turn rate as the moon
+    function layout() {
+      var cur = rot;
+      for (var k = 0; k < bulbs.length; k++) {
+        var a = bulbs[k].a + cur;
+        var x = geo.cx + geo.rad * Math.cos(a), y = geo.cy - geo.rad * Math.sin(a);
+        var ok = x > -10 && y > -10 && x < innerWidth + 10 && y < innerHeight + 10;
+        bulbs[k].el.style.left = x.toFixed(1) + 'px'; bulbs[k].el.style.top = y.toFixed(1) + 'px';
+        bulbs[k].el.style.visibility = ok ? 'visible' : 'hidden';
+      }
+    }
+    function tick() {
+      queued = false;
+      var diff = target - rot;
+      if (Math.abs(diff) < 0.0004) rot = target; else { rot += diff * 0.08; queue(); }
+      if (geo) layout();
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(tick); } }
+    function onScroll() {
+      target = (window.pageYOffset || root.scrollTop || 0) * SPEED;
+      if (reduce) rot = target;
+      queue();
+    }
     function place() {
-      lights.innerHTML = '';
+      lights.innerHTML = ''; bulbs = []; geo = null;
       var m = d.getElementById('moon3d');
       if (!m || root.className.indexOf('city-bg') > -1) return;
       var r = m.getBoundingClientRect(); if (!r.width) return;
-      var cx = r.left + r.width / 2, cy = r.top + r.height / 2, rad = r.width / 2 * 1.06, n = 15;
+      geo = { cx: r.left + r.width / 2, cy: r.top + r.height / 2, rad: r.width / 2 * 1.06 };
+      var n = 22;
       for (var k = 0; k < n; k++) {
-        var a = (95 + k * (170 / (n - 1))) * Math.PI / 180;      // arc over the upper-left rim
-        var x = cx + rad * Math.cos(a), y = cy - rad * Math.sin(a);
-        if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) continue;
         var b = d.createElement('i');
-        b.style.left = x.toFixed(1) + 'px'; b.style.top = y.toFixed(1) + 'px';
         b.style.setProperty('--c', COLS[k % COLS.length]);
         b.style.animationDelay = (-(k * 0.37) % 2.6).toFixed(2) + 's';
         lights.appendChild(b);
+        bulbs.push({ el: b, a: k * 2 * Math.PI / n + 1.6 });
       }
+      rot = target = (window.pageYOffset || root.scrollTop || 0) * SPEED;
+      layout();
     }
+    addEventListener('scroll', onScroll, { passive: true });
     place(); setTimeout(place, 600); setTimeout(place, 1800);
     var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(place, 200); });
 
