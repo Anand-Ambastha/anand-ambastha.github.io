@@ -3,7 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
-- Diwali: a subtle warm glow, a few rising sparks and a short "Happy Diwali" note. It switches itself off at 07:00 IST on 9 Nov 2026 (assets/js/diwali.js, loaded from moon.js).
+- Diwali: a subtle warm glow, a few rising sparks, a string of small lights around the moon and a short "Happy Diwali" note. It switches itself off at 07:00 IST on 9 Nov 2026 (assets/js/diwali.js, loaded from moon.js).
 - Coursework: every card carries a B.Tech tag, so M.Tech or PhD work can be tagged the same way later.
 - Coursework: the Speech Signal card also links to all the Signals and Systems lab practicals on GitHub.
 - Home: the info strip shows CGPA on its own line and the Leading row is aligned.

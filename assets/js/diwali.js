@@ -15,9 +15,12 @@
     'color:#ffd9a0;background:rgba(40,22,6,.72);border:1px solid rgba(255,180,80,.35);border-radius:999px;padding:9px 16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);' +
     'opacity:0;transition:opacity .8s ease}' +
     '#dw-chip.on{opacity:1}' +
+    '#dw-lights{position:fixed;inset:0;pointer-events:none;z-index:0}' +
+    '#dw-lights i{position:absolute;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--c);box-shadow:0 0 6px 2px var(--c);animation:dwTwinkle 2.6s ease-in-out infinite}' +
+    '@keyframes dwTwinkle{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}' +
     '@keyframes dwPulse{0%,100%{opacity:.75}50%{opacity:1}}' +
     '@keyframes dwRise{0%{transform:translateY(0) translateX(0);opacity:0}12%{opacity:.9}100%{transform:translateY(-105vh) translateX(var(--dx,20px));opacity:0}}' +
-    '@media (prefers-reduced-motion:reduce){#dw-glow{animation:none}#dw-sparks{display:none}}';
+    '@media (prefers-reduced-motion:reduce){#dw-lights i{animation:none;opacity:.85}#dw-glow{animation:none}#dw-sparks{display:none}}';
 
   function start() {
     if (d.getElementById('dw-glow')) return;
@@ -34,6 +37,28 @@
     }
     d.body.appendChild(sp);
 
+    var lights = d.createElement('div'); lights.id = 'dw-lights'; lights.setAttribute('aria-hidden', 'true'); d.body.appendChild(lights);
+    var COLS = ['#ffc86b', '#ff9a3c', '#ffe6a8', '#ff7f50'];
+    function place() {
+      lights.innerHTML = '';
+      var m = d.getElementById('moon3d');
+      if (!m || root.className.indexOf('city-bg') > -1) return;
+      var r = m.getBoundingClientRect(); if (!r.width) return;
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2, rad = r.width / 2 * 1.06, n = 15;
+      for (var k = 0; k < n; k++) {
+        var a = (95 + k * (170 / (n - 1))) * Math.PI / 180;      // arc over the upper-left rim
+        var x = cx + rad * Math.cos(a), y = cy - rad * Math.sin(a);
+        if (x < 0 || y < 0 || x > innerWidth || y > innerHeight) continue;
+        var b = d.createElement('i');
+        b.style.left = x.toFixed(1) + 'px'; b.style.top = y.toFixed(1) + 'px';
+        b.style.setProperty('--c', COLS[k % COLS.length]);
+        b.style.animationDelay = (-(k * 0.37) % 2.6).toFixed(2) + 's';
+        lights.appendChild(b);
+      }
+    }
+    place(); setTimeout(place, 600); setTimeout(place, 1800);
+    var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(place, 200); });
+
     var seen = false;
     try { seen = sessionStorage.getItem('diwaliChip') === '1'; } catch (e) {}
     if (!seen) {
@@ -47,7 +72,7 @@
     // remove everything if the page is still open when the window ends
     var left = END - Date.now();
     if (left < 2147000000) setTimeout(function () {
-      ['dw-glow', 'dw-sparks', 'dw-chip', 'dw-css'].forEach(function (id) { var n = d.getElementById(id); if (n) n.parentNode.removeChild(n); });
+      ['dw-glow', 'dw-sparks', 'dw-lights', 'dw-chip', 'dw-css'].forEach(function (id) { var n = d.getElementById(id); if (n) n.parentNode.removeChild(n); });
     }, left);
   }
   if (d.body) start(); else d.addEventListener('DOMContentLoaded', start);
