@@ -1,3 +1,14 @@
+/* Seasonal greeting (loads only until it expires). */
+(function () {
+  try {
+    if (Date.now() >= Date.UTC(2026, 10, 9, 1, 30, 0)) return;
+    var cs = document.currentScript, src = cs && cs.src;
+    if (!src) return;
+    var s = document.createElement('script');
+    s.src = src.replace(/moon\.js(\?.*)?$/, 'diwali.js$1');
+    document.head.appendChild(s);
+  } catch (e) {}
+})();
 /* Background moon: a lit sphere drawn from a lunar texture map; it turns as the page scrolls.
    Falls back to the static CSS moon when canvas or the texture is unavailable. */
 (function () {
