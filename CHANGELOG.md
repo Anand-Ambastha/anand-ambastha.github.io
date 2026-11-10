@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Research: the IIT Delhi internship is dated Jun 2026 – Dec 2026.
 - Research: the IIT Delhi TF-QKD project links its GitHub repo (tfqkd-fso-turbulence).
 - Diwali: a subtle warm glow, a few rising sparks, a ring of small lights that turns with the moon as you scroll, and a short "Happy Diwali" note. It switches itself off at 07:00 IST on 9 Nov 2026 (assets/js/diwali.js, loaded from moon.js).
 - Coursework: every card carries a B.Tech tag, so M.Tech or PhD work can be tagged the same way later.
