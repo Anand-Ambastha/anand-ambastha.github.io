@@ -506,3 +506,9 @@ html:not(.city-bg) .city-stage, .city.is-off .city-hint { display: none; }
 
 .strip .inline-link { margin-top: 0; }
 .strip .nw { white-space: nowrap; color: var(--muted); font-size: 14px; }
+
+/* restricted-report note */
+.restricted { margin-top: 16px; max-width: 640px; padding: 14px 18px 15px; border: 1px solid var(--line); border-left: 2px solid rgba(255,190,110,.65); border-radius: 12px; background: rgba(255,190,110,.04); }
+.restricted .tagline { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,200,130,.9); margin-bottom: 6px; }
+.restricted p { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin: 0; }
+.restricted .req { display: inline-block; margin-top: 10px; font-size: 14px; }
