@@ -1,12 +1,15 @@
-/* Seasonal greeting (loads only until it expires). */
+/* Loads site extras next to this file (video player; seasonal greeting until it expires). */
 (function () {
   try {
-    if (Date.now() >= Date.UTC(2026, 10, 9, 1, 30, 0)) return;
     var cs = document.currentScript, src = cs && cs.src;
     if (!src) return;
-    var s = document.createElement('script');
-    s.src = src.replace(/moon\.js(\?.*)?$/, 'diwali.js$1');
-    document.head.appendChild(s);
+    var load = function (n) {
+      var s = document.createElement('script');
+      s.src = src.replace(/moon\.js(\?.*)?$/, n + '.js$1');
+      document.head.appendChild(s);
+    };
+    load('yt');
+    if (Date.now() < Date.UTC(2026, 10, 9, 1, 30, 0)) load('diwali');
   } catch (e) {}
 })();
 /* Background moon: a lit sphere drawn from a lunar texture map; it turns as the page scrolls.
