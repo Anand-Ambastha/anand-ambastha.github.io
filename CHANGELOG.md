@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Projects: the VibeSense card has its demo video, played inside the site.
 - Video: any YouTube link on a page plays inside the site (a click-to-play player, or a pop-up player for links inside a sentence), using youtube-nocookie.com and loading nothing from YouTube until play is pressed (assets/js/yt.js). Privacy policy updated.
 - Publications, Thesis and reports: the DRDO SAG internship report (QSAFire), first 17 pages only, with a note that the full report is classified under the organisation's policy and can be shared for reading on an appropriate request.
 - Research: the IIT Delhi internship is dated Jun 2026 – Dec 2026.
