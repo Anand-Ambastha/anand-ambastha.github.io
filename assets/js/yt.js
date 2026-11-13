@@ -8,7 +8,7 @@
     var m = /[?&](?:t|start)=(\d+)/.exec(href); return m ? m[1] : '';
   }
   function src(id, t) {
-    return 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1' + (t ? '&start=' + t : '');
+    return 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1' + (t ? '&start=' + t : '');
   }
 
   var css = '' +
