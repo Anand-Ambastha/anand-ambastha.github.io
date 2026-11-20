@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Micro project: Review 3 slides (view and PPTX download, roll numbers removed) and the FPGA source repository linked from Projects and Thesis and reports.
 - Projects and Publications (thesis and reports): the SNS-TF-QKD B.Tech micro project report (PDF, enrollment numbers removed) and its A3 poster (a small entry right below the report), which opens in a view-only viewer with zoom and pan and has no download link (assets/js/viewer.js, loaded from moon.js).
 - Projects: the VibeSense, VeriSure AI and DeepSpeak cards have their demo videos, played inside the site. Videos start muted.
 - Video: any YouTube link on a page plays inside the site (a click-to-play player, or a pop-up player for links inside a sentence), using youtube-nocookie.com and loading nothing from YouTube until play is pressed (assets/js/yt.js). Privacy policy updated.
