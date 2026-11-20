@@ -3,7 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
-- Projects and Publications (thesis and reports): the SNS-TF-QKD B.Tech micro project report (PDF, enrollment numbers removed) and its A3 poster, which opens in a view-only viewer with zoom and pan and has no download link (assets/js/viewer.js, loaded from moon.js).
+- Projects and Publications (thesis and reports): the SNS-TF-QKD B.Tech micro project report (PDF, enrollment numbers removed) and its A3 poster (a small entry right below the report), which opens in a view-only viewer with zoom and pan and has no download link (assets/js/viewer.js, loaded from moon.js).
 - Projects: the VibeSense, VeriSure AI and DeepSpeak cards have their demo videos, played inside the site. Videos start muted.
 - Video: any YouTube link on a page plays inside the site (a click-to-play player, or a pop-up player for links inside a sentence), using youtube-nocookie.com and loading nothing from YouTube until play is pressed (assets/js/yt.js). Privacy policy updated.
 - Publications, Thesis and reports: the DRDO SAG internship report (QSAFire), first 17 pages only, with a note that the full report is classified under the organisation's policy and can be shared for reading on an appropriate request.
