@@ -107,6 +107,33 @@
       </div>
     </article>
 
+    <article class="detail" id="sns-micro">
+      <div>
+        <span class="when">Jul – Nov 2026</span>
+        <h2>Hardware-Assisted Post-Processing for SNS-TF-QKD</h2>
+        <p class="org">B.Tech micro project with Aayush Gupta, Bharati Vidyapeeth&rsquo;s College of Engineering. It extends the work begun in the SAG, DRDO internship.</p>
+        <div class="tags"><span class="tag">OptiSystem</span><span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">Verilog</span><span class="tag">FPGA</span></div>
+      </div>
+      <div>
+        <ul class="bullets">
+          <li>A three-station SNS-TF-QKD link (Alice, Bob and an untrusted Charlie) modelled in OptiSystem, with the protocol decisions run as MATLAB co-simulation blocks and every station logging a window-synchronised CSV file.</li>
+          <li>A Python pipeline over a 32,768-window run: basis separation, phase post-selection, decoy-state estimation and the secret key rate with 95% Wilson confidence intervals. The key rate on that dataset is negative (R = &minus;0.166 per window), and it is traced to detector clicks that are uncorrelated with phase, not to the analysis code.</li>
+          <li>The counting-heavy sifting stage written as a Verilog core for a Zynq-class FPGA. All 19 counters match a Python reference model, and it synthesises to 627 flip-flops and 24 LUTs for a Xilinx 7-series target. Place-and-route and on-board execution are future work.</li>
+        </ul>
+        <p style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px 24px">
+          <a class="inline-link" style="margin-top:0" href="../assets/files/Micro_Project_Report_SNS_TF_QKD.pdf" target="_blank" rel="noopener">Read the report (PDF) ↗</a>
+          <a class="inline-link" style="margin-top:0" href="../publications/#reports">Listed under thesis and reports →</a>
+        </p>
+        <div class="poster-card">
+          <button type="button" class="poster-open" data-viewer="../assets/img/poster-sns-tf-qkd.webp" aria-label="View the poster">
+            <img src="../assets/img/poster-sns-tf-qkd-thumb.webp" alt="Poster for the SNS-TF-QKD micro project" width="318" height="450" loading="lazy" draggable="false">
+            <span>View the poster</span>
+          </button>
+          <p class="poster-note">View only. The poster opens in a viewer here and is not offered as a download.</p>
+        </div>
+      </div>
+    </article>
+
     <article class="detail">
       <div>
         <span class="when">2026</span>
