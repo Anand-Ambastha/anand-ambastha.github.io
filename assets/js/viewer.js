@@ -39,7 +39,7 @@
   function close() { ov.className = ''; img.style.backgroundImage = ''; d.documentElement.style.overflow = ''; if (d.__pvFocus) d.__pvFocus.focus(); }
   function build() {
     ov = d.createElement('div'); ov.id = 'pv'; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true'); ov.setAttribute('aria-label', 'Image viewer');
-    ov.innerHTML = '<div class="pv-bar"><button type="button" data-a="out" aria-label="Zoom out">&minus;</button><button type="button" data-a="in" aria-label="Zoom in">+</button><button type="button" data-a="one">100%</button><button type="button" data-a="fit">Fit</button><button type="button" data-a="x">Close</button></div><div class="pv-img" role="img"></div><div class="pv-hint">View only. Opens at original size. Scroll or use + and &minus; to zoom, drag to move, Esc to close.</div>';
+    ov.innerHTML = '<div class="pv-bar"><button type="button" data-a="out" aria-label="Zoom out">&minus;</button><button type="button" data-a="in" aria-label="Zoom in">+</button><button type="button" data-a="one">100%</button><button type="button" data-a="fit">Fit</button><button type="button" data-a="x">Close</button></div><div class="pv-img" role="img"></div><div class="pv-hint">Opens at original size. Scroll or use + and &minus; to zoom, drag to move, Esc to close.</div>';
     d.body.appendChild(ov); img = ov.querySelector('.pv-img'); stage = ov;
     ov.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     ov.addEventListener('dragstart', function (e) { e.preventDefault(); });
