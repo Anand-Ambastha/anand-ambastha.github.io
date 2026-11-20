@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Micro project slides: DOI added to every slide; files renamed to Micro_Project_SNS_TF_QKD_Slides.
 - Thesis and reports: "please cite" line with the DOI under the micro project report. The DOI is also stamped in the footer of every page of the report PDF.
 - Micro project report: Zenodo DOI link (10.5281/zenodo.24390550) on Projects and Thesis and reports.
 - Micro project: slides under Presentation slides (view and PPTX download, roll numbers removed) and the FPGA source repository linked from Projects and Thesis and reports.
