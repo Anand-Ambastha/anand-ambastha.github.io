@@ -21,7 +21,7 @@
     '#pv .pv-hint{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:12.5px var(--font-mono,monospace);color:rgba(255,255,255,.55);pointer-events:none}';
 
   function layout() {
-    var vw = innerWidth, vh = innerHeight, maxW = vw * 0.94, maxH = vh * 0.9;
+    var vw = innerWidth, vh = innerHeight, maxW = vw * 0.96, maxH = vh * 0.94;
     fitW = Math.min(maxW, maxH * ratio); fitH = fitW / ratio;
     img.style.width = fitW + 'px'; img.style.height = fitH + 'px';
   }
@@ -31,7 +31,7 @@
     img.style.transform = 'translate(' + (X - fitW * S / 2) + 'px,' + (Y - fitH * S / 2) + 'px) scale(' + S + ')';
   }
   function zoom(f, cx, cy) {
-    var n = Math.max(1, Math.min(6, S * f)); if (n === S) return;
+    var n = Math.max(1, Math.min(8, S * f)); if (n === S) return;
     var k = n / S; cx = cx == null ? 0 : cx - innerWidth / 2; cy = cy == null ? 0 : cy - innerHeight / 2;
     X = cx - (cx - X) * k; Y = cy - (cy - Y) * k; S = n; if (S === 1) { X = 0; Y = 0; } apply();
   }
