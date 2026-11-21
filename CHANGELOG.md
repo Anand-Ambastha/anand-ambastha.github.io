@@ -3,8 +3,9 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Blog: the Aayush story is now its own My thoughts post, linked from the project post.
 - Projects: micro project entry links to its blog write-up.
-- Blog: new project post on the SNS-TF-QKD micro project (OptiSystem, Python pipeline, Verilog sifter core, and how the five months went, with fun closing lines).
+- Blog: new project post on the SNS-TF-QKD micro project (OptiSystem, Python pipeline, Verilog sifter core).
 - Coursework: Half-Wave Dipole Antenna card (Dr. Rajiv Nehra, CST within 2% error) with source and results PDF. GitHub link stamped in the footer of every page of the results PDF.
 - TF-QKD / FSO Research Framework dated Jun 2026 – Dec 2026.
 - Micro project slides: DOI added to every slide; files renamed to Micro_Project_SNS_TF_QKD_Slides.
