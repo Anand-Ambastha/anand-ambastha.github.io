@@ -74,7 +74,7 @@ We didn't. Diwali and the festive weeks came, the lab was shut right when we nee
 
 Working with Aayush is the best part of this whole project, and also the hardest. He's my Leonard. Calm, always up for the work, never bothered by anything. That's brilliant when a simulation crashes. It's less brilliant when I'm freaking out about a review and he just goes "yeah, it'll be fine." And it was fine. Every time. I still can't decide whether to be grateful or annoyed, so I'm both.
 
-That makes me the Sheldon, I guess. I'll take it. For the record, here's how I'd like the project remembered:
+That makes me the difficult one, I guess. I'll take it. For the record, here's how I'd like the project remembered:
 
 - "I'm not procrastinating, I'm letting the problem mature." (The board run, September to November.)
 - "The lab is closed for the festival? That's an unacceptable schedule and I'm going to write to someone." (I wrote to nobody.)
