@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Thesis and reports: poster merged into the micro project report entry as a "View the poster" link.
 - Blog: the Aayush story is now its own My thoughts post, linked from the project post.
 - Projects: micro project entry links to its blog write-up.
 - Blog: new project post on the SNS-TF-QKD micro project (OptiSystem, Python pipeline, Verilog sifter core).
