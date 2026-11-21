@@ -28,6 +28,14 @@ That makes me the difficult one, I guess. I'll take it. For the record, here's h
 
 Aayush's answer to every one of these is "okay." Same voice, every time. Best counter-argument I've ever met, and I have never once won.
 
+## What actually got done
+
+Here's the thing, though. Despite all the "abhi time hai", the work did get done. The OptiSystem link runs. The Python pipeline runs end to end and tells the truth, even when the truth is a negative key rate. The Verilog core matches the reference model on all 19 counters. The report, the slides and the poster exist. It just all happened in the last stretch instead of spread over five months, which is a very specific, very student way of doing a project.
+
+The reviews were oddly useful for that. Each one was a small wall we ran into at speed. Before a review we'd suddenly be very productive, and after it we'd go back to being relaxed until the next one approached. If you want a schedule for how this team works, it's a sine wave with the reviews as the peaks.
+
+I'll also say this, since nobody else will: it's easier to be stressed alone than to be stressed next to someone who isn't. Aayush's calm, annoying as it was, kept the project from turning into a panic. Some of those weeks I needed exactly that, and I didn't say so at the time. So, Aayush, if you're reading this: thanks, and also please start earlier next time. We both know you won't.
+
 If you're doing something like this, my only advice: book the lab early and write the date of your first board run somewhere you can't ignore it. Software waits for you. A closed lab doesn't.
 
 The technical write-up is [here](../post/#hardware-assisted-post-processing-sns-tf-qkd-micro-project) if you want the counters, the Verilog and the numbers. The board run is still on the list.
