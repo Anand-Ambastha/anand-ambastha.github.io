@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Site search: a Search button in the top bar (or press /) over a prebuilt index; run scripts/build_search.py after changing pages or posts.
 - CV: micro project added to Projects (page 3 of the PDF), nothing else changed.
 - Thesis and reports: poster merged into the micro project report entry as a "View the poster" link.
 - Blog: the Aayush story is now its own My thoughts post, linked from the project post.
