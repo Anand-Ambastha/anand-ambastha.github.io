@@ -1,12 +1,12 @@
 ---
-title: Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush
+title: Hardware-assisted post-processing for SNS-TF-QKD
 date: 2026-11-21
 category: project
 tags: [sns-tf-qkd, fpga, verilog, python, optisystem]
-summary: My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.
+summary: My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run is still to do.
 ---
 
-This is the write-up of my B.Tech micro project with [Aayush Gupta](../projects/#sns-micro). It grew out of the OptiSystem prototype I built during my [DRDO internship](../post/#optisystem-sns-tf-qkd-prototype-and-post-processing), and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? Technical stuff first. How the five months really went is at the end, so skip down if that's what you're here for.
+This is the write-up of my B.Tech micro project with [Aayush Gupta](../projects/#sns-micro). It grew out of the OptiSystem prototype I built during my [DRDO internship](../post/#optisystem-sns-tf-qkd-prototype-and-post-processing), and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? This post is the technical side only.
 
 The full report, the slides and the poster are on the [Publications page](../publications/#reports), and the code is in the [snstfqkd-fpga repository](https://github.com/Anand-Ambastha/snstfqkd-fpga). The report has a DOI if you want to cite it: [10.5281/zenodo.24390550](https://doi.org/10.5281/zenodo.24390550).
 
@@ -66,25 +66,6 @@ The numbers decompose exactly. The 627 flip-flops are 608 counter bits (19 count
 
 Three things, and the report says so in a table instead of hiding them. The real OptiSystem CSVs have not been run through the RTL (only random stimulus). There is no Vivado place-and-route, timing or power report. And there is no AXI-Lite wrapper, no bitstream and no run on a board. The Verilog is complete and synthesisable, so what is left is mostly tooling and lab time.
 
-## Okay, now the real story
+If you work on FPGA-side QKD post-processing, or just want to swap notes on those counters, [get in touch](../contact/). The project is on the [Projects page](../projects/#sns-micro).
 
-Five months. Three reviews. And a plan that every single time ended with "and then we'll put it on the FPGA."
-
-We didn't. Diwali and the festive weeks came, the lab was shut right when we needed it, and the board never left its box. I'd love to blame only the calendar, but honestly, a good chunk of it was us. We kept saying "there's time" and then it was November. Classic.
-
-Working with Aayush is the best part of this whole project, and also the hardest. He's my Leonard. Calm, always up for the work, never bothered by anything. That's brilliant when a simulation crashes. It's less brilliant when I'm freaking out about a review and he just goes "yeah, it'll be fine." And it was fine. Every time. I still can't decide whether to be grateful or annoyed, so I'm both.
-
-That makes me the difficult one, I guess. I'll take it. For the record, here's how I'd like the project remembered:
-
-- "I'm not procrastinating, I'm letting the problem mature." (The board run, September to November.)
-- "The lab is closed for the festival? That's an unacceptable schedule and I'm going to write to someone." (I wrote to nobody.)
-- "A negative key rate isn't a failure, it's an honest result about the noise." (Aayush nodded and kept eating.)
-- "All 19 counters match the reference model exactly. Applause is optional but encouraged."
-- "Three reviews? Three? One review and a nervous stomach used to be enough." (Last year. That was last year.)
-- "We'll run it on the board next week." (Said weekly. The board has probably started laughing.)
-
-Aayush's answer to every one of these is "okay." Same voice, every time. Best counter-argument I've ever met, and I have never once won.
-
-If you're doing something like this, my only advice: book the lab early and write the date of your first board run somewhere you can't ignore it. Software waits for you. A closed lab doesn't.
-
-The board run is still on the list and the Verilog is ready for it. If you work on FPGA-side QKD post-processing, or just want to swap notes on those counters, [get in touch](../contact/). The project is on the [Projects page](../projects/#sns-micro).
+If you'd like the other side of this project, the five months, the festive-season lab closures and my partner Aayush, I wrote that down separately: [Five months, one micro project, and Aayush](../post/#five-months-one-micro-project-and-aayush).
