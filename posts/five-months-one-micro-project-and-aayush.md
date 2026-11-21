@@ -13,6 +13,10 @@ We didn't. Diwali and the festive weeks came, the lab was shut right when we nee
 
 Working with Aayush is the best part of this whole project, and also the hardest. He's my Leonard. Calm, always up for the work, never bothered by anything. That's brilliant when a simulation crashes. It's less brilliant when I'm freaking out about a review and he just goes "yeah, it'll be fine." And it was fine. Every time. I still can't decide whether to be grateful or annoyed, so I'm both.
 
+And his calm isn't the peaceful kind. It's the "abhi time hai" kind. Every few days it went the same way. He'd ask, "micro karna hai?" I'd say, "haan, kar le." And he'd say, "rehne de, abhi time hai." :)
+
+Every. Single. Time. Always with a smile, never with a plan. The worst part is that I'd nod and agree, because honestly I wanted it to be true. We'd both walk away feeling very responsible for having had the conversation.
+
 That makes me the difficult one, I guess. I'll take it. For the record, here's how I'd like the project remembered:
 
 - "I'm not procrastinating, I'm letting the problem mature." (The board run, September to November.)
