@@ -7,11 +7,18 @@
   <language>en</language>
   <atom:link href="https://anand-ambastha.github.io/feed.xml" rel="self" type="application/rss+xml"/>
   <item>
-    <title>Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush</title>
+    <title>Five months, one micro project, and Aayush</title>
+    <link>https://anand-ambastha.github.io/blog/five-months-one-micro-project-and-aayush/</link>
+    <guid isPermaLink="true">https://anand-ambastha.github.io/blog/five-months-one-micro-project-and-aayush/</guid>
+    <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
+    <description>The part of my B.Tech micro project that isn&#x27;t in the report: three reviews, an FPGA board that stayed in its box, and working with a partner who is never bothered by anything.</description>
+  </item>
+  <item>
+    <title>Hardware-assisted post-processing for SNS-TF-QKD</title>
     <link>https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/</link>
     <guid isPermaLink="true">https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/</guid>
     <pubDate>Sat, 21 Nov 2026 00:00:00 +0000</pubDate>
-    <description>My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.</description>
+    <description>My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run is still to do.</description>
   </item>
   <item>
     <title>QSAFire, a satellite SNS-TF-QKD simulator built layer by layer</title>
