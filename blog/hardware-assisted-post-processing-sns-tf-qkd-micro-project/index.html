@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush | Anand Kumar</title>
+<title>Hardware-assisted post-processing for SNS-TF-QKD | Anand Kumar</title>
 <!-- seo:start -->
-<meta name="description" content="My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.">
+<meta name="description" content="My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run is still to do.">
 <meta name="keywords" content="sns-tf-qkd, fpga, verilog, python, optisystem, Anand Kumar, Anand Ambastha, Anand Verma, quantum key distribution, QKD, quantum communication">
 <meta name="author" content="Anand Kumar">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -20,17 +20,17 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Anand Kumar">
 <meta property="og:locale" content="en_IN">
-<meta property="og:title" content="Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush">
-<meta property="og:description" content="My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.">
+<meta property="og:title" content="Hardware-assisted post-processing for SNS-TF-QKD">
+<meta property="og:description" content="My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run is still to do.">
 <meta property="og:url" content="https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/">
 <meta property="og:image" content="https://anand-ambastha.github.io/assets/img/og-image.png">
 <meta property="article:published_time" content="2026-11-21">
 <meta property="article:author" content="Anand Kumar">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush">
-<meta name="twitter:description" content="My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.">
+<meta name="twitter:title" content="Hardware-assisted post-processing for SNS-TF-QKD">
+<meta name="twitter:description" content="My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run is still to do.">
 <meta name="twitter:image" content="https://anand-ambastha.github.io/assets/img/og-image.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush", "description": "My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "url": "https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/", "mainEntityOfPage": "https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/", "image": "https://anand-ambastha.github.io/assets/img/og-image.png", "keywords": "sns-tf-qkd, fpga, verilog, python, optisystem", "author": {"@id": "https://anand-ambastha.github.io/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/blog/"}, {"@type": "ListItem", "position": 3, "name": "Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush", "item": "https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/"}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Hardware-assisted post-processing for SNS-TF-QKD", "description": "My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run is still to do.", "datePublished": "2026-11-21", "dateModified": "2026-11-21", "url": "https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/", "mainEntityOfPage": "https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/", "image": "https://anand-ambastha.github.io/assets/img/og-image.png", "keywords": "sns-tf-qkd, fpga, verilog, python, optisystem", "author": {"@id": "https://anand-ambastha.github.io/#person"}, "publisher": {"@id": "https://anand-ambastha.github.io/#person"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://anand-ambastha.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://anand-ambastha.github.io/blog/"}, {"@type": "ListItem", "position": 3, "name": "Hardware-assisted post-processing for SNS-TF-QKD", "item": "https://anand-ambastha.github.io/blog/hardware-assisted-post-processing-sns-tf-qkd-micro-project/"}]}]}</script>
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,11 +53,11 @@
     <header class="post-head">
       <a class="back" href="../">← All posts</a>
       <div class="tags"><span class="tag">sns-tf-qkd</span><span class="tag">fpga</span><span class="tag">verilog</span><span class="tag">python</span><span class="tag">optisystem</span></div>
-      <h1>Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush</h1>
-      <p class="meta">21 November 2026 · 7 min read · Anand Kumar</p>
+      <h1>Hardware-assisted post-processing for SNS-TF-QKD</h1>
+      <p class="meta">21 November 2026 · 5 min read · Anand Kumar</p>
     </header>
     <div class="prose" id="prose">
-<p>This is the write-up of my B.Tech micro project with <a href="../projects/#sns-micro">Aayush Gupta</a>. It grew out of the OptiSystem prototype I built during my <a href="../optisystem-sns-tf-qkd-prototype-and-post-processing/">DRDO internship</a>, and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? Technical stuff first. How the five months really went is at the end, so skip down if that's what you're here for.</p>
+<p>This is the write-up of my B.Tech micro project with <a href="../projects/#sns-micro">Aayush Gupta</a>. It grew out of the OptiSystem prototype I built during my <a href="../optisystem-sns-tf-qkd-prototype-and-post-processing/">DRDO internship</a>, and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? This post is the technical side only.</p>
 <p>The full report, the slides and the poster are on the <a href="../publications/#reports">Publications page</a>, and the code is in the <a href="https://github.com/Anand-Ambastha/snstfqkd-fpga">snstfqkd-fpga repository</a>. The report has a DOI if you want to cite it: <a href="https://doi.org/10.5281/zenodo.24390550">10.5281/zenodo.24390550</a>.</p>
 <h2>The idea</h2>
 <p>Between the physical protocol and a key-rate plot sits window logging, basis sifting, phase post-selection, decoy-state estimation and finite-count statistics. Mistakes in that chain corrupt the rate quietly: one CSV row per waveform sample instead of one per window, or Bob's inverted bit convention copied from Alice.</p>
@@ -144,25 +144,11 @@
 <p>The numbers decompose exactly. The 627 flip-flops are 608 counter bits (19 counters × 32) plus 19 input-register bits, and the 152 carry cells are 8 per counter. Resource use is linear in counter width: flip-flops follow 19·CW + 19 while the LUT count stays near 24. At one window per clock, a 32,768-window run takes about 32,770 cycles, which is 0.33 ms at an assumed 100 MHz. That clock is an assumption, not a timing result.</p>
 <h2>What is not done</h2>
 <p>Three things, and the report says so in a table instead of hiding them. The real OptiSystem CSVs have not been run through the RTL (only random stimulus). There is no Vivado place-and-route, timing or power report. And there is no AXI-Lite wrapper, no bitstream and no run on a board. The Verilog is complete and synthesisable, so what is left is mostly tooling and lab time.</p>
-<h2>Okay, now the real story</h2>
-<p>Five months. Three reviews. And a plan that every single time ended with "and then we'll put it on the FPGA."</p>
-<p>We didn't. Diwali and the festive weeks came, the lab was shut right when we needed it, and the board never left its box. I'd love to blame only the calendar, but honestly, a good chunk of it was us. We kept saying "there's time" and then it was November. Classic.</p>
-<p>Working with Aayush is the best part of this whole project, and also the hardest. He's my Leonard. Calm, always up for the work, never bothered by anything. That's brilliant when a simulation crashes. It's less brilliant when I'm freaking out about a review and he just goes "yeah, it'll be fine." And it was fine. Every time. I still can't decide whether to be grateful or annoyed, so I'm both.</p>
-<p>That makes me the difficult one, I guess. I'll take it. For the record, here's how I'd like the project remembered:</p>
-<ul>
-<li>"I'm not procrastinating, I'm letting the problem mature." (The board run, September to November.)</li>
-<li>"The lab is closed for the festival? That's an unacceptable schedule and I'm going to write to someone." (I wrote to nobody.)</li>
-<li>"A negative key rate isn't a failure, it's an honest result about the noise." (Aayush nodded and kept eating.)</li>
-<li>"All 19 counters match the reference model exactly. Applause is optional but encouraged."</li>
-<li>"Three reviews? Three? One review and a nervous stomach used to be enough." (Last year. That was last year.)</li>
-<li>"We'll run it on the board next week." (Said weekly. The board has probably started laughing.)</li>
-</ul>
-<p>Aayush's answer to every one of these is "okay." Same voice, every time. Best counter-argument I've ever met, and I have never once won.</p>
-<p>If you're doing something like this, my only advice: book the lab early and write the date of your first board run somewhere you can't ignore it. Software waits for you. A closed lab doesn't.</p>
-<p>The board run is still on the list and the Verilog is ready for it. If you work on FPGA-side QKD post-processing, or just want to swap notes on those counters, <a href="../../contact/">get in touch</a>. The project is on the <a href="../projects/#sns-micro">Projects page</a>.</p>
+<p>If you work on FPGA-side QKD post-processing, or just want to swap notes on those counters, <a href="../../contact/">get in touch</a>. The project is on the <a href="../projects/#sns-micro">Projects page</a>.</p>
+<p>If you'd like the other side of this project, the five months, the festive-season lab closures and my partner Aayush, I wrote that down separately: <a href="../five-months-one-micro-project-and-aayush/">Five months, one micro project, and Aayush</a>.</p>
     </div>
     <nav class="post-nav" aria-label="More posts">
-      <span></span>
+      <a class="post-card" href="../five-months-one-micro-project-and-aayush/"><span class="when">Newer</span><h2>Five months, one micro project, and Aayush</h2></a>
       <a class="post-card" href="../qsafire-satellite-sns-tf-qkd-simulator/"><span class="when">Older</span><h2>QSAFire, a satellite SNS-TF-QKD simulator built layer by layer</h2></a>
     </nav>
   </article>
