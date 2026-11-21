@@ -6,7 +6,7 @@ tags: [sns-tf-qkd, fpga, verilog, python, optisystem]
 summary: My B.Tech micro project with Aayush Gupta. A three-station SNS-TF-QKD link in OptiSystem, a Python key-rate pipeline, and a Verilog sifter core that matches it on all 19 counters. The FPGA board run did not happen, and the last section explains why.
 ---
 
-This is the write-up of my B.Tech micro project, done with [Aayush Gupta](../projects/#sns-micro). It grew out of the OptiSystem prototype I built during my [DRDO internship](../post/#optisystem-sns-tf-qkd-prototype-and-post-processing), and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? The technical part comes first. The honest account of how the five months actually went is at the end.
+This is the write-up of my B.Tech micro project with [Aayush Gupta](../projects/#sns-micro). It grew out of the OptiSystem prototype I built during my [DRDO internship](../post/#optisystem-sns-tf-qkd-prototype-and-post-processing), and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? Technical stuff first. How the five months really went is at the end, so skip down if that's what you're here for.
 
 The full report, the slides and the poster are on the [Publications page](../publications/#reports), and the code is in the [snstfqkd-fpga repository](https://github.com/Anand-Ambastha/snstfqkd-fpga). The report has a DOI if you want to cite it: [10.5281/zenodo.24390550](https://doi.org/10.5281/zenodo.24390550).
 
@@ -66,25 +66,25 @@ The numbers decompose exactly. The 627 flip-flops are 608 counter bits (19 count
 
 Three things, and the report says so in a table instead of hiding them. The real OptiSystem CSVs have not been run through the RTL (only random stimulus). There is no Vivado place-and-route, timing or power report. And there is no AXI-Lite wrapper, no bitstream and no run on a board. The Verilog is complete and synthesisable, so what is left is mostly tooling and lab time.
 
-## The part where I tell you how it really went
+## Okay, now the real story
 
-Five months, three project reviews, and a plan that always ended with "and then we put it on the FPGA".
+Five months. Three reviews. And a plan that every single time ended with "and then we'll put it on the FPGA."
 
-It did not end there. The festive season arrived, the lab was closed when we needed it, and the board stayed in its box. I would love to blame the calendar completely, but part of it was us. Deadlines were treated as suggestions, and "we have time" is a very comfortable sentence until it is suddenly November.
+We didn't. Diwali and the festive weeks came, the lab was shut right when we needed it, and the board never left its box. I'd love to blame only the calendar, but honestly, a good chunk of it was us. We kept saying "there's time" and then it was November. Classic.
 
-Working with Aayush is the best part of this project, and also the hardest. He is my Leonard: the steady one, always up for the work, and completely unbothered by everything. Unbothered is great when the simulation crashes. It is a little less great when I am panicking about a review in three days and he says, calmly, that it will be fine. It was fine, three times. I still do not know whether to be grateful or annoyed, so I am both.
+Working with Aayush is the best part of this whole project, and also the hardest. He's my Leonard. Calm, always up for the work, never bothered by anything. That's brilliant when a simulation crashes. It's less brilliant when I'm freaking out about a review and he just goes "yeah, it'll be fine." And it was fine. Every time. I still can't decide whether to be grateful or annoyed, so I'm both.
 
-Which makes me, by the rules of this arrangement, the Sheldon. I accept the role, mostly. So here are the project's official statements, in the voice of a man who would like it noted that he was right:
+That makes me the Sheldon, I guess. I'll take it. For the record, here's how I'd like the project remembered:
 
-- *"I am not procrastinating. I am letting the problem mature."* (Filed under: the FPGA board run, September to November.)
-- *"The lab is closed for the festival. This is an unacceptable schedule and I will be writing to someone about it."* (Nobody was written to.)
-- *"A negative key rate is not a failure. It is a very honest positive result about the noise."* (Aayush, nodding, eating something.)
-- *"Per the agreement, the 19 counters match the reference model exactly. I will accept applause at any volume."*
-- *"Three reviews. Three. In my day, a project needed one review and a fear of the examiner."* (His day was last year.)
-- *"We will run it on the board next week."* (Said every week. The board has started to find it funny.)
+- "I'm not procrastinating, I'm letting the problem mature." (The board run, September to November.)
+- "The lab is closed for the festival? That's an unacceptable schedule and I'm going to write to someone." (I wrote to nobody.)
+- "A negative key rate isn't a failure, it's an honest result about the noise." (Aayush nodded and kept eating.)
+- "All 19 counters match the reference model exactly. Applause is optional but encouraged."
+- "Three reviews? Three? One review and a nervous stomach used to be enough." (Last year. That was last year.)
+- "We'll run it on the board next week." (Said weekly. The board has probably started laughing.)
 
-Aayush's reply to all of the above, delivered in the same calm voice each time, is "okay". It is the most effective counter-argument I have ever met.
+Aayush's answer to every one of these is "okay." Same voice, every time. Best counter-argument I've ever met, and I have never once won.
 
-If you are building something similar, the lesson I would hand over is small. Book the lab early, and write the date of the first board run on the wall. Software will wait for you. A closed lab will not.
+If you're doing something like this, my only advice: book the lab early and write the date of your first board run somewhere you can't ignore it. Software waits for you. A closed lab doesn't.
 
-The board run is still on the list, and the Verilog is ready for it. If you work on FPGA-side QKD post-processing, or just want to compare notes on the counters, [get in touch](../contact/). The project itself is on the [Projects page](../projects/#sns-micro).
+The board run is still on the list and the Verilog is ready for it. If you work on FPGA-side QKD post-processing, or just want to swap notes on those counters, [get in touch](../contact/). The project is on the [Projects page](../projects/#sns-micro).
