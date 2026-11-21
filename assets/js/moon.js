@@ -10,6 +10,7 @@
     };
     load('yt');
     load('viewer');
+    load('search');
     if (Date.now() < Date.UTC(2026, 10, 9, 1, 30, 0)) load('diwali');
   } catch (e) {}
 })();

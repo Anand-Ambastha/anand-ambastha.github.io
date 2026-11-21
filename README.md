@@ -162,6 +162,15 @@ python3 scripts/build_posts.py
 
 It writes `blog/<slug>/index.html` for every post, updates `feed.xml` (RSS) and adds the post URLs to `sitemap.xml`. Old `/post/#slug` links still work: they redirect to the new page.
 
+### Site search
+
+The search button in the top bar (or `/`, or Ctrl/Cmd+K) searches `assets/search-index.json`. It runs in the browser and sends nothing anywhere. Rebuild the index after you change a page or a post, and commit the result:
+
+```bash
+pip install beautifulsoup4
+python3 scripts/build_search.py
+```
+
 ### LinkedIn feed on the Blog page
 
 The **From LinkedIn** group reads `posts/linkedin.json`. LinkedIn offers no public feed for personal posts, so the file is built from text you copy yourself: open your profile's Posts page, scroll to load the posts, select all, paste into a text file, then run
