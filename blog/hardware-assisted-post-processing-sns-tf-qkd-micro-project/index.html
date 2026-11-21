@@ -54,7 +54,7 @@
       <a class="back" href="../">← All posts</a>
       <div class="tags"><span class="tag">sns-tf-qkd</span><span class="tag">fpga</span><span class="tag">verilog</span><span class="tag">python</span><span class="tag">optisystem</span></div>
       <h1>Hardware-assisted post-processing for SNS-TF-QKD, and five months with Aayush</h1>
-      <p class="meta">21 November 2026 · 6 min read · Anand Kumar</p>
+      <p class="meta">21 November 2026 · 7 min read · Anand Kumar</p>
     </header>
     <div class="prose" id="prose">
 <p>This is the write-up of my B.Tech micro project, done with <a href="../projects/#sns-micro">Aayush Gupta</a>. It grew out of the OptiSystem prototype I built during my <a href="../optisystem-sns-tf-qkd-prototype-and-post-processing/">DRDO internship</a>, and asks a narrower question: the classical chain between a twin-field QKD link and a key-rate number is long, so which parts of it are really just counters, and could they live in an FPGA? The technical part comes first. The honest account of how the five months actually went is at the end.</p>
@@ -148,6 +148,16 @@
 <p>Five months, three project reviews, and a plan that always ended with "and then we put it on the FPGA".</p>
 <p>It did not end there. The festive season arrived, the lab was closed when we needed it, and the board stayed in its box. I would love to blame the calendar completely, but part of it was us. Deadlines were treated as suggestions, and "we have time" is a very comfortable sentence until it is suddenly November.</p>
 <p>Working with Aayush is the best part of this project, and also the hardest. He is my Leonard: the steady one, always up for the work, and completely unbothered by everything. Unbothered is great when the simulation crashes. It is a little less great when I am panicking about a review in three days and he says, calmly, that it will be fine. It was fine, three times. I still do not know whether to be grateful or annoyed, so I am both.</p>
+<p>Which makes me, by the rules of this arrangement, the Sheldon. I accept the role, mostly. So here are the project's official statements, in the voice of a man who would like it noted that he was right:</p>
+<ul>
+<li><em>"I am not procrastinating. I am letting the problem mature."</em> (Filed under: the FPGA board run, September to November.)</li>
+<li><em>"The lab is closed for the festival. This is an unacceptable schedule and I will be writing to someone about it."</em> (Nobody was written to.)</li>
+<li><em>"A negative key rate is not a failure. It is a very honest positive result about the noise."</em> (Aayush, nodding, eating something.)</li>
+<li><em>"Per the agreement, the 19 counters match the reference model exactly. I will accept applause at any volume."</em></li>
+<li><em>"Three reviews. Three. In my day, a project needed one review and a fear of the examiner."</em> (His day was last year.)</li>
+<li><em>"We will run it on the board next week."</em> (Said every week. The board has started to find it funny.)</li>
+</ul>
+<p>Aayush's reply to all of the above, delivered in the same calm voice each time, is "okay". It is the most effective counter-argument I have ever met.</p>
 <p>If you are building something similar, the lesson I would hand over is small. Book the lab early, and write the date of the first board run on the wall. Software will wait for you. A closed lab will not.</p>
 <p>The board run is still on the list, and the Verilog is ready for it. If you work on FPGA-side QKD post-processing, or just want to compare notes on the counters, <a href="../../contact/">get in touch</a>. The project itself is on the <a href="../projects/#sns-micro">Projects page</a>.</p>
     </div>

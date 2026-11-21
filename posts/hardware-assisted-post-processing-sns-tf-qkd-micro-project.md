@@ -74,6 +74,17 @@ It did not end there. The festive season arrived, the lab was closed when we nee
 
 Working with Aayush is the best part of this project, and also the hardest. He is my Leonard: the steady one, always up for the work, and completely unbothered by everything. Unbothered is great when the simulation crashes. It is a little less great when I am panicking about a review in three days and he says, calmly, that it will be fine. It was fine, three times. I still do not know whether to be grateful or annoyed, so I am both.
 
+Which makes me, by the rules of this arrangement, the Sheldon. I accept the role, mostly. So here are the project's official statements, in the voice of a man who would like it noted that he was right:
+
+- *"I am not procrastinating. I am letting the problem mature."* (Filed under: the FPGA board run, September to November.)
+- *"The lab is closed for the festival. This is an unacceptable schedule and I will be writing to someone about it."* (Nobody was written to.)
+- *"A negative key rate is not a failure. It is a very honest positive result about the noise."* (Aayush, nodding, eating something.)
+- *"Per the agreement, the 19 counters match the reference model exactly. I will accept applause at any volume."*
+- *"Three reviews. Three. In my day, a project needed one review and a fear of the examiner."* (His day was last year.)
+- *"We will run it on the board next week."* (Said every week. The board has started to find it funny.)
+
+Aayush's reply to all of the above, delivered in the same calm voice each time, is "okay". It is the most effective counter-argument I have ever met.
+
 If you are building something similar, the lesson I would hand over is small. Book the lab early, and write the date of the first board run on the wall. Software will wait for you. A closed lab will not.
 
 The board run is still on the list, and the Verilog is ready for it. If you work on FPGA-side QKD post-processing, or just want to compare notes on the counters, [get in touch](../contact/). The project itself is on the [Projects page](../projects/#sns-micro).
