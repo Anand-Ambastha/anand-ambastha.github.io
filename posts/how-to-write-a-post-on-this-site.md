@@ -27,7 +27,7 @@ draft: true
 
 - `title` and `date` are required. Posts are sorted newest first.
 - `tags` become the filter chips on the Blog page.
-- `category: project` lists the post under **Project blogs**. Leave it out and the post appears under **My thoughts**.
+- `category: project` lists the post under **Project blogs**, and `category: personal` lists it under **Personal and fun** at the bottom of the Blog page. Leave it out and the post appears under **My thoughts**.
 - `draft: true` hides the post everywhere until it is ready. Delete the line, or set it to `false`, to publish.
 
 ## 2. Register it

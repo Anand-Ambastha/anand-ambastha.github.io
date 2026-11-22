@@ -1,6 +1,7 @@
 ---
 title: Five months, one micro project, and Aayush
 date: 2026-11-21
+category: personal
 tags: [college, fpga, teamwork]
 summary: The part of my B.Tech micro project that isn't in the report: three reviews, an FPGA board that stayed in its box, and working with a partner who is never bothered by anything.
 ---
