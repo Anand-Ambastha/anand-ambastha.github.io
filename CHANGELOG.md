@@ -3,7 +3,6 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
-- Video: pop-up player has a captions side pane (reads assets/captions/<video id>.vtt, highlights the current line, click a line to jump); captions are not drawn on the video. No caption files added yet.
 - Video: YouTube links stay as links; clicking one opens a pop-up player on the same page (muted at start). Privacy policy updated.
 - PDFs: every PDF except the CV now has a "Please cite" line with its source repository (and the DOI where there is one) on every page; the slides PPTX has it on every slide.
 - Blog: new "Personal and fun" group at the bottom of the Blog page (category: personal); the Aayush post moved there.
