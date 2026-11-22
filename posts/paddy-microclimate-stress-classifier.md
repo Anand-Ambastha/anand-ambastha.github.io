@@ -6,7 +6,7 @@ tags: [paddy, lstm, agri-ai, domain-shift]
 summary: A BiLSTM-LSTM model for three-class paddy stress, built with physiology-based labels and tested by holding out an entire coastal location.
 ---
 
-Rice is sensitive to short spells of heat, dry air and high evaporative demand, and farmers decide on irrigation on exactly that timescale. This post describes a course project for CMU 11-785 (Introduction to Deep Learning) in which I built a model that reads 48 hours of weather and labels the stress on the crop as low, medium or high. The harder part was not the model. It was asking whether it still works in a climate it was never trained on. The entry on the [Projects page](../projects/) has the short version, the full write-up is the [project report (PDF)](https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier/blob/main/Project_Report.pdf), and the code is on [GitHub](https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier).
+Rice is sensitive to short spells of heat, dry air and high evaporative demand, and farmers decide on irrigation on exactly that timescale. This post describes a course project for CMU 11-785 (Introduction to Deep Learning) in which I built a model that reads 48 hours of weather and labels the stress on the crop as low, medium or high. The harder part was not the model. It was asking whether it still works in a climate it was never trained on. The entry on the [Projects page](../projects/) has the short version, the full write-up is the [project report (PDF)](/assets/files/CMU_11785_Paddy_Microclimate_Report.pdf), and the code is on [GitHub](https://github.com/Anand-Ambastha/CMU-11785-AI-Driven-Paddy-Classifier).
 
 ## The data
 
