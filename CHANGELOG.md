@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Added ORCID (0009-0009-6076-6888) to the footer links on every page, the contact page and the structured data.
 - Share previews: every blog post has its own 1200x630 preview image (scripts/build_og.py, assets/img/og/); post pages point og:image and twitter:image at it.
 - Video: YouTube links stay as links; clicking one opens a pop-up player on the same page (muted at start). Privacy policy updated.
 - PDFs: every PDF except the CV now has a "Please cite" line with its source repository (and the DOI where there is one) on every page; the slides PPTX has it on every slide.
