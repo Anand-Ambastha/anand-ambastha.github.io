@@ -1,4 +1,4 @@
-/* YouTube links play inside the site. Nothing is requested from YouTube until the visitor presses play. */
+/* YouTube links stay as ordinary links. Clicking one opens a pop-up player on the same page. Nothing is requested from YouTube until the click. */
 (function () {
   'use strict';
   var d = document;
@@ -60,7 +60,6 @@
     modal.querySelector('#yt-close').focus();
   }
 
-  var BLOCK = /^(P|DIV|LI|BLOCKQUOTE|FIGURE|TD)$/;
   function process(root) {
     var links = root.querySelectorAll('a[href]');
     for (var i = 0; i < links.length; i++) {
@@ -69,15 +68,13 @@
       if (a.closest('nav, header, footer, #yt-modal')) continue;
       var id = idOf(a); if (!id) continue;
       a.setAttribute('data-yt', '1');
-      var t = start(a.href), par = a.parentNode;
-      var sole = BLOCK.test(par.nodeName) && par.textContent.trim() === a.textContent.trim() && par.querySelectorAll('a').length === 1;
-      if (sole) {
-        var p = player(id, t, false);
-        par.parentNode.replaceChild(p, par);
-      } else {
-        a.addEventListener('click', (function (id, t) { return function (e) { e.preventDefault(); openModal(id, t); }; })(id, t));
-        a.setAttribute('role', 'button');
-      }
+      var t = start(a.href);
+      a.addEventListener('click', (function (id, t) {
+        return function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button > 0) return;
+          e.preventDefault(); openModal(id, t);
+        };
+      })(id, t));
     }
   }
 
