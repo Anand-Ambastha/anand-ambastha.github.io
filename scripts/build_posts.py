@@ -123,13 +123,16 @@ TEMPLATE = """<!doctype html>
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{site}assets/img/og-image.png">
+<meta property="og:image" content="{img}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{title}">
 <meta property="article:published_time" content="{date}">
 <meta property="article:author" content="Anand Kumar">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="{site}assets/img/og-image.png">
+<meta name="twitter:image" content="{img}">
 <script type="application/ld+json">{jsonld}</script>
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -206,17 +209,18 @@ def main():
         tags = tags if isinstance(tags, list) else []
         card = lambda q, lab: ('<a class="post-card" href="../%s/"><span class="when">%s</span><h2>%s</h2></a>'
                                % (q["slug"], lab, html.escape(q["meta"].get("title", q["slug"])))) if q else "<span></span>"
+        img = SITE + ("assets/img/og/%s.png" % p["slug"] if (ROOT / "assets" / "img" / "og" / (p["slug"] + ".png")).exists() else "assets/img/og-image.png")
         ld = {"@context": "https://schema.org", "@graph": [
             {"@type": "BlogPosting", "headline": title, "description": summary, "datePublished": m.get("date", ""),
              "dateModified": m.get("date", ""), "url": url, "mainEntityOfPage": url,
-             "image": SITE + "assets/img/og-image.png", "keywords": ", ".join(tags),
+             "image": img, "keywords": ", ".join(tags),
              "author": {"@id": SITE + "#person"}, "publisher": {"@id": SITE + "#person"}},
             {"@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE},
                 {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + "blog/"},
                 {"@type": "ListItem", "position": 3, "name": title, "item": url}]}]}
         page = TEMPLATE.format(
-            title=html.escape(title), desc=html.escape(summary, quote=True), url=url, site=SITE, kw=html.escape(keywords(tags, title + ' ' + summary), quote=True),
+            title=html.escape(title), desc=html.escape(summary, quote=True), url=url, img=img, site=SITE, kw=html.escape(keywords(tags, title + ' ' + summary), quote=True),
             date=m.get("date", ""), jsonld=json.dumps(ld, ensure_ascii=False).replace("</", "<\\/"),
             nav=nav_links, tags=('<div class="tags">%s</div>' % "".join('<span class="tag">%s</span>' % html.escape(t) for t in tags)) if tags else "",
             when=fmt(m.get("date", "")), minutes=max(1, round(words / 200)), body=h,
