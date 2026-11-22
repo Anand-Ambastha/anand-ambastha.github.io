@@ -162,6 +162,18 @@ python3 scripts/build_posts.py
 
 It writes `blog/<slug>/index.html` for every post, updates `feed.xml` (RSS) and adds the post URLs to `sitemap.xml`. Old `/post/#slug` links still work: they redirect to the new page.
 
+### Share previews
+
+Each blog post has its own preview image (1200 by 630) that shows when a link is shared on LinkedIn, WhatsApp, X and similar. After you add or retitle a post, make the images and rebuild the pages:
+
+```bash
+pip install pillow
+python3 scripts/build_og.py
+python3 scripts/build_posts.py
+```
+
+Posts without an image fall back to `assets/img/og-image.png`. The images use fonts installed on the machine that runs the script (Inter and DejaVu Sans Mono).
+
 ### Site search
 
 The search button in the top bar (or `/`, or Ctrl/Cmd+K) searches `assets/search-index.json`. It runs in the browser and sends nothing anywhere. Rebuild the index after you change a page or a post, and commit the result:
