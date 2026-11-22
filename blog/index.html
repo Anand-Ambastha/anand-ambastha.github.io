@@ -108,6 +108,11 @@
     <p style="margin-top: 28px;"><a class="pill ghost" href="https://www.linkedin.com/in/anand-kumar05/recent-activity/all/" target="_blank" rel="noopener">See all activity on LinkedIn ↗</a></p>
   </section>
 
+  <section class="blog-group" id="g-personal" style="padding-top: 24px;">
+    <div class="sec-head"><h2>Personal and fun</h2><p>Stories from behind the work. Not technical, mostly funny.</p></div>
+    <div class="post-list" id="list-personal"></div>
+  </section>
+
   <footer class="site">
     <div class="foot-grid">
       <div class="foot-brand">
@@ -147,7 +152,8 @@
   var filters = document.getElementById('filters');
   var groups = [
     { key: 'thoughts', empty: 'Nothing here yet. Posts will appear soon.' },
-    { key: 'projects', empty: 'No project blogs yet.' }
+    { key: 'projects', empty: 'No project blogs yet.' },
+    { key: 'personal', empty: 'Nothing here yet.' }
   ];
   var posts = [], active = 'All';
 
@@ -164,7 +170,8 @@
     groups.forEach(function (g) {
       var sec = document.getElementById('g-' + g.key), list = document.getElementById('list-' + g.key);
       var items = posts.filter(function (p) {
-        var inGroup = (p.category === 'project') === (g.key === 'projects');
+        var cat = p.category === 'project' ? 'projects' : (p.category === 'personal' ? 'personal' : 'thoughts');
+        var inGroup = cat === g.key;
         return inGroup && (active === 'All' || p.tags.indexOf(active) > -1);
       });
       sec.hidden = active !== 'All' ? !items.length : false;
