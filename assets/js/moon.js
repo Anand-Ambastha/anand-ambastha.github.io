@@ -11,6 +11,7 @@
     load('yt');
     load('viewer');
     load('search');
+    load('pdfview');
     if (Date.now() < Date.UTC(2026, 10, 9, 1, 30, 0)) load('diwali');
     if (Date.now() < Date.UTC(2026, 11, 25, 21, 30, 0)) load('christmas'); // home and blog index only; self-expiring
   } catch (e) {}
