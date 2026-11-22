@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- PDFs: every PDF on the site now opens in a built-in viewer on the same page (pdf.js, served from this site, no outside requests); zoom, fit width and Escape to close. The CV download buttons still download. The paddy project report is now hosted here instead of linking to GitHub.
 - Christmas theme for the home page and blog index only: string lights along the top, soft snowfall, a red and green glow and a short "Merry Christmas" note. Active 24 Dec 2026 18:00 IST to 26 Dec 2026 03:00 IST, and Santa in his sleigh flying across the page every minute, then it switches itself off (assets/js/christmas.js, loaded from moon.js).
 - Added ORCID (0009-0009-6076-6888) to the footer links on every page, the contact page and the structured data.
 - Share previews: every blog post has its own 1200x630 preview image (scripts/build_og.py, assets/img/og/); post pages point og:image and twitter:image at it.
