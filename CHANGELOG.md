@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- GitHub links added where a repo exists but had no link: Research (QSAFire), Projects (TF-QKD / FSO framework), Publications (decoy-state BB84 paper, micro project report, DRDO report).
 - PDFs: every PDF except the CV now has a "Please cite" line with its source repository (and the DOI where there is one) on every page; the slides PPTX has it on every slide.
 - Blog: new "Personal and fun" group at the bottom of the Blog page (category: personal); the Aayush post moved there.
 - Site search: a Search button in the top bar (or press /) over a prebuilt index; run scripts/build_search.py after changing pages or posts.
