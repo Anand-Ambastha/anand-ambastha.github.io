@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Home info boxes redesigned: four separate cards in a 2 × 2 grid (one column on phones), each with a blue edge, a label, a bold main line and muted detail lines.
 - Home info strip, Now: added the Centre for Applied Research in Electronics, IIT Delhi.
 - Home info strip: removed CGPA and the degree title; shows Electronics and Communication Engineering with a Minor in Artificial Intelligence and Machine Learning, university on its own line.
 - Removed the pasted LinkedIn hashtag line from the six "Quantum Networks Under the Lens" posts (it rendered as a second main heading). The micro project report is now offered as "View the report", opening in the built-in viewer with no download button, like the poster.
