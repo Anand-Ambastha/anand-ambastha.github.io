@@ -292,6 +292,8 @@
 <script>
 (function () {
   Blog.load().then(function (posts) {
+    // Technical posts only; personal and fun posts stay on the Blog page.
+    posts = posts.filter(function (p) { return p.category !== 'personal'; });
     if (!posts.length) return;
     document.getElementById('latest').innerHTML = posts.slice(0, 2).map(Blog.card).join('');
     document.getElementById('writing').hidden = false;

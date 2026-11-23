@@ -36,7 +36,7 @@ The site is fully static: plain HTML, CSS and a small amount of JavaScript, with
 - **Space theme**: black background with a fixed star field (pure CSS, a slow twinkle that stops for visitors who prefer reduced motion).
 - **Glass interface**: the top bar, buttons and cards use translucent backgrounds with a backdrop blur.
 - **Markdown blog**: write posts as `.md` files. They are rendered with styled headings, quotes, code blocks with a Copy button, tables, images and TeX math.
-- **Tag filtering** on the blog listing and a "Latest writing" section on the home page that appears once a post exists.
+- **Tag filtering** on the blog listing and a "Writing" section on the home page that always shows the two latest technical posts (personal and fun posts are left out and stay on the Blog page).
 - **Publications page** with sections for published and accepted work, preprints, thesis and reports, and presentation slides.
 - **Responsive**: works from phone width up to wide desktop screens. On phones the menu becomes a swipeable row.
 - **Accessible basics**: semantic HTML, visible keyboard focus, `aria-current` on the active page, and reduced-motion support.
