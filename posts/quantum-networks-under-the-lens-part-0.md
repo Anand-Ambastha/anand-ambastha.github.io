@@ -39,6 +39,4 @@ Just interesting questions, ideas, and discussions from the journey.
 
 Because sometimes the most valuable part of research isn't the answer...it's learning how to ask better questions.
 
-#QuantumNetworks #QuantumCommunication #QKD #SatelliteCommunication #Research #SpaceTechnology... more
-
 *First shared on [LinkedIn](https://www.linkedin.com/in/anand-kumar05/recent-activity/all/).*

@@ -44,6 +44,4 @@ It's provided by nature.
 
 What do you think?
 
-#QuantumCommunication #QKD #QuantumNetworks #AtmosphericScience #SpaceTechnology #Research... more
-
 *First shared on [LinkedIn](https://www.linkedin.com/in/anand-kumar05/recent-activity/all/).*

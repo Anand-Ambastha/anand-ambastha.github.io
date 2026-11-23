@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Removed the pasted LinkedIn hashtag line from the six "Quantum Networks Under the Lens" posts (it rendered as a second main heading). The micro project report is now offered as "View the report", opening in the built-in viewer with no download button, like the poster.
 - Home page Writing section now always shows the latest technical posts; personal and fun posts no longer appear there.
 - PDFs: every PDF on the site now opens in a built-in viewer on the same page (pdf.js, served from this site, no outside requests); zoom, fit width and Escape to close. The CV download buttons still download. The paddy project report is now hosted here instead of linking to GitHub.
 - Christmas theme for the home page and blog index only: string lights along the top, soft snowfall, a red and green glow and a short "Merry Christmas" note. Active 24 Dec 2026 18:00 IST to 26 Dec 2026 03:00 IST, and Santa in his sleigh flying across the page every minute, then it switches itself off (assets/js/christmas.js, loaded from moon.js).

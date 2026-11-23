@@ -35,6 +35,4 @@ I've been exploring this intersection of atmospheric science and quantum communi
 
 What do you think?
 
-#QuantumCommunication #AtmosphericPhysics #QKD #QuantumNetworks #SatelliteCommunication #Research... more
-
 *First shared on [LinkedIn](https://www.linkedin.com/in/anand-kumar05/recent-activity/all/).*

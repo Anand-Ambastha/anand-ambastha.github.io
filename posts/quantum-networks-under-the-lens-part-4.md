@@ -45,6 +45,4 @@ Engineering decides what is useful.
 
 What would you prioritize?
 
-#Engineering #QuantumCommunication #QKD #QuantumNetworks #Research #SatelliteCommunication... more
-
 *First shared on [LinkedIn](https://www.linkedin.com/in/anand-kumar05/recent-activity/all/).*

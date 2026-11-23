@@ -31,6 +31,4 @@ I've been exploring this topic while preparing an upcoming manuscript on large-s
 
 What would your intuition predict?
 
-#QuantumCommunication #QKD #SatelliteNetworks #QuantumNetworks #Research... more
-
 *First shared on [LinkedIn](https://www.linkedin.com/in/anand-kumar05/recent-activity/all/).*

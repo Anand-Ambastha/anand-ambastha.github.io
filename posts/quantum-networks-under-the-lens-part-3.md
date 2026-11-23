@@ -42,6 +42,4 @@ I've been thinking a lot about this tradeoff while working on system-level model
 
 If you were designing a global quantum communication network from scratch, where would you start?
 
-#QuantumCommunication #QKD #SatelliteCommunication #QuantumNetworks #SpaceSystems #Research... more
-
 *First shared on [LinkedIn](https://www.linkedin.com/in/anand-kumar05/recent-activity/all/).*
