@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Home: the university name links to ipu.ac.in, styled like the surrounding text (no blue, no underline).
 - Home info boxes redesigned as four minimal columns: a thin line with a short blue highlight on top, a small blue label, a bold main line and muted details. Two columns on tablets, one on phones.
 - Home info strip, Now: added the Centre for Applied Research in Electronics, IIT Delhi.
 - Home info strip: removed CGPA and the degree title; shows Electronics and Communication Engineering with a Minor in Artificial Intelligence and Machine Learning, university on its own line.
