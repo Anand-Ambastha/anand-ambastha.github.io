@@ -274,18 +274,16 @@ a.status:hover { background: var(--surface-hover); }
 .hero-card { margin: 0; border-radius: 28px; background: var(--surface); border: 1px solid var(--glass-border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); overflow: hidden; }
 .hero-card svg { display: block; width: 100%; height: auto; padding: clamp(10px, 2vw, 22px) clamp(10px, 2vw, 22px) 0; }
 .hero-card figcaption { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); padding: 10px clamp(18px, 3vw, 36px) 22px; letter-spacing: .02em; }
-.strip { margin: 40px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.strip { margin: 48px 0 0; border-top: 1px solid var(--line); }
 .open-to { margin: 16px 4px 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
 .open-to span { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #7fe3a1; margin-right: 10px; vertical-align: 1px; box-shadow: 0 0 10px rgba(127, 227, 161, .6); }
 .open-to a { color: var(--fg); }
-.strip > div { position: relative; padding: 20px 24px 20px 26px; min-width: 0; border: 1px solid var(--glass-border); border-radius: 16px; background: var(--surface); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); overflow: hidden; transition: background .2s ease, border-color .2s ease; }
-.strip > div::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent); opacity: .85; }
-.strip > div:hover { background: var(--surface-hover); }
-.strip dt { font-family: var(--font-mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); }
-.strip dd { margin: 8px 0 0; line-height: 1.4; }
-.strip dd b { display: block; font-weight: 500; font-size: 17px; line-height: 1.35; color: var(--fg); }
-.strip dd span { display: block; margin-top: 5px; font-size: 14px; line-height: 1.5; color: var(--muted); }
-.strip dd span + span { margin-top: 2px; }
+.strip > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 32px; align-items: baseline; padding: 20px 4px; border-bottom: 1px solid var(--line); min-width: 0; }
+.strip dt { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.strip dd { margin: 0; line-height: 1.45; min-width: 0; }
+.strip dd b { font-weight: 500; font-size: 18px; color: var(--fg); }
+.strip dd span { display: block; margin-top: 3px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+.strip dd span a { color: var(--fg); }
 
 .h-block { display: grid; grid-template-columns: minmax(0, 230px) minmax(0, 1fr); gap: 24px 64px; margin-top: 72px; padding-block: 40px 0; border-top: 1px solid var(--line); }
 .h-label h2 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--fg); }
@@ -335,7 +333,7 @@ a.item:hover h3 { color: var(--accent); }
   .h-cta { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 520px) {
-  .strip { grid-template-columns: minmax(0, 1fr); }
+  .strip > div { grid-template-columns: minmax(0, 1fr); gap: 6px; padding: 18px 2px; }
   .item { grid-template-columns: minmax(0, 1fr); }
   .item .meta { text-align: left; grid-row: 1; }
   .item h3 { grid-row: 2; }
