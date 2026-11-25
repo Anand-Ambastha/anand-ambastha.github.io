@@ -3,6 +3,7 @@
 All notable changes to this site, newest first. Dates are 2026. Each release is also a git tag; the full commit list is in `git log`.
 
 ## v1.7 - 31 Oct
+- Visitor counter in the footer of every page (abacus counter service; each browser counted once, nothing shown if the service is unreachable). Privacy page updated to say so.
 - No em dashes anywhere on the site: checked every page, post, script and hosted file; the one left (a sentence in the DCN lab report PDF) is now written with commas.
 - Home: the university name links to ipu.ac.in, styled like the surrounding text (no blue, no underline).
 - Home info boxes redesigned as four minimal columns: a thin line with a short blue highlight on top, a small blue label, a bold main line and muted details. Two columns on tablets, one on phones.
